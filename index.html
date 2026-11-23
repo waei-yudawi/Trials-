@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" class="scroll-smooth">  
 <head>  
     <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
     <!-- Cache refresh hints -->  
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
@@ -496,6 +496,7 @@
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
     <link rel="stylesheet" href="./waei-live-effects.css">
+<link rel="stylesheet" href="./waei-v8.css">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -660,7 +661,7 @@
                         <span class="w-9 h-9 rounded-xl bg-rose-50 text-crimson flex items-center justify-center text-sm"><i class="fa-solid fa-lungs"></i></span>  
                         <div class="text-right">  
                             <h3 class="text-sm font-bold text-slate-800 font-cairo">جسمك من جوا</h3>  
-                            <p class="text-[11px] text-brandGray-500 font-plex">المسرح التشريحي واختبار اختناق القشة</p>  
+                            <p class="text-[11px] text-brandGray-500 font-plex">رحلة التدخين وتأثيره على الجسم</p>  
                         </div>  
                     </div>  
                     <i class="fa-solid fa-chevron-left text-xs text-brandGray-400"></i>  
@@ -1041,12 +1042,12 @@
                 </div>  
             </div>  
   
-            <!-- أطلس الفحص التشريحي الملون -->
+            <!-- استكشف أعضاء جسمك خطوة بخطوة -->
             <div class="bento-card p-6 space-y-4">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-100">  
                     <div>  
                         <span class="text-xs font-bold text-crimson font-cairo">أطلس الفحص التشريحي الملون</span>  
-                        <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-cairo">جسمك من جوا: ماذا يحدث داخل الأعضاء؟</h3>  
+                        <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-cairo">رحلة التدخين: ماذا يحدث داخل جسمك؟</h3>  
                     </div>  
                     <div class="flex items-center gap-2">  
                         <button type="button" onclick="triggerCustomImagePicker('anatomyMainBodyImage')" class="owner-only-btn hidden px-3 py-1.5 bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 rounded-xl text-xs font-cairo font-bold border border-brandGray-300">  
@@ -1060,7 +1061,7 @@
   
                 <div class="flex flex-col lg:flex-row items-center gap-8 py-4">  
                     <div class="relative w-full max-w-sm mx-auto aspect-[3/5] bg-brandGray-50 rounded-2xl border border-brandGray-200 flex items-center justify-center overflow-hidden" id="anatomyStageWrapper">  
-                        <img id="anatomyMainBodyImage" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80" alt="جسد اليافع التشريحي" class="h-full w-auto object-contain select-none">  
+                        <img id="anatomyMainBodyImage" decoding="async" loading="lazy" src="./assets/anatomy-boy.webp" alt="رسم كرتوني تعليمي للشخصية مع الدماغ والرئتين والقلب" class="h-full w-auto object-contain select-none">  
                         <div id="anatomyHotspotsContainer" class="absolute inset-0"></div>  
                     </div>  
   
@@ -1104,37 +1105,60 @@
                     </div>  
                 </div>  
 <!-- الخط الزمني للتعافي السريري بعد الإقلاع (صورة / GIF / فيديو) -->
-<section id="timelineHealingWidget" class="wy-healing bento-card" aria-label="مسار التعافي بعد التوقف عن التدخين">
-  <div class="wy-heal-head">
-    <div><span class="wy-heal-kicker">🌱 خطوات نحو صحة أفضل</span><h3>جسمك يرجع يبتسم</h3><p>اكتشف كيف يبدأ جسمك بالتعافي، خطوة بخطوة.</p></div>
-    <div id="timelineOwnerControlsContainer" class="hidden flex-wrap gap-2"></div>
-  </div>
-  <div class="wy-heal-content">
-    <div class="wy-heal-visual">
-      <div id="timelineMediaFrame" class="wy-heal-stage">
-        <span class="wy-heal-orbit wy-heal-orbit-a" aria-hidden="true">✦</span><span class="wy-heal-orbit wy-heal-orbit-b" aria-hidden="true">✧</span>
-        <button id="wy-heal-character" type="button" aria-label="حرّك الشخصية الكرتونية" title="المس الشخصية لتتحرك" onclick="waeiExperiences.healAnimate()">
-          <img id="timelineMediaImg" src="./assets/heart.webp" alt="شخصية كرتونية توضّح التعافي" loading="lazy">
-        </button>
-        <div id="timelineMediaVideoBox" class="hidden wy-heal-video"></div>
-        <span id="milestoneMediaTypeBadge" class="wy-heal-dot" aria-hidden="true"></span>
-        <span id="milestoneMediaLabel" class="wy-heal-media-label">شخصية كرتونية</span>
-        <div id="timelineMediaUploadSlot" class="wy-heal-upload"></div>
-      </div>
-    </div>
-    <div class="wy-heal-copy">
-      <span id="milestoneTimeBadge" class="wy-heal-time">بعد 20 دقيقة</span>
-      <span id="milestoneTargetOrgan" class="wy-heal-organ">القلب</span>
-      <h4 id="milestoneTitle">قلبك يبدأ يرتاح</h4>
-      <p id="milestoneClinicalImpact">يبدأ نبض القلب بالعودة نحو المستوى الطبيعي.</p>
-      <p id="milestoneLabMarker" class="wy-heal-hint">بداية صغيرة، لكنها مهمة.</p>
-      <span class="wy-heal-tap">👆 المس الشخصية وشاهدها تتحرك</span>
-    </div>
-  </div>
-  <div id="healingMilestonesBar" class="wy-heal-progress" role="group" aria-label="اختيار مرحلة التعافي"></div>
-  <div class="wy-heal-actions"><button type="button" id="wy-heal-prev" onclick="waeiExperiences.healPrev()">السابق</button><button type="button" id="wy-heal-next" onclick="waeiExperiences.healNext()">اكتشف التالي <i class="fa-solid fa-arrow-left"></i></button></div>
-  <p class="wy-heal-disclaimer">الأوقات تقريبية وقد تختلف الاستجابة من شخص لآخر. <a href="https://www.nhs.uk/better-health/quit-smoking/ready-to-quit-smoking/what-could-happen-when-you-quit-smoking/" target="_blank" rel="noopener noreferrer">المصدر: NHS</a></p>
-</section>
+            <section id="timelineHealingWidget" class="bento-card p-5 sm:p-7 space-y-5 border-emerald-200 bg-gradient-to-br from-white via-emerald-50/25 to-slate-50 relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-emerald-100">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-3 py-1 rounded-full border border-emerald-200 font-cairo inline-flex items-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-heart-pulse text-emerald-600 animate-pulse"></i> مسار التعافي بعد التوقف 🌱
+                        </span>
+                        <h3 class="text-lg sm:text-2xl font-black text-slate-900 mt-2 font-cairo">
+                            ماذا قد يتغيّر في جسمك بعد التوقف عن التدخين؟
+                        </h3>
+                        <p class="text-xs text-slate-600 font-plex mt-0.5">
+                            استكشف مراحل تقريبية؛ تختلف سرعة التحسن من شخص لآخر.
+                        </p>
+                    </div>
+                    <div id="timelineOwnerControlsContainer" class="hidden flex-wrap items-center gap-2 self-start"></div>
+                </div>
+
+                <!-- شريط المحطات الست -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2" id="healingMilestonesBar"></div>
+
+                <!-- المسرح التفاعلي الحي: يدعم الصور، GIF الطبي، والفيديو -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-950 border border-slate-200 shadow-inner flex items-center justify-center group">
+                        <div id="timelineMediaFrame" class="w-full h-full flex items-center justify-center relative">
+                            <img id="timelineMediaImg" src="" alt="المسرح الحي للتعافي" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div id="timelineMediaVideoBox" class="w-full h-full hidden"></div>
+                            <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded-lg bg-black/70 text-white font-cairo text-[10px] font-bold backdrop-blur-xs flex items-center gap-1.5 z-10">
+                                <span id="milestoneMediaTypeBadge" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span id="milestoneMediaLabel">محاكاة حية</span>
+                            </div>
+                        </div>
+                        <div id="timelineMediaUploadSlot" class="absolute top-2 left-2 z-20"></div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-3.5">
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <div>
+                                <span class="text-[11px] font-black text-emerald-700 font-cairo bg-emerald-50 px-2.5 py-0.5 rounded-md inline-block" id="milestoneTargetOrgan">الجهاز المستهدف</span>
+                                <h4 class="text-base sm:text-xl font-black text-slate-900 font-cairo mt-1" id="milestoneTitle">عنوان المحطة</h4>
+                            </div>
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-100 font-num font-black text-xs sm:text-sm text-slate-800 border border-slate-200" id="milestoneTimeBadge">20 دقيقة</span>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-600 font-plex leading-relaxed" id="milestoneClinicalImpact"></p>
+
+                        <div class="p-3.5 bg-gradient-to-r from-emerald-50 to-white rounded-xl border border-emerald-200/80 flex items-start gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 text-xs"><i class="fa-solid fa-microscope"></i></span>
+                            <div class="text-xs font-plex">
+                                <strong class="font-cairo text-emerald-950 block">العلامة المخبرية والفسيولوجية المؤكدة:</strong>
+                                <span id="milestoneLabMarker" class="text-emerald-800 leading-normal"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -1371,43 +1395,47 @@
                 <span class="text-xs text-brandGray-500 font-plex">المنصة / احسبها وتحدّى</span>  
             </div>  
   
-            <div id="financialCalculatorCard" class="bento-card wy-calculator" dir="rtl">
- <header class="wy-calc-head"><span>💚 مصروفي وصحتي</span><h3>مرطبان الأحلام</h3><p>شاهد كم يمكنك توفيره عندما تبتعد عن التدخين.</p></header>
- <div class="wy-calc-layout">
-  <div class="wy-calc-settings">
-   <label for="calcCigsSlider" class="wy-calc-label">كم سيجارة تُدخَّن يوميًا؟ <b id="calcCigsCountLabel">15 سيجارة</b></label>
-   <input id="calcCigsSlider" type="range" min="0" max="40" value="15" step="1" oninput="updateFinancialCalc()" aria-label="عدد السجائر في اليوم" />
-   <label class="wy-calc-label" for="wy-calc-price">سعر السيجارة الواحدة (₪)</label>
-   <div class="wy-calc-prices" role="group" aria-label="أمثلة لسعر السيجارة">
-    <button type="button" class="calc-price-btn active" data-price="2" onclick="setCalcPrice(Number(this.dataset.price),this)">2 ₪</button>
-    <button type="button" class="calc-price-btn" data-price="3.5" onclick="setCalcPrice(Number(this.dataset.price),this)">3.5 ₪</button>
-    <button type="button" class="calc-price-btn" data-price="5" onclick="setCalcPrice(Number(this.dataset.price),this)">5 ₪</button>
-   </div>
-   <div class="wy-calc-custom"><span>أو اكتب سعرًا آخر:</span><input id="wy-calc-price" type="number" value="2" min="0" max="1000" step="0.5" inputmode="decimal" oninput="updateFinancialCalc()" aria-label="السعر بالشيكل للسيجارة الواحدة"><span>₪</span></div>
-   <small>الأسعار أمثلة فقط؛ يمكنك كتابة سعر السيجارة الفعلي وتعديل الخيارات من لوحة المالك.</small>
-   <div class="wy-calc-period" role="group" aria-label="مدة التوفير">
-    <button type="button" data-period="7" onclick="waeiExperiences.calcPeriod(7)">أسبوع</button>
-    <button type="button" data-period="30" class="active" onclick="waeiExperiences.calcPeriod(30)">شهر</button>
-    <button type="button" data-period="365" onclick="waeiExperiences.calcPeriod(365)">سنة</button>
-   </div>
-   <div class="wy-calc-saved" aria-live="polite"><span>يمكنك توفير</span><strong id="wy-calc-total">900 ₪</strong><small id="wy-calc-period-label">خلال 30 يومًا</small></div>
-  </div>
-  <div class="wy-calc-play">
-   <div id="wy-jar-scene" class="wy-jar-scene" role="img" aria-label="مرطبان كرتوني يتلقى عملات التوفير">
-    <div id="wy-jar-coins" class="wy-jar-coins" aria-hidden="true"></div>
-    <img id="wy-jar-character" src="./assets/jar.webp" alt="مرطبان الأحلام الكرتوني" loading="lazy" />
-    <div id="wy-jar-burst" class="wy-jar-burst" aria-hidden="true">✦ ✨ ✦</div>
-   </div>
-   <div class="wy-calc-dream"><p>اختر حلمك 🎯</p><div class="wy-calc-goals" id="wy-calc-goals" role="group" aria-label="اختيار هدف التوفير">
-    <button type="button" class="active" data-goal="books" onclick="waeiExperiences.setGoal('books')"><img src="./assets/goal-books.webp" alt="">كتب</button>
-    <button type="button" data-goal="headphones" onclick="waeiExperiences.setGoal('headphones')"><img src="./assets/goal-headphones.webp" alt="">سماعات</button>
-    <button type="button" data-goal="bike" onclick="waeiExperiences.setGoal('bike')"><img src="./assets/goal-bike.webp" alt="">دراجة</button>
-   </div><label for="wy-calc-target">المبلغ الذي تريد ادخاره (₪)</label><input id="wy-calc-target" type="number" min="1" max="1000000" value="500" step="50" inputmode="numeric" oninput="updateFinancialCalc()"><div class="wy-calc-progress" aria-label="التقدم نحو هدف الادخار"><div id="wy-calc-goal-fill"></div></div><small id="wy-calc-goal-note">اختر هدفًا يناسبك.</small></div>
-  </div>
- </div>
- <div class="wy-calc-summary"><span>في الشهر: <b id="calcMonthlyWaste">900 ₪</b></span><span>في السنة: <b id="calcYearlyWaste">10,950 ₪</b></span></div>
- <p class="wy-calc-foot">حساب تقديري يفترض عدم شراء السجائر خلال المدة المختارة، دون احتساب تغيّر الأسعار.</p>
-</div>  
+            <div class="bento-card calculator-gradient p-6 space-y-5 bg-gradient-to-br from-white via-rose-50/50 to-slate-50 border-rose-100">  
+                <div>  
+                    <span class="text-xs font-bold text-crimson font-cairo">التدخين عبء مالي يحترق في الهواء</span>  
+                    <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-cairo">احسبها صح: مصاريك وين بتروح؟</h3>  
+                </div>  
+  
+                <div class="p-6 bg-brandGray-50 rounded-2xl border border-brandGray-200 space-y-5">  
+                    <div>  
+                        <div class="flex items-center justify-between text-xs sm:text-sm font-bold font-cairo text-slate-800 mb-2">  
+                            <span>كم سيجارة تُدخن (أو تُدخن في محيطك) يومياً؟</span>  
+                            <span class="font-num text-crimson text-base font-black" id="calcCigsCountLabel">15 سيجارة</span>  
+                        </div>  
+                        <input type="range" id="calcCigsSlider" min="1" max="40" value="15" oninput="updateFinancialCalc()" class="w-full accent-crimson cursor-pointer">  
+                    </div>  
+  
+                    <div>  
+                        <label class="block text-xs font-bold text-slate-800 font-cairo mb-2">اختر سعر السيجارة الواحدة:</label>  
+                        <div class="grid grid-cols-3 gap-2 text-xs font-cairo font-bold">  
+                            <button type="button" onclick="setCalcPrice(2, this)" class="calc-price-btn p-2 rounded-xl bg-white border border-brandGray-300 text-slate-800 hover:border-crimson transition">2 ₪ (عادي)</button>  
+                            <button type="button" onclick="setCalcPrice(10, this)" class="calc-price-btn p-2 rounded-xl bg-white border border-brandGray-300 text-slate-800 hover:border-crimson transition">10 ₪ (أزمة)</button>  
+                            <button type="button" onclick="setCalcPrice(70, this)" class="calc-price-btn p-2 rounded-xl bg-crimson text-white border border-crimson transition active">70 ₪ (أزمة الحرب)</button>  
+                        </div>  
+                    </div>  
+  
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">  
+                        <div class="p-4 bg-white rounded-2xl border border-rose-200 text-center space-y-2 shadow-sm">  
+                            <span class="mx-auto w-10 h-10 rounded-2xl bg-rose-100 text-crimson flex items-center justify-center text-lg"><i class="fa-solid fa-fire-flame-curved"></i></span>  
+                            <span class="text-xs text-brandGray-500 font-cairo">الهدر المالي الشهري</span>  
+                            <h4 class="text-2xl sm:text-3xl font-black text-crimson font-num" id="calcMonthlyWaste">31,500 ₪</h4>  
+                            <p class="text-[10px] text-brandGray-400 font-plex">قيمة ما يُنفق خلال 30 يوماً</p>  
+                        </div>  
+                        <div class="p-4 bg-white rounded-2xl border border-slate-200 text-center space-y-2 shadow-sm">  
+                            <span class="mx-auto w-10 h-10 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center text-lg"><i class="fa-solid fa-gem"></i></span>  
+                            <span class="text-xs text-brandGray-500 font-cairo">فرصة التوفير السنوية</span>  
+                            <h4 class="text-2xl sm:text-3xl font-black text-slate-800 font-num" id="calcYearlyWaste">378,000 ₪</h4>  
+                            <p class="text-[10px] text-brandGray-400 font-plex">المبلغ الذي يمكن الاحتفاظ به خلال سنة</p>  
+                        </div>  
+                    </div>  
+                </div>  
+            </div>  
+            <div id="wy8-calc-extension" class="wy8-calculator-extension" dir="rtl"></div>
         </div>  
   
         <!-- ==================== SCREEN 7: HOW TO SAY NO & DECISION CLASH ARENA ==================== -->  
@@ -1419,6 +1447,7 @@
                 <span class="text-xs text-brandGray-500 font-plex">المنصة / كيف ترفض؟</span>  
             </div>  
   
+            <div id="wy8-refusal-root" class="wy8-refusal" dir="rtl"></div>
             <!-- محاكي مواقف الرفض المعزز بالرسومات والتحليل النفسي -->  
             <div class="bento-card p-6 sm:p-8 space-y-5 border-rose-200 bg-gradient-to-br from-white via-rose-50/25 to-slate-50 relative group">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">  
@@ -1594,39 +1623,30 @@
                     <div class="p-5 rounded-2xl bg-brandGray-50 border border-brandGray-200 space-y-3">  
                         <span class="px-2.5 py-0.5 rounded-full bg-crimson-soft text-crimson text-xs font-bold font-cairo">ليس مجرد عادة.. بل إدمان</span>  
                         <h4 class="font-cairo font-black text-slate-800 text-base">لماذا يصعب الإقلاع عن التدخين؟</h4>  
-                        <div id="wy-nicotine-journey" class="wy-nicotine-journey" dir="rtl">
-                          <div class="wy-interactive-bar"><strong>رحلة النيكوتين</strong><button type="button" class="wy-edit-scene owner-only-btn hidden" onclick="waeiExperiences.openEditor('nicotine')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
-                          <div class="wy-nic-stage" id="wy-nic-stage" data-step="0">
-                            <div class="wy-nic-brain" id="wy-nic-brain"><img src="./assets/brain.webp" alt="دماغ كرتوني يتفاعل مع النيكوتين"></div>
-                            <div class="wy-nic-stars" aria-hidden="true">✦ ⊹ ✧</div>
-                            <button type="button" class="wy-nic-character" id="wy-nic-character" onclick="waeiExperiences.nicotineNext()" aria-label="انقر على شخصية النيكوتين للانتقال إلى المرحلة التالية" title="المس الشخصية لتقفز"><img src="./assets/nicotine.webp" alt="شخصية نيكوتين كرتونية عنابية"></button>
-                          </div>
-                          <div class="wy-nic-caption"><span id="wy-nic-step-label">١ / ٣</span><strong id="wy-nic-title">يصل النيكوتين إلى الدماغ</strong><p id="wy-nic-line">يصل النيكوتين بسرعة، فتبدأ تأثيراته في الدماغ.</p></div>
-                          <div class="wy-nic-marker" role="group" aria-label="مراحل رحلة النيكوتين"><span></span><span></span><span></span></div>
-                          <small>👆 المس الشخصية العنابية لتقفز بين المراحل الثلاث.</small>
-                        </div>
-                        <div id="wy-withdrawal-card" class="wy-withdrawal-card" dir="rtl">
-                          <div class="wy-interactive-bar"><strong>أعراض الانسحاب</strong><button type="button" class="wy-edit-scene owner-only-btn hidden" onclick="waeiExperiences.openEditor('withdrawal')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
-                          <p>المس العَرَض وشاهد تعبير الطالب.</p>
-                          <div class="wy-withdrawal-layout"><div id="wy-withdrawal-visual" class="wy-withdrawal-visual" data-symptom="0"><span class="wy-withdrawal-spark" aria-hidden="true">✳</span><img id="wy-withdrawal-student" src="./assets/student-sad.webp" alt="طالب كرتوني يوضّح شعور الانسحاب"></div><div class="wy-withdrawal-message" id="wy-withdrawal-line" aria-live="polite">قد تشعر برغبة قوية في التدخين، لكنها تخف مع الوقت.</div></div>
-                          <div id="wy-withdrawal-options" class="wy-withdrawal-options" role="group" aria-label="اختيار عرض الانسحاب"></div>
-                        </div>  
+                        <ul class="text-xs text-brandGray-700 font-plex space-y-2 list-disc list-inside leading-relaxed">  
+                            <li><strong>دورة الإدمان:</strong> يصل النيكوتين للدماغ بـ 10 ثوانٍ، ويتلاشى سريعاً لتبدأ الرغبة القهرية من جديد.</li>  
+                            <li><strong>أعراض الانسحاب:</strong> عصبية مستمرة، سرعة انفعال، صداع مزمن، وتوتر عند غياب السيجارة.</li>  
+                        </ul>  
                     </div>  
                 </div>  
   
-<div class="p-5 rounded-2xl bg-white border border-brandGray-200 space-y-3" id="wy-bravery-game" dir="rtl">
-  <div class="wy-interactive-bar"><h4>كيف تقول لا بشجاعة؟</h4><button type="button" class="wy-edit-scene owner-only-btn hidden" onclick="waeiExperiences.openEditor('bravery')"><i class="fa-solid fa-pen"></i> تعديل الحوارات</button></div>
-  <p class="wy-game-intro">ساعد الشخصية على اختيار ردّ شجاع!</p>
-  <div class="wy-bravery-scene" id="wy-bravery-scene" data-result="idle">
-    <div class="wy-bravery-friend"><img src="./assets/student.webp" alt="زميل في المدرسة" loading="lazy"></div>
-    <button type="button" class="wy-bravery-player" onclick="waeiExperiences.braveryChoose(true)" aria-label="المس الطالب لمساعدته على اتخاذ القرار"><img id="wy-bravery-img" src="./assets/student.webp" alt="شخصية الطالب الكرتونية"></button>
-    <div class="wy-bravery-bubbles" id="wy-bravery-bubbles" aria-hidden="true">✦ ✧ ✦</div>
-  </div>
-  <p class="wy-bravery-prompt" id="wy-bravery-prompt">جرّب سيجارة واحدة، لن يحدث شيء!</p>
-  <div id="wy-bravery-choices" class="wy-bravery-choices"></div>
-  <div id="wy-bravery-feedback" class="wy-bravery-feedback" aria-live="polite"></div>
-  <div class="wy-bravery-footer"><span id="wy-bravery-counter">الموقف ١ من ٣</span><button type="button" id="wy-bravery-retry" class="hidden" onclick="waeiExperiences.braveryRetry()">حاول مجددًا ↻</button><button type="button" id="wy-bravery-next" class="hidden" onclick="waeiExperiences.braveryNext()">الموقف التالي ←</button></div>
-</div>  
+                <div class="p-5 rounded-2xl bg-white border border-brandGray-200 space-y-3">  
+                    <h4 class="font-cairo font-black text-slate-800 text-base">دليل «كيف تقول لا بشجاعة؟»</h4>  
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-plex">  
+                        <div class="p-3 bg-brandGray-50 rounded-xl border border-brandGray-200 space-y-1">  
+                            <span class="font-bold text-crimson font-cairo block">1. رد قصير وواضح:</span>  
+                            <p class="text-brandGray-600">«لا، مش مهتم» بنبرة واثقة وهادئة دون تردد أو اعتذار مبالغ فيه.</p>  
+                        </div>  
+                        <div class="p-3 bg-brandGray-50 rounded-xl border border-brandGray-200 space-y-1">  
+                            <span class="font-bold text-crimson font-cairo block">2. غير الموضوع فوراً:</span>  
+                            <p class="text-brandGray-600">«سيبك من هالقصة.. شفت مباراة أمس أو شو خطتك نلعب اليوم؟»</p>  
+                        </div>  
+                        <div class="p-3 bg-brandGray-50 rounded-xl border border-brandGray-200 space-y-1">  
+                            <span class="font-bold text-crimson font-cairo block">3. انسحب بذكاء:</span>  
+                            <p class="text-brandGray-600">مغادرة المكان بهدوء إذا استمر الضغط؛ فالصديق الحقيقي لا يضرك.</p>  
+                        </div>  
+                    </div>  
+                </div>  
             </div>  
         </div>  
   
@@ -2181,7 +2201,7 @@
                 <div class="p-3 bg-white border border-dashed border-slate-300 rounded-xl text-center">
                     <label class="cursor-pointer block text-xs font-bold text-slate-700 font-cairo">
                         <i class="fa-solid fa-cloud-arrow-up text-emerald-600 ml-1"></i> رفع ملف (صورة / GIF متحرك / فيديو) من جهازك
-                        <input type="file" id="msInputFileDirect" accept="image/*,video/*,.gif" class="hidden" onchange="handleMilestoneModalFileUpload(event)">
+                        <input type="file" id="msInputFileDirect" accept="image/png,image/jpeg,image/webp,image/gif" class="hidden" onchange="handleMilestoneModalFileUpload(event)">
                     </label>
                 </div>
             </div>
@@ -2337,13 +2357,10 @@
   <div class="wy-overlay-dialog" style="max-width:750px"><div class="wy-overlay-panel space-y-4"><div class="flex justify-between items-center gap-2"><h3 id="wy-editor-title" class="font-cairo font-black text-lg text-slate-900">محرر المحتوى</h3><button type="button" class="wy-btn wy-btn-ghost" onclick="waeiCommunity.closeOverlay('wy-editor-overlay')"><i class="fa-solid fa-xmark"></i></button></div>
     <input type="hidden" id="wy-editor-kind"><input type="hidden" id="wy-editor-id">
     <div class="grid sm:grid-cols-2 gap-3"><label><span class="wy-form-label">عنوان البطاقة</span><input id="wy-edit-title" class="wy-form-field" maxlength="180"></label><label id="wy-editor-category-row"><span class="wy-form-label">التصنيف</span><select id="wy-edit-category" class="wy-form-field"></select></label></div>
-    <div id="wy-cert-fields" class="space-y-3">
-      <label><span class="wy-form-label">طريقة عرض الشهادة</span><select id="wy-edit-certificate-mode" class="wy-form-field" onchange="waeiCommunity.certificateMode()"><option value="digital">شهادة إلكترونية بتنسيق من الموقع</option><option value="image">صورة شهادة جاهزة أرفعها من جهازي</option></select></label>
-      <p id="wy-cert-image-hint" class="hidden rounded-xl bg-slate-100 border border-slate-200 p-3 text-xs leading-6 text-slate-700">يمكنك رفع صورة شهادتك الجاهزة في حقل «ارفع صورة من جهازك» أدناه، وستظهر الصورة كاملة دون قالب إلكتروني.</p>
-      <div id="wy-cert-digital-fields" class="space-y-3"><div class="grid sm:grid-cols-2 gap-3"><label><span class="wy-form-label">قالب الشهادة</span><select id="wy-edit-template" class="wy-form-field"><option value="formal">رسمي بإطار مزدوج</option><option value="modern">عصري وبسيط</option><option value="night">داكن احتفالي</option></select></label><label><span class="wy-form-label">لون التزيين</span><select id="wy-edit-accent" class="wy-form-field"><option value="gold">ذهبي</option><option value="crimson">قرمزي</option><option value="navy">كحلي</option></select></label></div><label><span class="wy-form-label">العنوان الرئيسي داخل الشهادة</span><input id="wy-edit-heading" class="wy-form-field" placeholder="شهادة شكر وتقدير"></label>
+    <div id="wy-cert-fields" class="space-y-3"><div class="grid sm:grid-cols-2 gap-3"><label><span class="wy-form-label">قالب الشهادة</span><select id="wy-edit-template" class="wy-form-field"><option value="formal">رسمي بإطار مزدوج</option><option value="modern">عصري وبسيط</option><option value="night">داكن احتفالي</option></select></label><label><span class="wy-form-label">لون التزيين</span><select id="wy-edit-accent" class="wy-form-field"><option value="gold">ذهبي</option><option value="crimson">قرمزي</option><option value="navy">كحلي</option></select></label></div><label><span class="wy-form-label">العنوان الرئيسي داخل الشهادة</span><input id="wy-edit-heading" class="wy-form-field" placeholder="شهادة شكر وتقدير"></label>
       <div class="space-y-2"><span class="wy-form-label">النص الكامل للشهادة — اكتب الأسماء والصياغة بحرية</span><div class="wy-toolbar" role="toolbar" aria-label="تنسيق الشهادة"><button type="button" title="عريض" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('bold')"><b>B</b></button><button type="button" title="مائل" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('italic')"><i>I</i></button><button type="button" title="تحته خط" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('underline')"><u>U</u></button><button type="button" title="قائمة" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('insertUnorderedList')"><i class="fa-solid fa-list"></i></button><button type="button" title="يمين" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('justifyRight')"><i class="fa-solid fa-align-right"></i></button><button type="button" title="وسط" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('justifyCenter')"><i class="fa-solid fa-align-center"></i></button><button type="button" title="يسار" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('justifyLeft')"><i class="fa-solid fa-align-left"></i></button><button type="button" title="خط كبير" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('fontSize','5')">A+</button><button type="button" title="خط عادي" onmousedown="event.preventDefault()" onclick="waeiCommunity.format('fontSize','3')">A</button><label title="لون النص" class="flex items-center gap-2 text-xs font-cairo"><input id="wy-edit-text-color" type="color" value="#172944" onchange="waeiCommunity.format('foreColor',this.value)" class="w-9 h-8 cursor-pointer"> اللون</label></div><div id="wy-edit-rich" contenteditable="true" dir="rtl" role="textbox" aria-label="محتوى الشهادة" aria-multiline="true" class="wy-editor" data-placeholder="كتابة النص بشكل حر..."></div></div>
       <div class="grid sm:grid-cols-2 gap-3"><label><span class="wy-form-label">تاريخ اختياري</span><input id="wy-edit-date" class="wy-form-field" placeholder="اختياري"></label><label><span class="wy-form-label">رقم شهادة اختياري</span><input id="wy-edit-number" class="wy-form-field" placeholder="اختياري"></label></div><label><span class="wy-form-label">التوقيع النصي (اختياري)</span><input id="wy-edit-signature" class="wy-form-field" placeholder="اختياري"></label>
-    </div></div>
+    </div>
     <label id="wy-edit-plain-row"><span class="wy-form-label">النص</span><textarea id="wy-edit-body" class="wy-form-field" rows="5" maxlength="3500"></textarea></label>
     <div class="grid sm:grid-cols-2 gap-3"><label id="wy-edit-rating-row"><span class="wy-form-label">التقييم (1 إلى 5)</span><select id="wy-edit-rating" class="wy-form-field"><option value="5">5 نجوم</option><option value="4">4 نجوم</option><option value="3">3 نجوم</option><option value="2">2 نجمتان</option><option value="1">نجمة واحدة</option></select></label><label><span class="wy-form-label">ترتيب العرض</span><input id="wy-edit-order" type="number" class="wy-form-field" min="0" value="0"></label></div>
     <label><span class="wy-form-label">صورة أو فيديو (رابط آمن اختياري)</span><input type="url" id="wy-edit-media" class="wy-form-field" placeholder="https://..."></label><label><span class="wy-form-label">أو ارفع صورة من جهازك (للمشرف فقط)</span><input id="wy-edit-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" class="wy-form-field"></label>
@@ -3216,10 +3233,6 @@
         const KEY_MYTH_DATA = 'wa3y_myth_data_v1';
         const KEY_SCENARIOS = 'wa3y_scenarios_data_v1';
         const KEY_TIMELINE_HEALING = 'wa3y_timeline_healing_v1';
-        const KEY_CARTOON_ASSETS = 'wa3y_cartoon_assets_v7';
-        const KEY_V7_UI_TEXTS = 'wa3y_v7_ui_texts_v7';
-        const KEY_INTERACTIVE_SCENES = 'wa3y_interactive_scenes_v1';
-        const KEY_LITERATURE = 'wa3y_literature_v1';
         const KEY_AUDIT_LOG = 'wa3y_audit_log_v1';
         const KEY_TRASH_BIN = 'wa3y_trash_bin_v1';
         const KEY_TEAM_STORIES = 'wa3y_team_stories_v1';
@@ -3231,8 +3244,9 @@
             KEY_CUSTOM_IMAGES, KEY_UNIVERSAL_TEXTS, KEY_AWARENESS_VIDEOS,
             KEY_STATS, KEY_SHORT_TERM, KEY_FAVICON_LOGO, KEY_FOOTER_WHATSAPP,
             KEY_SECTION_STYLES, KEY_VISITOR_LOGS, KEY_INLINE_TEXT_EDITS,
-            KEY_MYTH_DATA, KEY_SCENARIOS, KEY_TIMELINE_HEALING, KEY_INTERACTIVE_SCENES, KEY_LITERATURE, KEY_CARTOON_ASSETS, KEY_V7_UI_TEXTS,
+            KEY_MYTH_DATA, KEY_SCENARIOS, KEY_TIMELINE_HEALING,
             KEY_AUDIT_LOG, KEY_TRASH_BIN, KEY_TEAM_STORIES, KEY_TEAM_STORIES_SETTINGS,
+            'wa3y_interactive_scenes_v1', 'wa3y_literature_v1', 'wa3y_v8_navigation_v1', 'wa3y_v8_visuals_v1', 'wa3y_v8_calc_settings_v1',
             'wa3y_certificates_v1', 'wa3y_reviews_v1', 'wa3y_memories_v1', 'wa3y_community_settings_v1', 'wa3y_team_stories_v1'
         ];
 
@@ -3245,12 +3259,12 @@
         ];
 
         const defaultOrgans = [
-            { id: 'org-1', num: 1, name: 'الدماغ', cat: 'الجهاز العصبي المركزي', title: 'الدماغ: فخ الارتهان الكيميائي والنيكوتين', desc: 'يصل النيكوتين للمستقبلات العصبية في الدماغ خلال 10 ثوانٍ فقط، مسبباً إفراز الدوبامين المؤقت ثم اشتياقاً عصبياً متواصلاً وصداعاً عند الغياب.', stat: '53% من المراهقين يظهرون اعتماداً عصبياً من أول أسبوعين.', top: 12, left: 50 },
-            { id: 'org-2', num: 2, name: 'الرئتان', cat: 'الجهاز التنفسي', title: 'الرئتان: تلف الحويصلات وانسداد الشعب', desc: 'يتسبب القطران والمواد السامة في شل حركة الأهداب التنفسية المسؤولة عن تنظيف الرئة، مما يؤدي إلى تراكم البلغم الأسود، السعال المزمن، وصعوبة التنفس الحادة.', stat: 'خطر سرطان الرئة أعلى بـ 25 ضعفاً مقارنة بغير المدخنين.', top: 32, left: 45 },
-            { id: 'org-3', num: 3, name: 'القلب', cat: 'جهاز الدوران', title: 'القلب والشرايين: تسارع النبض وانسداد الأوعية', desc: 'يرفع النيكوتين ضغط الدم فورياً ويسرّع ضربات القلب، بينما يحرم أول أكسيد الكربون العضلة القلبية من الأكسجين مما يمهد للجلطات المفاجئة.', stat: 'خطر الوفاة القلبية المفاجئة يتضاعف 3 أضعاف لدى المدخنين.', top: 38, left: 54 },
-            { id: 'org-4', num: 4, name: 'الكبد', cat: 'الجهاز الهضمي والتمثيل', title: 'الكبد: إجهاد إنزيمات التطهير وتراكم السموم', desc: 'يستهلك الكبد كامل طاقته لمحاولة فلترة أكثر من 70 مادة مسرطنة، مما يضعف كفاءته في التعامل مع الأدوية والعناصر الغذائية الحيوية.', stat: 'إجهاد كبدي مزمن وتغير في وظائف التمثيل الغذائي بنسبة 35%.', top: 48, left: 43 },
-            { id: 'org-5', num: 5, name: 'المعدة', cat: 'الجهاز الهضمي', title: 'المعدة: التهاب الغشاء المخاطي والقرحة الحادة', desc: 'يرخي التدخين الصمام الفاصل بين المريء والمعدة مسبباً ارتجاع الأحماض وحرقة مزمنة، وتآكل جدار المعدة بفعل السموم المبتلعة مع اللعاب.', stat: 'ارتفاع احتمالية الإصابة بقرحة المعدة الحادة بنسبة 40%.', top: 54, left: 52 },
-            { id: 'org-6', num: 6, name: 'الكليتان', cat: 'الجهاز البولي', title: 'الكليتان: تراجع الفلترة الدموية وتصلب الشرايين', desc: 'تؤدي السموم النيكوتينية إلى تضييق الأوعية الدقيقة المغذية للكلى، مما يقلل من قدرتها على تنقية الفضلات ويرفع ضغط الدم الشرياني.', stat: 'تراجع كفاءة التروية الكلوية لدى اليافعين بنسبة 30%.', top: 62, left: 46 }
+            { id: 'org-1', num: 1, name: 'الدماغ', cat: 'الجهاز العصبي المركزي', title: 'الدماغ: تأثير النيكوتين في نظام المكافأة', desc: 'يصل النيكوتين بسرعة إلى الدماغ ويؤثر في إشارات المكافأة والانتباه. مع التكرار قد ينشأ الاعتماد عليه ويصبح تركه أصعب.', stat: 'تأثير النيكوتين في الدماغ يختلف بحسب مقدار التعرض وتكراره.', top: 12, left: 50 },
+            { id: 'org-2', num: 2, name: 'الرئتان', cat: 'الجهاز التنفسي', title: 'الرئتان: الدخان يهيّج الممرات التنفسية', desc: 'قد يهيّج دخان السجائر الممرات التنفسية ويؤذي الأهداب التي تساعد على تنظيفها؛ ويزداد خطر أمراض الرئة مع استمرار التدخين.', stat: 'تجنب استنشاق الدخان يحمي أنسجة الرئتين.', top: 32, left: 45 },
+            { id: 'org-3', num: 3, name: 'القلب', cat: 'جهاز الدوران', title: 'القلب والدورة الدموية: تغيّرات في النبض والضغط', desc: 'يمكن للنيكوتين أن يرفع النبض وضغط الدم مؤقتًا؛ ويرتبط التدخين المستمر بزيادة خطر أمراض القلب والأوعية الدموية.', stat: 'التوقف عن التدخين يفيد صحة القلب بمرور الوقت.', top: 38, left: 54 },
+            { id: 'org-4', num: 4, name: 'الكبد', cat: 'الجهاز الهضمي والتمثيل', title: 'الكبد: معالجة النيكوتين لا تجعل التدخين آمنًا', desc: 'يساعد الكبد على تفكيك النيكوتين والتعامل مع بعض المواد التي تدخل الجسم، لكنه لا يزيل جميع أضرار دخان السجائر.', stat: 'استقلاب النيكوتين في الكبد لا يعني حماية الجسم من تأثيرات التدخين.', top: 48, left: 43 },
+            { id: 'org-5', num: 5, name: 'المعدة', cat: 'الجهاز الهضمي', title: 'المعدة: التدخين يؤثر في صحة الجهاز الهضمي', desc: 'يرتبط التدخين بزيادة خطر قرحة المعدة وقد يعيق التئامها، كما قد يفاقم بعض اضطرابات الجهاز الهضمي.', stat: 'عدم الشعور بألم في المعدة لا يعني أن التدخين بلا ضرر.', top: 54, left: 52 },
+            { id: 'org-6', num: 6, name: 'الكليتان', cat: 'الجهاز البولي', title: 'الكلى: الصحة تبدأ بالأوعية الدموية', desc: 'قد يضر التدخين بصحة الأوعية الدموية ويرتبط بزيادة مخاطر أمراض مزمنة تؤثر بدورها في الكلى.', stat: 'التوقف يقلّل التعرض للمواد الضارة ويحمي الصحة العامة.', top: 62, left: 46 }
         ];
 
         const defaultToxins = [
@@ -3309,12 +3323,12 @@
         ];
 
         const defaultHealingMilestones = [
-            { id: 'hm-20m', timeLabel: 'بعد 20 دقيقة', organ: 'القلب', title: 'قلبك يبدأ يرتاح', impact: 'يبدأ معدل نبض القلب وضغط الدم بالانخفاض نحو المستوى الطبيعي.', labMarker: 'بداية صغيرة، لكنها مهمة.', mediaUrl: './assets/heart.webp', mediaType: 'image' },
-            { id: 'hm-8h', timeLabel: 'بعد 8 ساعات', organ: 'الأكسجين', title: 'أكسجين أكثر لجسمك', impact: 'يقل أول أكسيد الكربون في الدم، ويبدأ مستوى الأكسجين بالتحسن.', labMarker: 'كل ساعة بعيدًا عن الدخان تفيد جسمك.', mediaUrl: './assets/oxygen.webp', mediaType: 'image' },
-            { id: 'hm-48h', timeLabel: 'بعد 48 ساعة', organ: 'الشم والتذوق', title: 'الحواس تستيقظ', impact: 'قد تبدأ حاستا الشم والتذوق بالتحسن تدريجيًا.', labMarker: 'قد تشعر بالروائح والنكهات بوضوح أكبر.', mediaUrl: './assets/student.webp', mediaType: 'image' },
-            { id: 'hm-3m', timeLabel: 'خلال 3 أشهر', organ: 'الرئتان', title: 'التنفس يصبح أسهل', impact: 'قد تتحسن الدورة الدموية والتنفس تدريجيًا خلال الأسابيع والأشهر الأولى.', labMarker: 'التحسن يختلف من شخص إلى آخر.', mediaUrl: './assets/lungs.webp', mediaType: 'image' },
-            { id: 'hm-1y', timeLabel: 'بعد سنة', organ: 'القلب', title: 'قلبك أكثر حماية', impact: 'تنخفض مخاطر أمراض القلب مقارنة بالاستمرار في التدخين.', labMarker: 'الاستمرار دون تدخين يصنع فرقًا.', mediaUrl: './assets/heart.webp', mediaType: 'image' },
-            { id: 'hm-10y', timeLabel: 'بعد 10 سنوات', organ: 'الصحة على المدى الطويل', title: 'فوائد تستمر لسنوات', impact: 'ينخفض خطر الوفاة بسرطان الرئة مقارنة بالاستمرار في التدخين.', labMarker: 'الابتعاد عن التدخين يحمي صحتك مع الوقت.', mediaUrl: './assets/brain.webp', mediaType: 'image' }
+            { id: 'hm-20m', timeLabel: 'بعد 20 دقيقة', organ: 'القلب والأوعية الدموية الطرفية', title: 'استقرار الدورة الدموية وهبوط النبض المتسارع', impact: 'ينخفض معدل ضربات القلب المتسارع وضغط الدم الشرياني نحو مستوياتهما الطبيعية، وتعود حرارة اليدين والقدمين لمعدلها بعد زوال التضيق الوعائي الفوري.', labMarker: 'انخفاض النورأدرينالين والنيكوتين الحر في البلازما بمعدل 50%.', mediaUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80', mediaType: 'image' },
+            { id: 'hm-8h', timeLabel: 'بعد 8 ساعات', organ: 'الهيموغلوبين ومجرى الدم', title: 'طرد أول أكسيد الكربون الخانق وتشبع الأكسجين', impact: 'ينخفض غاز أول أكسيد الكربون السام في الدم بمقدار النصف، مما يتيح لكريات الدم الحمراء التقاط الأكسجين ونقله بكفاءة عالية للدماغ والأنسجة.', labMarker: 'هبوط كربوكسي هيموغلوبين (CO-Hb) في الدم إلى أقل من 2% وعودة الأكسجين لـ 98%.', mediaUrl: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=800&q=80', mediaType: 'image' },
+            { id: 'hm-48h', timeLabel: 'بعد 48 ساعة', organ: 'النهايات العصبية والحواس', title: 'انبعاث حاسة الشم والتذوق وزوال النيكوتين', impact: 'يفرغ الجسم تماماً من النيكوتين المشتق من التدخين، وتبدأ النهايات العصبية المتضررة في اللسان والأنف بالنمو والتعافي لتعود الحواس لطبيعتها.', labMarker: 'انعدام النيكوتين الحر من البول ومستقلب الكوتينين، وتحسن سرعة التوصيل الحسي.', mediaUrl: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80', mediaType: 'image' },
+            { id: 'hm-3m', timeLabel: 'خلال 3 أشهر', organ: 'الرئتان والشعب الهوائية', title: 'تجدد الأهداب التنفسية وتراجع السعال والبلغم', impact: 'تنمو أهداب الرئة المجهرية (Cilia) لتتولى تنظيف الرئتين بفاعلية، ويزول السعال الصباحي وضيق النفس، وتتحسن وظائف الرئة السريرية بنسبة 10-15%.', labMarker: 'ارتفاع حجم الزفير القسري في الثانية الأولى (FEV1) بمعدل سريري ملحوظ.', mediaUrl: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80', mediaType: 'image' },
+            { id: 'hm-1y', timeLabel: 'بعد سنة كاملة', organ: 'الشرايين التاجية وعضلة القلب', title: 'هبوط خطر النوبات القلبية بمقدار النصف', impact: 'ينخفض خطر الإصابة بأمراض الشرايين التاجية والجلطات القلبية المفاجئة بنسبة 50% مقارنة بالمدخن المستمر، مع استعادة مرونة بطانة الشرايين.', labMarker: 'انخفاض مؤشرات الالتهاب الوعائي المزمن الحساسة (hs-CRP) إلى النطاق الطبيعي.', mediaUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80', mediaType: 'image' },
+            { id: 'hm-10y', timeLabel: 'بعد 10 سنوات', organ: 'الخلايا الجينية والحويصلات', title: 'تراجع خطر سرطان الرئة واستبدال الخلايا المتضررة', impact: 'يهبط خطر الوفاة بسرطان الرئة إلى نصف معدل المدخن، وتستبدل الخلايا السابقة للتسرطن بخلايا سليمة، وتتعافى بطانة القصبات تماماً.', labMarker: 'انحسار الطفرات الطارئة وإصلاح أخطاء الـ DNA واستقرار مسار تثبيط الأورام (p53).', mediaUrl: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80', mediaType: 'image' }
         ];
 
         const defaultStatsItems = [
@@ -3698,6 +3712,7 @@
         }
 
         function dispatchSyncEvent(key, data) {
+            if (['wa3y_interactive_scenes_v1','wa3y_literature_v1','wa3y_v8_navigation_v1','wa3y_v8_visuals_v1','wa3y_v8_calc_settings_v1','wa3y_timeline_healing_v1','wa3y_organs_v2'].includes(key)) window.waeiV8?.refreshFromCloud(key);
             if (key === KEY_VOLUNTEERS || key === KEY_VOLUNTEERS_PUBLIC) {
                 renderAdminVolunteersTable();
                 renderDedicatedVolunteersCards();
@@ -3728,9 +3743,6 @@
             if (key === KEY_MYTH_DATA) { switchMythBusterTab('vape'); }
             if (key === KEY_SCENARIOS) { renderScenario(currentScenarioIdx); window.renderClashArenaCurrentRound(); }
             if (key === KEY_TIMELINE_HEALING) { window.renderTimelineHealingBar(); }
-            if (key === KEY_INTERACTIVE_SCENES) { window.waeiExperiences?.renderAll(); }
-            if (key === KEY_LITERATURE) { window.waeiLiterature?.render(); }
-            if (key === KEY_CARTOON_ASSETS || key === KEY_V7_UI_TEXTS) { window.waeiV7?.render(); }
             if (key === KEY_AUDIT_LOG) { renderAuditLogEntries(); }
             if (['wa3y_certificates_v1','wa3y_reviews_v1','wa3y_memories_v1','wa3y_community_settings_v1'].includes(key)) { window.waeiCommunity?.render(); }
             if (key === KEY_TEAM_STORIES) { window.waeiTeamStories?.render(); window.waeiTeamStories?.renderAdmin(); }
@@ -3795,11 +3807,6 @@
                     { id: 'researchCardsGridContainer', title: 'أوراق PubMed وWHO البحثية', type: 'دراسات سريرية' },
                     { id: 'subSection-epigeneticsCard', title: 'البصمة الجينية والتوريث للأبناء', type: 'علم الوراثة' }
                 ]
-            },
-            {
-                pageId: 'screen-literature',
-                pageTitle: 'أعمال أدبية',
-                sections: [{ id: 'wy-lit-list', title: 'أعمال أدبية قابلة للإدارة', type: 'بطاقات إبداعية' }]
             },
             {
                 pageId: 'screen-calc',
@@ -4132,7 +4139,7 @@
             const allTabs = [
                 'overviewCMS', 'siteTreeCMS', 'universalContentCMS', 'permissionsCMS', 'auditLogCMS', 'backupTrashCMS', 'systemHealthCMS',
                 'volunteersCMS', 'questionsCMS', 'newsCMS', 'visitorLogsCMS', 'anatomyCMS', 'labAndResearchCMS',
-                'sectionsCMS', 'subElementsCMS', 'textEditorCMS', 'footerAndWhatsappCMS', 'credentialsCMS', 'communityCMS', 'visualMediaCMS'
+                'sectionsCMS', 'subElementsCMS', 'textEditorCMS', 'footerAndWhatsappCMS', 'credentialsCMS', 'communityCMS'
             ];  
 
             allTabs.forEach(t => {  
@@ -4272,7 +4279,7 @@
 
         // ==================== 11. NAVIGATION & GENERAL UI HANDLERS ====================
         window.switchMainScreen = function(screenId) {
-            const screens = ['screen-home', 'screen-team-field', 'screen-anatomy', 'screen-lab', 'screen-research', 'screen-calc', 'screen-sayno', 'screen-community', 'screen-literature'];
+            const screens = ['screen-home', 'screen-team-field', 'screen-anatomy', 'screen-lab', 'screen-research', 'screen-calc', 'screen-sayno', 'screen-community'];
             screens.forEach(s => {
                 const el = document.getElementById(s);
                 if (el) el.classList.add('hidden');
@@ -4302,8 +4309,7 @@
                 'screen-research': 'فتح الدراسات والأبحاث',
                 'screen-calc': 'فتح حاسبة التوفير',
                 'screen-sayno': 'فتح قسم كيف ترفض ومواقف واقعية',
-                'screen-community': 'فتح معرض الشهادات والآراء',
-                'screen-literature': 'فتح الأعمال الأدبية'
+                'screen-community': 'فتح معرض الشهادات والآراء'
             };
             if (screenNamesMap[screenId]) {
                 window.recordVisitorAction(screenNamesMap[screenId]);
@@ -4660,6 +4666,7 @@
             if (window.currentUserRole !== 'owner') return;
             const file = e.target.files && e.target.files[0];
             if (!file) return;
+            if (!['image/png','image/jpeg','image/webp','image/gif'].includes(file.type) || file.size > 7*1024*1024) { showToast('يرجى اختيار صورة PNG/JPG/WebP/GIF لا تتجاوز 7 ميغابايت', 'error'); return; }
 
             showToast('جارٍ رفع ومعالجة الوسائط...', 'success');
             try {
@@ -4683,6 +4690,8 @@
         };
 
         window.uploadMilestoneMediaFileDirect = async function(e) {
+            const uploadField = document.getElementById('msInputMediaUrl');
+            if (uploadField) uploadField.value = '';
             await window.handleMilestoneModalFileUpload(e);
             const uploadedUrl = document.getElementById('msInputMediaUrl').value;
             const mediaType = document.getElementById('msInputMediaType').value;
@@ -4699,6 +4708,7 @@
         };
 
         window.saveMilestoneFromModal = async function() {
+            if (window.currentUserRole !== 'owner') return;
             const idx = parseInt(document.getElementById('editMilestoneIndex').value, 10);
             const timeLabel = document.getElementById('msInputTimeLabel').value.trim();
             const organ = document.getElementById('msInputOrgan').value.trim();
@@ -4715,6 +4725,7 @@
 
             let list = getLocal(KEY_TIMELINE_HEALING, defaultHealingMilestones);
             const itemData = {
+                ...(idx >= 0 && list[idx] ? list[idx] : {}),
                 id: idx >= 0 && list[idx] ? list[idx].id : ('hm-' + Date.now()),
                 timeLabel, organ, title, impact, labMarker, mediaUrl, mediaType
             };
@@ -4737,6 +4748,7 @@
         };
 
         window.deleteMilestoneFromModal = async function() {
+            if (window.currentUserRole !== 'owner') return;
             const idx = parseInt(document.getElementById('editMilestoneIndex').value, 10);
             if (idx < 0) return;
             if (!confirm('تأكيد حذف هذه المحطة السريرية نهائياً من الخط الزمني؟')) return;
@@ -5355,7 +5367,7 @@
             const count = parseInt(slider.value, 10);
             document.getElementById('calcCigsCountLabel').innerText = count + ' سيجارة';
             const monthly = count * currentPricePerCig * 30;
-            const yearly = monthly * 12;
+            const yearly = count * currentPricePerCig * 365;
             document.getElementById('calcMonthlyWaste').innerText = monthly.toLocaleString() + ' ₪';
             document.getElementById('calcYearlyWaste').innerText = yearly.toLocaleString() + ' ₪';
         };
@@ -5681,11 +5693,11 @@
                 { id: 'screen-team-field', label: 'فريقنا والميدان (متطوعين وأخبار)' },  
                 { id: 'screen-anatomy', label: 'المسرح التشريحي واختناق القشة' },  
                 { id: 'screen-lab', label: 'مختبر الحقيقة ومحاكي الفيب الذكي' },  
+                { id: 'screen-research', label: 'كروت الأبحاث والدراسات الموثقة' },  
                 { id: 'screen-calc', label: 'حاسبة التوفير المالية' },  
-                { id: 'screen-sayno', label: 'كيف ترفض؟ ومحاكي المواقف الواقعية' },  
-                { id: 'screen-research', label: 'كروت الأبحاث والدراسات الموثقة' },
+                { id: 'screen-sayno', label: 'كيف ترفض؟ ومحاكي المواقف الواقعية' },
                 { id: 'screen-community', label: 'شكر وتقدير وآراء التجربة' },
-                { id: 'screen-literature', label: 'الأعمال الأدبية' }  
+                { id: 'screen-literature', label: 'الأدبيات' }  
             ];  
             const visMap = getLocal(KEY_SECTIONS_VIS, {});  
             container.innerHTML = sections.map(s => `  
@@ -5707,8 +5719,8 @@
   
         function applySectionsVisibility() {  
             const visMap = getLocal(KEY_SECTIONS_VIS, {});  
-            const stripes = document.querySelectorAll('#slimBentoTabsContainer > div');  
-            const drawerBtns = document.querySelectorAll('#drawerNavLinks > button');  
+            const stripes = document.querySelectorAll('#slimBentoTabsContainer .bento-tab-stripe');  
+            const drawerBtns = document.querySelectorAll('#drawerNavLinks button[onclick]');  
             for (let secId in visMap) {  
                 const isHidden = visMap[secId] === false;  
                 stripes.forEach(st => { if (st.getAttribute('onclick')?.includes(secId)) st.classList.toggle('hidden', isHidden); });  
@@ -5721,9 +5733,6 @@
             if (!container) return;
             const subs = [
                 { id: 'timelineHealingWidget', label: 'محاكي الخط الزمني للتعافي السريري' },
-                { id: 'wy-nicotine-journey', label: 'رحلة النيكوتين الكرتونية' },
-                { id: 'wy-withdrawal-card', label: 'أعراض الانسحاب الكرتونية' },
-                { id: 'wy-bravery-game', label: 'تحدي كيف تقول لا بشجاعة' },
                 { id: 'decisionClashSection', label: 'مختبر القرارات السريعة والمواقف اللحظية' },
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
@@ -7371,19 +7380,16 @@
                 { id: 'teamFieldSubTab-storiesSubTab', label: 'تجارب أعضاء الفريق قبل وبعد الحملة', isSubTab: true },
                 { id: 'teamFieldSubTab-memoriesSubTab', label: 'المواقف الظريفة وجدار الذكريات', isSubTab: true },
                 { id: 'screen-community', label: 'شكر وتقدير وآراء التجربة' },
-                { id: 'screen-literature', label: 'أعمال أدبية' },
                 { id: 'screen-anatomy', label: 'المسرح التشريحي واختناق القشة' },
                 { id: 'screen-lab', label: 'مختبر الحقيقة ومحاكي الفيب الذكي' },
                 { id: 'screen-research', label: 'كروت الأبحاث والدراسات الموثقة' },
                 { id: 'screen-calc', label: 'حاسبة التوفير المالية' },
-                { id: 'screen-sayno', label: 'كيف ترفض؟ ومحاكاة المواقف الواقعية' }
+                { id: 'screen-sayno', label: 'كيف ترفض؟ ومحاكاة المواقف الواقعية' },
+                { id: 'screen-literature', label: 'الأدبيات' }
             ];
 
             const LEGACY_SUBELEMENTS_CONFIG = [
                 { id: 'timelineHealingWidget', label: 'محاكي الخط الزمني للتعافي السريري' },
-                { id: 'wy-nicotine-journey', label: 'رحلة النيكوتين الكرتونية' },
-                { id: 'wy-withdrawal-card', label: 'أعراض الانسحاب الكرتونية' },
-                { id: 'wy-bravery-game', label: 'تحدي كيف تقول لا بشجاعة' },
                 { id: 'decisionClashSection', label: 'مختبر القرارات السريعة والمواقف اللحظية' },
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
@@ -8470,10 +8476,6 @@ function sanitizeRich(value){
   return result.innerHTML;
 }
 function certMarkup(x,full=false){
- if (x.mode==='image') {
-  const media=validUrl(x.media);
-  return `<figure class="wy-certificate-photo ${full?'wy-certificate-photo-large':''}">${media?`<img src="${e(media)}" alt="${e(x.title||'شهادة شكر وتقدير')}" loading="lazy" onerror="this.style.display='none'">`:'<div class="p-8 text-center text-slate-500">لم ترفق صورة للشهادة بعد.</div>'}</figure>`;
- }
  const cls=x.template==='modern'?'wy-modern':x.template==='night'?'wy-night':'';
  const accent=x.accent==='navy'?'#172944':x.accent==='crimson'?'#991b1b':'#a17e37';
  const media=validUrl(x.media);const heading=e(x.heading||'شهادة شكر وتقدير');const body=sanitizeRich(x.rich||'');
@@ -8572,7 +8574,6 @@ async function reject(id){if(!isAdmin())return;if(!confirm('رفض هذه الم
 function edit(type,id=''){if(!isAdmin())return;const record=list(type).find(x=>x.id===id)||{};
  q('wy-editor-kind').value=type;q('wy-editor-id').value=record.id||'';
  putText('wy-editor-title',(record.id?'تعديل ':'إضافة ')+typeLabel(type));
- q('wy-edit-certificate-mode').value=record.mode==='image'?'image':'digital';updateCertificateModeUI();
  q('wy-edit-title').value=record.title||'';q('wy-edit-heading').value=record.heading||'شهادة شكر وتقدير';q('wy-edit-rich').innerHTML=sanitizeRich(record.rich||'');q('wy-edit-body').value=record.body||'';
  q('wy-edit-order').value=record.order??(list(type).length+1);q('wy-edit-published').checked=record.published===true;
  q('wy-edit-date').value=record.date||'';q('wy-edit-number').value=record.number||'';q('wy-edit-signature').value=record.signature||'';
@@ -8581,19 +8582,17 @@ function edit(type,id=''){if(!isAdmin())return;const record=list(type).find(x=>x
  const cats=getSettings().categories||[];q('wy-edit-category').innerHTML=[...new Set([record.category,...cats].filter(Boolean))].map(c=>`<option value="${e(c)}">${e(c)}</option>`).join('');if(record.category)q('wy-edit-category').value=record.category;
  toggle('wy-cert-fields',type==='certificate');toggle('wy-edit-plain-row',type!=='certificate');toggle('wy-edit-rating-row',type==='review');toggle('wy-editor-category-row',type==='certificate');
  openOverlay('wy-editor-overlay');}
-function updateCertificateModeUI(){const photo=q('wy-edit-certificate-mode')?.value==='image';toggle('wy-cert-digital-fields',!photo);toggle('wy-cert-image-hint',photo);const preview=q('wy-editor-preview');if(preview)preview.classList.add('hidden');}
 function format(cmd,value){q('wy-edit-rich').focus();document.execCommand(cmd,false,value||null);}
 function captureEditor(){const type=txt('wy-editor-kind'),id=txt('wy-editor-id'),title=txt('wy-edit-title');const row={id:id||mkId(),title,order:Math.max(0,Number(q('wy-edit-order').value)||0),published:q('wy-edit-published').checked,media:validUrl(txt('wy-edit-media')),createdAt:new Date().toISOString()};
- if(type==='certificate')Object.assign(row,{mode:q('wy-edit-certificate-mode').value,heading:txt('wy-edit-heading'),rich:sanitizeRich(q('wy-edit-rich').innerHTML),category:q('wy-edit-category').value||'',template:q('wy-edit-template').value,accent:q('wy-edit-accent').value,date:txt('wy-edit-date'),number:txt('wy-edit-number'),signature:txt('wy-edit-signature')});
+ if(type==='certificate')Object.assign(row,{heading:txt('wy-edit-heading'),rich:sanitizeRich(q('wy-edit-rich').innerHTML),category:q('wy-edit-category').value||'',template:q('wy-edit-template').value,accent:q('wy-edit-accent').value,date:txt('wy-edit-date'),number:txt('wy-edit-number'),signature:txt('wy-edit-signature')});
  else Object.assign(row,{body:txt('wy-edit-body'),name:type==='review'?title:'فريق وعي يداوي',anonymous:type==='review'&&!title,rating:type==='review'?Number(q('wy-edit-rating').value):null});
  return {type,row};}
 function previewEditor(){const {type,row}=captureEditor();const box=q('wy-editor-preview');if(type!=='certificate'){box.innerHTML='<p class="text-xs text-slate-500">المعاينة الحية للشهادات؛ الآراء والمواقف تظهران مباشرة بعد الحفظ.</p>';}else{box.innerHTML=certMarkup(row,true)}box.classList.remove('hidden');box.scrollIntoView({block:'nearest',behavior:'smooth'});}
 async function saveEditor(){if(!isAdmin())return;const {type,row}=captureEditor();if(!WY[type])return;if(!row.title){showToast('اكتبي عنوانًا للبطاقة','error');return;}
- if(type==='certificate'&&row.mode!=='image'&&!q('wy-edit-rich').textContent.trim()){showToast('اكتب نص الشهادة الإلكترونية أولًا، أو اختر وضع صورة الشهادة.','error');return;}
+ if(type==='certificate'&&!q('wy-edit-rich').textContent.trim()){showToast('اكتبي نص الشهادة أولًا','error');return;}
  if(type!=='certificate'&&row.body.length<4){showToast('أضيفي نص المحتوى أولًا','error');return;}
  const rawMedia=txt('wy-edit-media');if(rawMedia&&!row.media){showToast('رابط الوسائط غير صالح','error');return;}
  const upload=q('wy-edit-upload').files?.[0];if(upload){if(!/^image\/(png|jpeg|webp|gif)$/.test(upload.type)||upload.size>6*1024*1024){showToast('اختاري صورة JPG/PNG/WebP/GIF بحجم لا يتجاوز 6MB','error');return;}try{showToast('جارٍ رفع الصورة إلى التخزين السحابي...');row.media=await uploadToSupabaseStorage(upload,'community');}catch(err){showToast('فشل رفع الصورة: '+(err.message||'خطأ'),'error');return;}}
- if(type==='certificate'&&row.mode==='image'&&!row.media){showToast('يرجى رفع صورة الشهادة أو إدخال رابط صورتها قبل الحفظ.','error');return;}
  const rows=list(type);const previous=rows.find(x=>x.id===row.id);if(previous)row.createdAt=previous.createdAt||row.createdAt;
  const next=[row,...rows.filter(x=>x.id!==row.id)];if(await store(type,next))closeOverlay('wy-editor-overlay');}
 function adminOpened(){setupSettingInputs();renderAdmin();void refreshInbox();}
@@ -8601,7 +8600,7 @@ function applyEventIntegration(){const base=window.switchAdminTab;if(typeof base
  const baseRender=window.dispatchSyncEvent;if(typeof baseRender==='function')window.dispatchSyncEvent=function(key,...args){const v=baseRender.call(this,key,...args);if(Object.values(WY).includes(key)){renderAll();if(key===WY.settings)setupSettingInputs();}return v;};}
 function boot(){renderAll();renderStars();window.addEventListener('keydown',evt=>{if(evt.key==='Escape'){['wy-certificate-overlay','wy-submission-overlay','wy-editor-overlay'].forEach(id=>closeOverlay(id));}if(q('wy-certificate-overlay')&&!q('wy-certificate-overlay').hidden&&['ArrowLeft','ArrowRight'].includes(evt.key)){stepCertificate(evt.key==='ArrowLeft'?1:-1);}});
  void fetchLikeCounts();}
-window.waeiCommunity={render:renderAll,saveSettings,category,openCertificate,closeCertificate:()=>closeOverlay('wy-certificate-overlay'),stepCertificate,feature,surprise,expandMemory,rate:chooseRating,openSubmission,closeOverlay,submitGuest,refreshInbox,approve,reject,edit,format,certificateMode:updateCertificateModeUI,previewEditor,saveEditor,visibility,remove,like,adminOpened};
+window.waeiCommunity={render:renderAll,saveSettings,category,openCertificate,closeCertificate:()=>closeOverlay('wy-certificate-overlay'),stepCertificate,feature,surprise,expandMemory,rate:chooseRating,openSubmission,closeOverlay,submitGuest,refreshInbox,approve,reject,edit,format,previewEditor,saveEditor,visibility,remove,like,adminOpened};
 applyEventIntegration();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
     </script>
@@ -8781,10 +8780,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
     <script src="./waei-live-effects.js"></script>
-    <link rel="stylesheet" href="./waei-experiences.css">
-    <link rel="stylesheet" href="./waei-v7-admin.css">
-    <script src="./waei-experiences.js"></script>
-    <script src="./waei-literature.js"></script>
-    <script src="./waei-v7-admin.js"></script>
+<script src="./waei-v8.js" defer></script>
 </body>
 </html>
