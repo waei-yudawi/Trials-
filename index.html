@@ -495,7 +495,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=13">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=14">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -700,6 +700,12 @@
             </div>  
   
             <!-- ميزة تفاعلية: مفتاح المقارنة السريعة وكسر الأوهام بالأرقام -->  
+            <section id="wy14-knowledge" class="wy14-section" aria-labelledby="wy14-knowledge-title">
+              <div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-book-open" aria-hidden="true"></i> المعرفة</span><h2 id="wy14-knowledge-title">كل شيء يبدأ بالوعي.</h2><p id="wy14-knowledge-intro">تعرّف على التدخين، واكتشف ما وراء الدخان.</p></div><button class="owner-only-btn hidden wy14-admin-btn" type="button" onclick="waeiV14.editGroup('knowledge')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
+              <div id="wy14-knowledge-grid" class="wy14-knowledge-grid"></div>
+              <div id="wy14-knowledge-detail" class="wy14-knowledge-detail" aria-live="polite" hidden></div>
+              <div id="wy14-knowledge-links" class="wy14-knowledge-links"></div>
+            </section>
             <div id="subSection-mythBusterSection" class="bento-card p-6 sm:p-8 space-y-5 border-rose-200 bg-gradient-to-br from-white via-rose-50/20 to-slate-50 relative group">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">  
                     <div>  
@@ -984,6 +990,11 @@
             <!-- أطلس الفحص التشريحي الملون -->
             <div id="wy11-impact-atlas" class="bento-card p-6 space-y-4" data-atlas-mode="impact">
                 <div id="wy11-atlas-switch" role="group" aria-label="استكشاف الجسم"><button type="button" id="wy11-show-impact" aria-pressed="true" aria-controls="wy11-impact-content"><i class="fa-solid fa-lungs" aria-hidden="true"></i> تأثير التدخين</button><button type="button" id="wy11-show-recovery" aria-pressed="false" aria-controls="timelineHealingWidget"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> بعد الإقلاع</button></div>  
+                <div id="subSection-shortTermCard" class="wy11-impact-pane wy14-short" aria-labelledby="shortTermCardTitle">
+                  <div class="wy14-short-head"><h4 id="shortTermCardTitle"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> التأثير على المدى القصير</h4><button type="button" class="owner-only-btn hidden wy14-admin-btn" onclick="waeiV14.editGroup('short')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
+                  <div id="shortTermSymptomsGrid" class="wy14-short-grid"></div>
+                  <div id="wy14-short-detail" hidden aria-live="polite"></div>
+                </div>
                 <div class="wy11-impact-pane flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-100">  
                     <div>  
                         <span class="text-xs font-bold text-crimson font-cairo">تأثير التدخين</span>  
@@ -1028,23 +1039,6 @@
                     </div>  
                 </div>  
 
-                <div id="subSection-shortTermCard" class="wy11-impact-pane p-5 rounded-2xl bg-white border border-brandGray-200 space-y-3 relative group">  
-                    <div class="flex items-center justify-between pb-2 border-b border-brandGray-100">  
-                        <div class="flex items-center gap-2">  
-                            <i class="fa-solid fa-stopwatch text-crimson"></i>  
-                            <h4 class="font-cairo font-bold text-slate-800 text-sm" id="shortTermCardTitle">أثر التدخين الفوري على المدى القصير (ملخص سريري)</h4>  
-                        </div>  
-                        <button type="button" onclick="openEditShortTermModal()" class="owner-only-btn hidden px-2.5 py-1 bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 rounded-lg text-xs font-cairo font-bold border border-brandGray-300">  
-                            <i class="fa-solid fa-pen text-crimson ml-1"></i> تعديل  
-                        </button>  
-                    </div>  
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-plex text-brandGray-700" id="shortTermSymptomsGrid">  
-                        <div class="p-2.5 rounded-xl bg-brandGray-50 border border-brandGray-200 text-center" id="stSym-0">👄 رائحة كريهة بالفم والملابس</div>  
-                        <div class="p-2.5 rounded-xl bg-brandGray-50 border border-brandGray-200 text-center" id="stSym-1">🦷 اصفرار دائم بالأسنان بالقطران</div>  
-                        <div class="p-2.5 rounded-xl bg-brandGray-50 border border-brandGray-200 text-center" id="stSym-2">🙍‍♂️ شحوب الوجه وظهور لون رمادي</div>  
-                        <div class="p-2.5 rounded-xl bg-brandGray-50 border border-brandGray-200 text-center" id="stSym-3">💓 تسارع نبضات القلب وضعف التركيز</div>  
-                    </div>  
-                </div>  
             <!-- V7 recovery is a CHILD widget inside #screen-anatomy; rest of anatomy remains unchanged. -->
             <section id="timelineHealingWidget" class="wy-v7-shell wy-v7-recovery" aria-labelledby="wy-v7-recovery-heading">
               <div class="wy-v7-heading">
@@ -1077,9 +1071,11 @@
                 <button type="button" onclick="switchMainScreen('screen-home')" class="px-3.5 py-1.5 rounded-xl bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 font-bold text-xs font-cairo transition flex items-center gap-1.5">  
                     <i class="fa-solid fa-arrow-right"></i> رجوع للرئيسية  
                 </button>  
-                <span class="text-xs text-brandGray-500 font-plex">مختبر السيجارة الإلكترونية</span>  
+                <span class="text-xs text-brandGray-500 font-plex">مختبر التدخين</span>  
             </div>
-<div id="clearPodLabSection"><section id="wy8-lab" class="wy-v7-shell" aria-labelledby="wy8-lab-title"><div class="wy-v7-heading"><div><h2 id="wy8-lab-title">مختبر السيجارة الإلكترونية</h2><p id="wy8-lab-intro">اكتشف شو جوا الفيب.</p></div><span class="wy-v7-heading-badge"><i class="fa-solid fa-flask-vial"></i></span></div><div id="wy8-lab-tabs" class="wy-v7-tabs" role="tablist"></div><div id="wy8-lab-stage"></div><div id="wy8-lab-controls"></div><p id="wy8-lab-note" class="wy-v7-disclaimer">محاكاة توعوية رمزية؛ لا تمثل وصفة خلط أو قياساً مخبرياً.</p></section></div>
+<div id="clearPodLabSection"><div id="wy14-lab-switch" class="wy14-section wy14-lab-switch" aria-labelledby="wy14-lab-title"><div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i> مختبر التدخين</span><h2 id="wy14-lab-title">شو مخبّى وراء الدخان؟</h2><p id="wy14-lab-intro">اختار تجربة واكتشف المواد اللي بتدخل جسمك.</p></div><button type="button" class="owner-only-btn hidden wy14-admin-btn" onclick="waeiV14.editGroup('lab')"><i class="fa-solid fa-pen"></i> تعديل</button></div><div class="wy14-lab-tabs" role="group" aria-label="نوع المختبر"><button type="button" data-wy14-lab="classic" aria-controls="wy14-classic" aria-pressed="false"><i class="fa-solid fa-smoking" aria-hidden="true"></i><span>السيجارة التقليدية</span></button><button type="button" data-wy14-lab="vape" aria-controls="wy8-lab" aria-pressed="true"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span>السيجارة الإلكترونية (الفيب)</span></button></div></div>
+<section id="wy14-classic" class="wy14-section wy14-classic" aria-labelledby="wy14-classic-title" hidden></section>
+<section id="wy8-lab" class="wy-v7-shell" aria-labelledby="wy8-lab-title"><div class="wy-v7-heading"><div><h2 id="wy8-lab-title">مختبر السيجارة الإلكترونية</h2><p id="wy8-lab-intro">اكتشف شو جوا الفيب.</p></div><span class="wy-v7-heading-badge"><i class="fa-solid fa-flask-vial"></i></span></div><div id="wy8-lab-tabs" class="wy-v7-tabs" role="tablist"></div><div id="wy8-lab-stage"></div><div id="wy8-lab-controls"></div><p id="wy8-lab-note" class="wy-v7-disclaimer">محاكاة توعوية رمزية؛ لا تمثل وصفة خلط أو قياساً مخبرياً.</p></section></div>
             <!-- بطاقات السموم والمقارنة -->  
             <div class="bento-card p-6 space-y-5">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-100">  
@@ -2450,7 +2446,7 @@
   
                 <section id="panel-wyV7CMS" class="hidden space-y-5" aria-label="الرفض والتعافي والوسائط">
                     <div class="pb-3 border-b border-slate-200"><h3 class="font-black font-cairo text-slate-900 text-lg">الرفض والتعافي | إدارة كل مشهد</h3><p class="text-xs text-slate-500 mt-1">تحرير نصوص رحلة آدم والمواقف وأسئلة دكتور وعي ورحلة الجسم. تظهر التغييرات للزوار بعد تأكيد المزامنة السحابية.</p></div>
-                    <div id="wy8-admin" class="space-y-4"></div><div id="wy-v7-admin-text" class="space-y-5"></div>
+                    <div id="wy14-admin" class="space-y-4" hidden></div><div id="wy8-admin" class="space-y-4"></div><div id="wy-v7-admin-text" class="space-y-5"></div>
                     <div class="pb-3 border-b border-slate-200"><h4 class="font-black font-cairo text-slate-900 text-sm">ارفع صورك وGIF لكل شخصية ومشهد وعضو</h4><p class="text-xs text-slate-500 mt-1">بدون صورة مرفوعة تظهر الرسوم الافتراضية. GIF يبقى متحركاً بعد الرفع.</p></div>
                     <div id="wy-v7-admin-media" class="wy-v7-admin-list"></div>
                 </section>
@@ -2700,7 +2696,7 @@
             KEY_STATS, KEY_SHORT_TERM, KEY_FAVICON_LOGO, KEY_FOOTER_WHATSAPP,
             KEY_SECTION_STYLES, KEY_VISITOR_LOGS, KEY_INLINE_TEXT_EDITS,
             KEY_MYTH_DATA, KEY_SCENARIOS, KEY_TIMELINE_HEALING,
-            KEY_AUDIT_LOG, KEY_TRASH_BIN, KEY_TEAM_STORIES, KEY_TEAM_STORIES_SETTINGS, KEY_WY_V7_CONTENT, KEY_WY_LITERATURE, 'wa3y_v8_controls_v1',
+            KEY_AUDIT_LOG, KEY_TRASH_BIN, KEY_TEAM_STORIES, KEY_TEAM_STORIES_SETTINGS, KEY_WY_V7_CONTENT, KEY_WY_LITERATURE, 'wa3y_v8_controls_v1', 'wa3y_v14_content_v1',
             'wa3y_certificates_v1', 'wa3y_reviews_v1', 'wa3y_memories_v1', 'wa3y_community_settings_v1', 'wa3y_team_stories_v1'
         ];
 
@@ -3183,6 +3179,7 @@
             // Re-apply direct inline text edits whenever this store is fetched or changed by Realtime.
             if (key === KEY_INLINE_TEXT_EDITS) { applyInlineTextEdits(); window.waeiV8?.freeCMS(); }
             if (key === 'wa3y_v8_controls_v1') { window.waeiV8?.refresh(); }
+            if (key === 'wa3y_v14_content_v1') { window.waeiV14?.refresh(); }
             if (key === KEY_FAVICON_LOGO) { applyFaviconAndLogo(data); }
             if (key === KEY_SHORT_TERM) { applyShortTermUI(); }
             if (key === KEY_SECTIONS_VIS) { applySectionsVisibility(); }
@@ -3213,6 +3210,7 @@
                 sections: [
                     { id: 'heroCard', title: 'بانر البداية والرسالة الرئيسية', type: 'بطاقة رئيسية' },
                     { id: 'subSection-bentoStats', title: 'أرقام وإنجازات الحملة', type: 'إحصائيات' },
+                    { id: 'wy14-knowledge', title: 'المعرفة', type: 'استكشاف معرفي' },
                     { id: 'subSection-mythBusterSection', title: 'كشف الأوهام السريرية بالأرقام', type: 'مقارنة تفاعلية' },
                     { id: 'subSection-awarenessVideos', title: 'مكتبة الفيديوهات التوعوية', type: 'مرئيات' },
                     { id: 'publicFaqSection', title: 'اسألنا | بطاقات الـ 3D التفاعلية', type: 'أسئلة معتمدة' },
@@ -3251,7 +3249,8 @@
                 pageId: 'screen-lab',
                 pageTitle: 'مختبر الحقيقة والسيجارة الذكية',
                 sections: [
-                    { id: 'clearPodLabSection', title: 'مختبر السيجارة الإلكترونية', type: 'محاكي كيميائي' },
+                    { id: 'clearPodLabSection', title: 'مختبر التدخين', type: 'محاكي كيميائي' },
+                    { id: 'wy14-classic', title: 'محاكاة السيجارة التقليدية', type: 'تجربة تفاعلية' },
                     { id: 'subSection-lungsComparison', title: 'مقارنة الرئة الوردية والمتفحمة', type: 'مقارنة تشريحية' }
                 ]
             },
@@ -4935,6 +4934,7 @@
         };
 
         window.openEditShortTermModal = function() {  
+            if (window.waeiV14) { window.waeiV14.editGroup("short"); return; }
             const modal = document.getElementById('editShortTermModal');  
             if (!modal) return;  
             const data = getLocal(KEY_SHORT_TERM, {  
@@ -4958,6 +4958,7 @@
         };  
   
         window.saveShortTermSymptomsChanges = async function() {  
+            if (window.currentUserRole !== 'owner') return;
             const data = {  
                 title: document.getElementById('editShortTermTitleInput').value.trim(),  
                 sym0: document.getElementById('editShortTermSym0').value.trim(),  
@@ -4970,6 +4971,7 @@
         };  
   
         function applyShortTermUI() {  
+            if (window.waeiV14) { window.waeiV14.renderShort(); return; }
             const data = getLocal(KEY_SHORT_TERM, null);  
             if (!data) return;  
             if (data.title && document.getElementById('shortTermCardTitle')) document.getElementById('shortTermCardTitle').innerText = data.title;  
@@ -5075,6 +5077,8 @@
             if (!container) return;
             const subs = [
                 { id: 'timelineHealingWidget', label: 'رحلة جسمك للتعافي' },
+                { id: 'wy14-knowledge', label: 'قسم المعرفة' },
+                { id: 'wy14-classic', label: 'محاكاة السيجارة التقليدية' },
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
                 { id: 'subSection-lungsComparison', label: 'كرت مقارنة الرئة السليمة والمتفحمة' },
@@ -6737,6 +6741,8 @@
 
             const LEGACY_SUBELEMENTS_CONFIG = [
                 { id: 'timelineHealingWidget', label: 'رحلة جسمك للتعافي' },
+                { id: 'wy14-knowledge', label: 'قسم المعرفة' },
+                { id: 'wy14-classic', label: 'محاكاة السيجارة التقليدية' },
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
                 { id: 'subSection-lungsComparison', label: 'كرت مقارنة الرئة السليمة والمتفحمة' },
@@ -8125,6 +8131,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=13"></script>
+    <script src="./waei-live-effects.js?v=14"></script>
+<dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
 </body>
 </html>
