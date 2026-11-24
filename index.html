@@ -495,7 +495,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=8">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=10">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -634,7 +634,7 @@
                     <div class="pt-2 flex flex-wrap items-center gap-3">  
                         <button type="button" onclick="switchMainScreen('screen-sayno')" class="px-4 py-2.5 rounded-xl bg-crimson hover:bg-crimson-dark text-white font-bold text-xs sm:text-sm font-cairo flex items-center gap-2 transition shadow-xs">  
                             <i class="fa-solid fa-gamepad"></i>  
-                            <span>جرّب مواقف الرفض 🎮</span>  
+                            <span>جرّب مواقف الرفض</span>  
                         </button>  
                     </div>  
                 </div>  
@@ -643,15 +643,16 @@
                 <div class="absolute -right-16 -top-20 w-72 h-72 bg-slate-200/40 rounded-full blur-3xl pointer-events-none"></div>  
             </div>  
   
-<div id="slimBentoTabsContainer" class="wy8-nav">
-<div id="wy8-nav-team-field" onclick="switchMainScreen('screen-team-field')" class="bento-tab-stripe wy8-wide" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-team-field"><i class="fa-solid fa-users-gear"></i></span><h3 id="wy8-nav-title-team-field" data-wy8-text="nav.team-field.title">فريقنا والميدان</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-anatomy" onclick="switchMainScreen('screen-anatomy')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-anatomy"><i class="fa-solid fa-lungs"></i></span><h3 id="wy8-nav-title-anatomy" data-wy8-text="nav.anatomy.title">تأثير التدخين على جسمك</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-lab" onclick="switchMainScreen('screen-lab')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-lab"><i class="fa-solid fa-flask-vial"></i></span><h3 id="wy8-nav-title-lab" data-wy8-text="nav.lab.title">مختبر السيجارة الإلكترونية</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-sayno" onclick="switchMainScreen('screen-sayno')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-sayno"><i class="fa-solid fa-hand"></i></span><h3 id="wy8-nav-title-sayno" data-wy8-text="nav.sayno.title">كيف تقول «لا»؟</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-calc" onclick="switchMainScreen('screen-calc')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-calc"><i class="fa-solid fa-calculator"></i></span><h3 id="wy8-nav-title-calc" data-wy8-text="nav.calc.title">احسبها صح</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-research" onclick="switchMainScreen('screen-research')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-research"><i class="fa-solid fa-book-medical"></i></span><h3 id="wy8-nav-title-research" data-wy8-text="nav.research.title">الدراسات والأبحاث</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-literature" onclick="switchMainScreen('screen-literature')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-literature"><i class="fa-solid fa-book-open-reader"></i></span><h3 id="wy8-nav-title-literature" data-wy8-text="nav.literature.title">أدبيات</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
-<div id="wy8-nav-community" onclick="switchMainScreen('screen-community')" class="bento-tab-stripe wy8-wide" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-community"><i class="fa-solid fa-award"></i></span><h3 id="wy8-nav-title-community" data-wy8-text="nav.community.title">شكر وتقدير وآراء التجربة</h3><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="slimBentoTabsContainer" class="wy8-nav" role="group" aria-labelledby="wy10-home-title">
+<header class="wy10-nav-heading"><h2 id="wy10-home-title" data-wy8-text="design.homeTitle">استكشف المنصة</h2><p id="wy10-home-subtitle" data-wy8-text="design.homeSubtitle">تجارب تفاعلية، معرفة طبية، وقصص من الميدان.</p></header>
+<div id="wy8-nav-team-field" aria-labelledby="wy8-nav-title-team-field" aria-describedby="wy10-nav-subtitle-team-field" onclick="switchMainScreen('screen-team-field')" class="bento-tab-stripe wy8-wide" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-team-field"><i class="fa-solid fa-users-gear"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-team-field" data-wy8-text="nav.team-field.title">فريقنا والميدان</h3><p id="wy10-nav-subtitle-team-field" class="wy10-card-subtitle" data-wy8-text="nav.team-field.subtitle">فريقنا ونشاطاتنا الميدانية</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-anatomy" aria-labelledby="wy8-nav-title-anatomy" aria-describedby="wy10-nav-subtitle-anatomy" onclick="switchMainScreen('screen-anatomy')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-anatomy"><i class="fa-solid fa-lungs"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-anatomy" data-wy8-text="nav.anatomy.title">تأثير التدخين على جسمك</h3><p id="wy10-nav-subtitle-anatomy" class="wy10-card-subtitle" data-wy8-text="nav.anatomy.subtitle">أضرار التدخين والتعافي</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-lab" aria-labelledby="wy8-nav-title-lab" aria-describedby="wy10-nav-subtitle-lab" onclick="switchMainScreen('screen-lab')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-lab"><i class="fa-solid fa-flask-vial"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-lab" data-wy8-text="nav.lab.title">مختبر السيجارة الإلكترونية</h3><p id="wy10-nav-subtitle-lab" class="wy10-card-subtitle" data-wy8-text="nav.lab.subtitle">مكوّنات الفيب ومخاطره</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-sayno" aria-labelledby="wy8-nav-title-sayno" aria-describedby="wy10-nav-subtitle-sayno" onclick="switchMainScreen('screen-sayno')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-sayno"><i class="fa-solid fa-hand"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-sayno" data-wy8-text="nav.sayno.title">كيف تقول «لا»؟</h3><p id="wy10-nav-subtitle-sayno" class="wy10-card-subtitle" data-wy8-text="nav.sayno.subtitle">افهم الإدمان وتدرّب على الرفض</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-calc" aria-labelledby="wy8-nav-title-calc" aria-describedby="wy10-nav-subtitle-calc" onclick="switchMainScreen('screen-calc')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-calc"><i class="fa-solid fa-calculator"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-calc" data-wy8-text="nav.calc.title">احسبها صح</h3><p id="wy10-nav-subtitle-calc" class="wy10-card-subtitle" data-wy8-text="nav.calc.subtitle">احسب مصروفك وتوفيرك</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-research" aria-labelledby="wy8-nav-title-research" aria-describedby="wy10-nav-subtitle-research" onclick="switchMainScreen('screen-research')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-research"><i class="fa-solid fa-book-medical"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-research" data-wy8-text="nav.research.title">الدراسات والأبحاث</h3><p id="wy10-nav-subtitle-research" class="wy10-card-subtitle" data-wy8-text="nav.research.subtitle">حقائق موثّقة ومصادر علمية</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-literature" aria-labelledby="wy8-nav-title-literature" aria-describedby="wy10-nav-subtitle-literature" onclick="switchMainScreen('screen-literature')" class="bento-tab-stripe " role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-literature"><i class="fa-solid fa-book-open-reader"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-literature" data-wy8-text="nav.literature.title">أدبيات</h3><p id="wy10-nav-subtitle-literature" class="wy10-card-subtitle" data-wy8-text="nav.literature.subtitle">من أعمال الفريق والأساتذة</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
+<div id="wy8-nav-community" aria-labelledby="wy8-nav-title-community" aria-describedby="wy10-nav-subtitle-community" onclick="switchMainScreen('screen-community')" class="bento-tab-stripe wy8-wide" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}"><span class="wy8-nav-icon" data-wy8-icon="nav-community"><i class="fa-solid fa-award"></i></span><div class="wy10-card-copy"><h3 id="wy8-nav-title-community" data-wy8-text="nav.community.title">شكر وتقدير وآراء التجربة</h3><p id="wy10-nav-subtitle-community" class="wy10-card-subtitle" data-wy8-text="nav.community.subtitle">شهادات وتجارب المشاركين</p></div><i class="fa-solid fa-chevron-left wy8-nav-arrow" aria-hidden="true"></i></div>
 </div>
             <!-- INSPECTION CARD -->  
             <div class="bento-card p-5 sm:p-7 space-y-4 relative group">  
@@ -1045,7 +1046,7 @@
             <!-- V7 recovery is a CHILD widget inside #screen-anatomy; rest of anatomy remains unchanged. -->
             <section id="timelineHealingWidget" class="wy-v7-shell wy-v7-recovery" aria-labelledby="wy-v7-recovery-heading">
               <div class="wy-v7-heading">
-                <div><span class="wy-v7-kicker">جسمك من جوا <span aria-hidden="true">/</span> قسم فرعي</span><h3 id="wy-v7-recovery-heading">رحلة جسمك للتعافي <span aria-hidden="true">🫀</span></h3><p>اختار المرحلة والعضو، وشوف شو ممكن يتغيّر بعد ترك التدخين.</p></div>
+                <div><span class="wy-v7-kicker">بعد الإقلاع عن التدخين</span><h3 id="wy-v7-recovery-heading">رحلة جسمك للتعافي</h3><p>اختار الوقت والعضو، وشوف كيف جسمك بيتحسن بعد ترك السجائر.</p></div>
                 <button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.edit('recovery')"><i class="fa-solid fa-pen"></i> تعديل المرحلة</button>
               </div>
               <div id="wy-v7-recovery-phases" class="wy-v7-milestones" aria-label="مراحل رحلة الجسم للتعافي"></div>
@@ -1061,8 +1062,8 @@
                   <p id="wy-v7-recovery-fact" class="wy-v7-fact" hidden>التعافي مش سباق. الجسم بيتحسن بأوقات مختلفة عند كل شخص، وما في ضمان إن كل التغيّرات بتصير بنفس السرعة.</p>
                 </div>
               </div>
-              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-recovery-prev" onclick="waeiV7.recoveryMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span class="wy-v7-muted" id="wy-v7-recovery-count">1 / 4</span><button type="button" class="wy-v7-button" onclick="waeiV7.recoveryMove(1)">المرحلة التالية <i class="fa-solid fa-arrow-left"></i></button></div>
-              <p class="wy-v7-disclaimer">المعلومات عن ترك التدخين والنيكوتين؛ تحسن الرئتين المرتبط بالدخان لا ينطبق بنفس الشكل على كل منتجات النيكوتين. إذا احتجت مساعدة للإقلاع، احكي مع مختص صحي.</p>
+              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-recovery-prev" onclick="waeiV7.recoveryMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span class="wy-v7-muted" id="wy-v7-recovery-count" dir="ltr">1 / 4</span><button type="button" class="wy-v7-button" id="wy-v7-recovery-next" onclick="waeiV7.recoveryMove(1)">المرحلة التالية <i class="fa-solid fa-arrow-left"></i></button></div>
+              <p class="wy-v7-disclaimer">هذه المراحل تقريبية بعد ترك السجائر، ومعها معلومات التأقلم بعد وقف النيكوتين. لا تنطبق كل المراحل على الفيب، والتحسن يختلف حسب الشخص. <a href="https://www.cdc.gov/tobacco/about/benefits-of-quitting.html" target="_blank" rel="noopener noreferrer">CDC</a> · <a href="https://www.nhs.uk/better-health/quit-smoking/ready-to-quit-smoking/what-could-happen-when-you-quit-smoking/" target="_blank" rel="noopener noreferrer">NHS</a> · <a href="https://teen.smokefree.gov/quit-vaping/vaping-addiction-nicotine-withdrawal" target="_blank" rel="noopener noreferrer">Smokefree Teen</a></p>
             </section>
 
         </div>
@@ -1258,15 +1259,14 @@
               <div class="wy-v7-bottom"><p class="wy-v7-muted" id="wy-v7-chat-tip">جرّب أكثر من جواب، مش امتحان ولا في علامة.</p><button type="button" class="wy-v7-button ghost" onclick="waeiV7.chatReset()"><i class="fa-solid fa-arrows-rotate"></i> جرّب رد ثاني</button></div>
             </section>
             <section id="wy-v7-panel-3" role="tabpanel" aria-labelledby="wy-v7-tab-3" class="wy-v7-panel" hidden>
-              <div class="wy-v7-panel-top"><div><h3>استشر دكتور وعي يُداوي</h3><p>إجابات توعوية وأسئلة للحملة.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.edit('doctor')"><i class="fa-solid fa-pen"></i> تعديل الأسئلة</button></div>
+              <div class="wy-v7-panel-top"><div><h3>استشر دكتور وعي يُداوي</h3><p>إجابات توعوية وأسئلة للحملة.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.doctorAdd()"><i class="fa-solid fa-plus"></i> إضافة سؤال</button></div>
               <div class="wy-v7-doctor-grid">
                 <div class="wy-v7-doctor-booth" id="wy-v7-doctor-visual"></div>
                 <div class="wy-v7-doctor-qa">
-                  <p class="wy-v7-doc-hello">أهلاً فيك! احكي براحتك، بدون لوم أو أحكام.</p>
+                  <p class="wy-v7-doc-hello">اختار السؤال اللي بدك تعرف إجابته.</p>
                   <div id="wy-v7-doctor-chips" class="wy-v7-question-chips"></div>
-                  <form id="wy-v7-doctor-form" onsubmit="waeiV7.ask(event)"><label for="wy-v7-doctor-input" class="wy-v7-field-label">اكتب سؤالك بطريقتك:</label><div class="wy-v7-input-line"><input id="wy-v7-doctor-input" type="text" maxlength="250" autocomplete="off" placeholder="مثلاً: لو أصحابي ضغطوا عليّ؟" required><button type="submit" aria-label="إرسال سؤال إلى دكتور وعي"><i class="fa-solid fa-paper-plane"></i></button></div></form>
                   <div id="wy-v7-doctor-response" class="wy-v7-doctor-response" role="status" aria-live="polite" hidden></div>
-                  <button type="button" class="wy-v7-button" onclick="scrollToAskForm()"><i class="fa-solid fa-paper-plane"></i> أرسل استفسارك للفريق</button><p class="wy-v7-disclaimer">شخصية توعوية افتراضية بإجابات مُعدّة مسبقاً، مش طبيب مباشر ولا محادثة ذكاء اصطناعي. سؤالك ما بينرسل ولا بينحفظ.</p>
+                  <button type="button" class="wy-v7-button" onclick="scrollToAskForm()"><i class="fa-solid fa-paper-plane"></i> أرسل استفسارك للفريق</button><p class="wy-v7-disclaimer">إجابات توعوية جاهزة، وليست تشخيصاً طبياً. للاستفسار الخاص استخدم زر التواصل مع الفريق. <a href="https://teen.smokefree.gov/quit-vaping/how-to-quit-vaping" target="_blank" rel="noopener noreferrer">المصادر: Smokefree Teen</a> · <a href="https://www.aap.org/en/patient-care/tobacco-control-and-prevention/youth-tobacco-cessation/nicotine-replacement-therapy-and-adolescent-patients/" target="_blank" rel="noopener noreferrer">AAP</a></p>
                 </div>
               </div>
             </section>
@@ -5221,7 +5221,7 @@
                 if (key.startsWith('id:')) el = document.getElementById(key.slice(3));  
                 else if (key.startsWith('v8path:')) { try { el = document.querySelector(key.slice(7)); } catch (_) {} }
                 else if (key.startsWith('path:')) { try { const p=V8_LEGACY_TEXT_PATHS[key.slice(5)]; if(p)el=document.querySelector(p); } catch (_) {} }  
-                if (el && !el.closest('[data-wy8-text],[data-wy7-text],[data-wy-core]') && !el.children.length && typeof edits[key] === 'string') el.textContent = edits[key];  
+                if (el && !el.closest('#timelineHealingWidget .wy-v7-kicker,#wy-v7-panel-3 .wy-v7-doc-hello') && !el.closest('[data-wy8-text],[data-wy7-text],[data-wy-core]') && !el.children.length && typeof edits[key] === 'string') el.textContent = edits[key];  
             });  
         }  
   
@@ -8100,6 +8100,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=8"></script>
+    <script src="./waei-live-effects.js?v=10"></script>
 </body>
 </html>
