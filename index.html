@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html lang="ar" dir="rtl" class="scroll-smooth">  
+<html lang="ar" dir="rtl" class="scroll-smooth" data-wy17-freshness="pending">  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
@@ -7,7 +7,23 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="16.0">  
+    <meta name="waei-release" content="17.0">
+    <!-- Never paint editable bundled/obsolete text while the first cloud snapshot is unconfirmed. No fullscreen overlay. -->
+    <style id="wy17-first-paint">
+      html:not([data-wy17-freshness="ready"]) body header > div,
+      html:not([data-wy17-freshness="ready"]) body nav > div {visibility:hidden!important}
+      html:not([data-wy17-freshness="ready"]) body main > :not(#wy17-retry),
+      html:not([data-wy17-freshness="ready"]) body footer,
+      html:not([data-wy17-freshness="ready"]) #floatingPoweredByLink,
+      html:not([data-wy17-freshness="ready"]) #floatingWhatsappBtn,
+      html:not([data-wy17-freshness="ready"]) #mobileDrawer,
+      html:not([data-wy17-freshness="ready"]) #mobileDrawerBackdrop {display:none!important}
+      html[data-wy17-freshness="pending"] body main::before {content:"";display:block;height:190px;border:1px solid #e7e1df;border-radius:22px;background:linear-gradient(145deg,#faf9f8,#f4f1f0);}
+      #wy17-retry{display:none;padding:12px 0;text-align:center;font:500 13px system-ui,sans-serif;color:#64748b}
+      html[data-wy17-freshness="failed"] #wy17-retry{display:block}
+      #wy17-retry button{margin-inline-start:8px;padding:6px 12px;border-radius:8px;border:1px solid #d8cdca;color:#991b1b;background:white}
+      img[data-wy17-media-pending]{visibility:hidden!important}
+    </style>  
     <title>منصة وَعـي يُـداوي | كلية طب فلسطين - جامعة الأزهر غزة</title>  
       
     <!-- Dynamic Favicon Link -->  
@@ -496,7 +512,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=16.0">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=17.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -1301,6 +1317,7 @@
     <button type="button" onclick="waeiCommunity.openSubmission('review')" class="wy-btn wy-btn-primary w-full py-3.5 text-sm"><i class="fa-solid fa-star ml-2"></i> شارك رأيك</button>
   </section>
 </section>
+        <aside id="wy17-retry" role="status">تعذر الاتصال. <button type="button" onclick="window.wy17RetryContent()">إعادة المحاولة</button></aside>
     </main>  
   
     <!-- FOOTER (LIGHT & CLEAN CLINICAL) -->  
@@ -2913,6 +2930,34 @@
         const wy15CloudContent = new Map(), wy15CloudVersions=new Map();
         let wy15VerifiedRole;
         let wy16RetryDelay=1500;
+        let wy17ReadGeneration=0,wy17AnalyticsBusy=false;
+        const wy17RemovedListKeys=new Set();
+        function wy17Freshness(state){document.documentElement.dataset.wy17Freshness=state;}
+        function wy17Invalidate(){wy17ReadGeneration++;wy17Freshness('pending');}
+        window.wy17RetryContent=()=>{if(!supabaseClient){location.reload();return;}wy17Invalidate();wy15ScheduleRefresh(0);};
+        // A changed image must never briefly keep displaying the previous bitmap while the new URL loads.
+        function wy17SetImageSource(img,src){
+            if(!img)return;
+            if(img.getAttribute('src')===src)return;
+            if(!src){img.removeAttribute('src');img.removeAttribute('data-wy17-media-pending');return;}
+            img.setAttribute('data-wy17-media-pending','');
+            const expected=String(src);
+            const loaded=()=>{if(img.getAttribute('src')===expected&&img.complete&&img.naturalWidth>0)img.removeAttribute('data-wy17-media-pending');};
+            img.addEventListener('load',loaded,{once:true});img.setAttribute('src',expected);loaded();
+        }
+        // Analytics are not CMS content and must not delay/poison the public snapshot.
+        async function wy17RefreshAnalytics(){
+            if(wy17AnalyticsBusy||!supabaseClient||!['owner','super_admin'].includes(window.currentUserRole))return;
+            wy17AnalyticsBusy=true;const role=window.currentUserRole;
+            try{
+                const {data,error}=await supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload').in('store_key',[KEY_VISITOR_LOGS,KEY_AUDIT_LOG]);
+                if(error||!Array.isArray(data)||role!==window.currentUserRole)return;
+                for(const row of data){const key=row.store_key;if(![KEY_VISITOR_LOGS,KEY_AUDIT_LOG].includes(key))continue;
+                    const value=parseSupabasePayload(row.payload);if(value===null||value===undefined)continue;const raw=JSON.stringify(value);
+                    if(localStorage.getItem(key)!==raw){wy15Mirror(key,raw);try{dispatchSyncEvent(key,value);}catch(e){console.warn('Analytics repaint failed',e);}}
+                }
+            }catch(e){console.warn('Analytics read failed',e);}finally{wy17AnalyticsBusy=false;}
+        }
         let wy16NeedsRepaint=false;
         let wy15CloudReady = false, wy15CloudBusy = null, wy15CloudAgain = false, wy15WriteEpoch = 0, wy15Writes = 0, wy15RefreshTimer = 0, wy15RefreshDeadline = 0;
         function wy15Mirror(k, raw) {
@@ -2927,7 +2972,9 @@
         function getLocal(k, def) {
             try {
                 const item = wy15ContentKeys.has(k) ? (wy15CloudContent.get(k) ?? null) : localStorage.getItem(k);
-                return item !== null ? JSON.parse(item) : (wy15ContentKeys.has(k)?structuredClone(def):def);
+                if(item!==null)return JSON.parse(item);
+                if(k===KEY_PUBLIC_FAQ||wy17RemovedListKeys.has(k)&&Array.isArray(def))return [];
+                return wy15ContentKeys.has(k)?structuredClone(def):def;
             } catch(e) { return def; }
         }
 
@@ -3062,7 +3109,7 @@
                     const confirmed=parseSupabasePayload(savedRow.payload);
                     // Compare the confirmed representation, including valid empty arrays/maps.
                     if(JSON.stringify(wy15Canonical(confirmed))!==JSON.stringify(wy15Canonical(parseSupabasePayload(stringifiedPayload))))throw new Error('لم يتطابق المحتوى المؤكد مع التعديل');
-                    wy15Mirror(key,JSON.stringify(confirmed));wy15CloudVersions.set(key,savedRow.updated_at??null);wy16NeedsRepaint=true;
+                    wy15Mirror(key,JSON.stringify(confirmed));wy15CloudVersions.set(key,savedRow.updated_at??null);wy17RemovedListKeys.delete(key);wy16NeedsRepaint=true;
                 }
                 setSyncBadgeState('ok', 'تم تأكيد حفظ التعديل سحابياً ✓');
                 notifyAdminSync('ok', `تم حفظ وتأكيد القسم (${key}) بنجاح.`);
@@ -3078,7 +3125,7 @@
 
         // V16: freshness is silent for visitors. Only the existing admin sync badge reports errors.
         function wy15SetRefreshState(state) {
-            if(state==='error')setSyncBadgeState('error','تعذر تحديث المحتوى من السحابة؛ ستتم إعادة المحاولة تلقائياً.');
+            if(state==='error'){wy17Freshness('failed');setSyncBadgeState('error','تعذر تحديث المحتوى من السحابة؛ ستتم إعادة المحاولة تلقائياً.');}
         }
         function wy15ScheduleRefresh(delay=100) {
             const deadline=Date.now()+delay;
@@ -3097,13 +3144,13 @@
             if(wy15Writes){wy15ScheduleRefresh(350);return false;}
             if(!supabaseClient){wy15SetRefreshState('error');return false;}
             if(!wy15CloudReady)wy15SetRefreshState('loading');
-            const epoch=wy15WriteEpoch, authRole=window.currentUserRole;
+            const epoch=wy15WriteEpoch, authRole=window.currentUserRole, generation=wy17ReadGeneration;
             wy15CloudBusy=(async()=>{
                 try {
                     // Fetch the complete set; never interpret a truncated page as deletion.
                     const data=[];
                     for(let offset=0;;offset+=100){
-                        let query=supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').order('store_key',{ascending:true}).range(offset,offset+99);
+                        let query=supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').in('store_key',[...wy15ContentKeys]).order('store_key',{ascending:true}).range(offset,offset+99);
                         const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),18000);
                         if(typeof query.abortSignal==='function')query=query.abortSignal(controller.signal);
                         let result;try{result=await query;}finally{clearTimeout(timeout);}
@@ -3114,18 +3161,18 @@
                         if(page.length<100)break;
                         if(offset>=9900)throw new Error('Incomplete cloud snapshot');
                     }
-                    if(epoch!==wy15WriteEpoch||authRole!==window.currentUserRole){wy15CloudAgain=true;return false;}
+                    if(epoch!==wy15WriteEpoch||authRole!==window.currentUserRole||generation!==wy17ReadGeneration){wy15CloudAgain=true;return false;}
+                    // A wholly empty response on this established site may be an RLS/session error, not a license to show seed data.
+                    if(!data.some(row=>wy15ContentKeys.has(row?.store_key)))throw new Error('No confirmed CMS rows');
                     const incoming=new Map(), versions=new Map();
                     for(const row of data){if(!row?.store_key)continue;versions.set(row.store_key,row.updated_at??null);const parsed=parseSupabasePayload(row.payload);if(parsed!==null&&parsed!==undefined)incoming.set(row.store_key,JSON.stringify(parsed));}
                     const changed=[];
                     // Only registered CMS keys are managed; browser auth, likes and device IDs are untouched.
                     for(const key of wy15ContentKeys){const raw=incoming.get(key)??null;const before=wy15CloudContent.get(key)??null;
+                        if(raw===null&&before!==null&&Array.isArray(JSON.parse(before)))wy17RemovedListKeys.add(key);
+                        if(raw!==null)wy17RemovedListKeys.delete(key);
                         if(raw!==before)changed.push([key,raw===null?null:JSON.parse(raw)]);
                         wy15Mirror(key,raw);if(versions.has(key))wy15CloudVersions.set(key,versions.get(key));else wy15CloudVersions.delete(key);
-                    }
-                    // Preserve existing analytics behavior; these are not public CMS data.
-                    for(const key of [KEY_VISITOR_LOGS,KEY_AUDIT_LOG])if(incoming.has(key)){
-                        const raw=incoming.get(key);let cached=null;try{cached=localStorage.getItem(key);}catch(e){}if(cached!==raw){wy15Mirror(key,raw);changed.push([key,JSON.parse(raw)]);}
                     }
                     const first=!wy15CloudReady;
                     wy15CloudReady=true;wy15VerifiedRole=authRole;
@@ -3139,7 +3186,7 @@
                         for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(err){console.warn('CMS overlay repaint failed:',err);}
                     }
                     wy16RetryDelay=1500;
-                    setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');return true;
+                    wy17Freshness('ready');setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');void wy17RefreshAnalytics();return true;
                 }catch(err){
                     console.warn('Cloud snapshot failed:',err);wy15SetRefreshState('error');
                     wy15ScheduleRefresh(wy16RetryDelay);wy16RetryDelay=Math.min(30000,wy16RetryDelay*2);return false;
@@ -3154,13 +3201,21 @@
                     // Notifications trigger a fresh read, never an out-of-order event payload.
                     .on('postgres_changes',{event:'*',schema:'public',table:SUPABASE_TABLE_NAME},payload=>{
                         const key=payload?.new?.store_key||payload?.old?.store_key;
-                        if(!key||wy15ContentKeys.has(key))wy15ScheduleRefresh(150);
-                        else if(window.currentUserRole&&(key===KEY_VISITOR_LOGS||key===KEY_AUDIT_LOG))wy15ScheduleRefresh(800);
+                        if(key&&wy15ContentKeys.has(key)){
+                            // Never re-hide for an event confirming our already applied revision.
+                            if(payload?.new?.updated_at&&wy15CloudVersions.get(key)===payload.new.updated_at)return;
+                            wy17Invalidate();wy15ScheduleRefresh(40);
+                        }else if(!key)wy15ScheduleRefresh(80);
+                        else if(window.currentUserRole&&(key===KEY_VISITOR_LOGS||key===KEY_AUDIT_LOG))void wy17RefreshAnalytics();
                     }).subscribe(status=>{if(status==='SUBSCRIBED')wy15ScheduleRefresh(100);else if(['CHANNEL_ERROR','TIMED_OUT','CLOSED'].includes(status))setSyncBadgeState('error','المتابعة الحية متوقفة؛ التحديث الدوري مستمر');});
             }catch(e){console.warn('Realtime unavailable:',e);}
             // Recover from sleeping mobile tabs, dropped realtime events, and reconnects.
             const refresh=()=>{if(!document.hidden)wy15ScheduleRefresh(50);};
-            document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('online',refresh);window.addEventListener('pageshow',refresh);
+            document.addEventListener('visibilitychange',()=>{if(!document.hidden){wy17Invalidate();wy15ScheduleRefresh(0);}});
+            window.addEventListener('focus',refresh);
+            window.addEventListener('offline',()=>{wy17Invalidate();wy15SetRefreshState('error');});
+            window.addEventListener('online',()=>{wy17Invalidate();wy15ScheduleRefresh(0);});
+            window.addEventListener('pageshow',e=>{if(e.persisted){wy17Invalidate();wy15ScheduleRefresh(0);}else refresh();});
             window.addEventListener('storage',e=>{if(e.key&&wy15ContentKeys.has(e.key))wy15ScheduleRefresh(100);});
             setInterval(()=>{if(!document.hidden)wy15ScheduleRefresh(50);},30000);
         }
@@ -3579,7 +3634,7 @@
             const volCount = getLocal(KEY_VOLUNTEERS, defaultVolunteers).length;
             const newsCount = getLocal(KEY_NEWS, []).length;
             const visCount = getLocal(KEY_VISITOR_LOGS, []).length;
-            const faqCount = getLocal(KEY_PUBLIC_FAQ, defaultFaqList).length;
+            const faqCount = getLocal(KEY_PUBLIC_FAQ, []).length;
 
             const elVol = document.getElementById('kpiVolunteersCount');
             const elNews = document.getElementById('kpiNewsCount');
@@ -5039,6 +5094,11 @@
                 for(const [field,selector] of [['title','h2,h3,h4,h5'],['content','p']]){
                     if(!Object.hasOwn(st,field))continue;
                     const el=target.querySelector(selector);if(!el)continue;
+                    const canonicalKey=el.closest('[data-wy-core="faqsettings:0:title"],[data-wy-core="faqsettings:0:description"]')?KEY_FAQ_SETTINGS:
+                        el.closest('[data-wy-core^="faq:"]')?KEY_PUBLIC_FAQ:
+                        ['topAnnouncementText','topTargetText','topFacultyText','headerMainTitle','headerSubTitle','heroHeadline','heroSubtitle'].includes(el.id)?KEY_UNIVERSAL_TEXTS:
+                        ['footerBrandName','footerBrandDesc','floatingPoweredByName','footerPoweredByName','floatingPoweredByLabel'].includes(el.id)?KEY_FOOTER_WHATSAPP:null;
+                    if(canonicalKey&&wy15CloudContent.has(canonicalKey)&&wy17RevisionAtLeast(canonicalKey,KEY_SECTION_STYLES))continue;
                     const applied=String(st[field]??'');
                     old.texts.push({el,nodes:[...el.childNodes].map(n=>n.cloneNode(true)),applied});
                     el.textContent=applied;
@@ -5046,6 +5106,9 @@
                 if(st.bg&&typeof st.bg==='string'){old.bg=[...target.classList].filter(cls=>/^bg-/.test(cls));old.bg.forEach(cls=>target.classList.remove(cls));for(const cls of st.bg.split(/\s+/))if(/^bg-[a-z0-9/\[\]#.-]+$/i.test(cls))target.classList.add(cls);}
                 wy15StyleUndo.set(target,old);
             }
+        }
+        function wy17RevisionAtLeast(a,b){
+            const ar=Date.parse(wy15CloudVersions.get(a)||'')||0,br=Date.parse(wy15CloudVersions.get(b)||'')||0;return ar>=br;
         }
         function wy16ReapplyTextOverlays(){
             wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();
@@ -5223,13 +5286,13 @@
                 const b=wy15FooterBase.get(id);for(const a of ['style','href']){if(b[a]===null)el.removeAttribute(a);else el.setAttribute(a,b[a]);}if(b.text!==null)el.textContent=b.text;
             }
             const fw = getLocal(KEY_FOOTER_WHATSAPP, null);
-            if (!fw) return;  
+            if (!fw) {const w=document.getElementById('floatingWhatsappBtn');if(w)w.style.display='none';return;}  
             if (Object.prototype.hasOwnProperty.call(fw, 'brand') && document.getElementById('footerBrandName')) document.getElementById('footerBrandName').innerText = String(fw.brand ?? '');
             if (Object.prototype.hasOwnProperty.call(fw, 'desc') && document.getElementById('footerBrandDesc')) document.getElementById('footerBrandDesc').innerText = String(fw.desc ?? '');  
             const powerNameEl = document.getElementById('footerPoweredByName');  
             const powerLinkEl = document.getElementById('footerPoweredByLink');  
-            const safeName = String(fw.powerName || 'Dr. Khalil Musabeh');
-            const safeLabel = String(fw.powerLabel || 'Powered by');
+            const safeName = String(fw.powerName ?? 'Dr. Khalil Musabeh');
+            const safeLabel = String(fw.powerLabel ?? 'Powered by');
             const safeColor = /^#[0-9a-f]{6}$/i.test(String(fw.powerColor || '')) ? String(fw.powerColor) : '#9f1d24';
             const safeUrl = String(fw.powerUrl || 'https://www.instagram.com/dr_khalil_musabeh_med/');
             const validPowerUrl = /^https:\/\/(www\.)?instagram\.com\//i.test(safeUrl) ? safeUrl : 'https://www.instagram.com/dr_khalil_musabeh_med/';
@@ -5254,7 +5317,7 @@
             const wBtn = document.getElementById('floatingWhatsappBtn');  
             if (wBtn) {  
                 if (fw.wNum) wBtn.href = 'https://wa.me/' + fw.wNum;  
-                wBtn.style.display = fw.wVis !== false ? 'flex' : 'none';  
+                wBtn.style.display = fw.wVis !== false && /^\+?[0-9]{7,15}$/.test(String(fw.wNum||'')) ? 'flex' : 'none';  
             }  
         }  
   
@@ -5312,6 +5375,9 @@
                 else if (key.startsWith('v8path:')) el=wy15ResolveTextPath(key.slice(7));
                 else if (key.startsWith('path:')) el=wy15ResolveTextPath(V8_LEGACY_TEXT_PATHS[key.slice(5)]);
                 if(el&&Object.hasOwn(canonicalFields,el.id)&&Object.hasOwn(canonical,canonicalFields[el.id]))return;
+                const footerFields={floatingPoweredByName:'powerName',footerPoweredByName:'powerName',floatingPoweredByLabel:'powerLabel',footerBrandName:'brand',footerBrandDesc:'desc'};
+                const footer=getLocal(KEY_FOOTER_WHATSAPP,{})||{};
+                if(el&&Object.hasOwn(footerFields,el.id)&&Object.hasOwn(footer,footerFields[el.id])&&wy17RevisionAtLeast(KEY_FOOTER_WHATSAPP,KEY_INLINE_TEXT_EDITS))return;
                 if(el&&!el.closest('#subSection-lungsComparison')&&el.closest('#wy14-classic,#wy14-knowledge,#subSection-shortTermCard,#wy14-lab-switch')){const content=getLocal('wa3y_v14_content_v1',{});if(content&&Object.keys(content).length)return;}
                 if (el && !el.closest('#timelineHealingWidget .wy-v7-kicker,#wy-v7-panel-3 .wy-v7-doc-hello') && !el.closest('[data-wy8-text],[data-wy7-text],[data-wy-core]') && !el.children.length && typeof edits[key] === 'string') { if (!wy15InlineUndo.has(el)) wy15InlineUndo.set(el,{before:el.textContent,applied:edits[key]}); else wy15InlineUndo.get(el).applied=edits[key]; el.textContent=edits[key]; }  
             });  
@@ -5401,7 +5467,7 @@
                 const img=document.getElementById(id);
                 if(!img||record.el!==img){wy15ImageUndo.delete(id);continue;}
                 if(!Object.hasOwn(map,id)||!map[id]){
-                    if(record.src===null)img.removeAttribute('src');else img.setAttribute('src',record.src);
+                    wy17SetImageSource(img,record.src);
                     img.classList.toggle('hidden',record.hidden);
                     if(id==='scenarioCustomImg')document.getElementById('scenarioVisualAvatar')?.classList.remove('hidden');
                     wy15ImageUndo.delete(id);
@@ -5410,7 +5476,7 @@
             for(const [id,src] of Object.entries(map)){
                 const img=document.getElementById(id);if(!img||typeof src!=='string'||!src)continue;
                 if(!wy15ImageUndo.has(id))wy15ImageUndo.set(id,{el:img,src:img.getAttribute('src'),hidden:img.classList.contains('hidden')});
-                if(img.getAttribute('src')!==src)img.setAttribute('src',src);
+                wy17SetImageSource(img,src);
                 img.classList.remove('hidden');if(id==='scenarioCustomImg')document.getElementById('scenarioVisualAvatar')?.classList.add('hidden');
             }
         }
@@ -5690,6 +5756,8 @@
         function applyFaqCustomVisualStyles() {
             const settings = getFaqSettings();
             const root = document.documentElement;
+            if(!settings.frontColor){root.style.removeProperty('--faq-card-front');root.style.removeProperty('--faq-card-front-gradient');}
+            if(!settings.accentColor)root.style.removeProperty('--faq-card-accent');
             if (settings.frontColor) {
                 root.style.setProperty('--faq-card-front', settings.frontColor);
                 root.style.setProperty('--faq-card-front-gradient', `linear-gradient(135deg, ${settings.frontColor} 0%, #fff7f7 100%)`);
@@ -5707,14 +5775,14 @@
             const settings = getFaqSettings();
             applyFaqCustomVisualStyles();
 
-            let items = getLocal(KEY_PUBLIC_FAQ, defaultFaqList).filter(x => x && x.visible !== false && x.approved !== false);
+            let items = getLocal(KEY_PUBLIC_FAQ, []).filter(x => x && x.visible !== false && x.approved !== false);
             items.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
 
             section.classList.toggle('hidden', !settings.visible || items.length === 0);
 
             const title = document.getElementById('publicFaqTitle');
             const desc = document.getElementById('publicFaqDescription');
-            if (title) {title.textContent = settings.title || 'اسألنا | إجابات تهمّك';title.dataset.wyCore='faqsettings:0:title';}
+            if (title) {title.textContent = settings.title ?? 'اسألنا | إجابات تهمّك';title.dataset.wyCore='faqsettings:0:title';}
             if (desc) {desc.textContent = settings.description || '';desc.dataset.wyCore='faqsettings:0:description';}
 
             const q = (document.getElementById('publicFaqSearch')?.value || '').trim().toLowerCase();
@@ -6274,7 +6342,7 @@
         };  
   
         window.editFaqItem = function(id) {  
-            const x = getLocal(KEY_PUBLIC_FAQ, defaultFaqList).find(a => a.id === id);  
+            const x = getLocal(KEY_PUBLIC_FAQ, []).find(a => a.id === id);  
             if (!x) return;  
             document.getElementById('faqEditId').value = x.id;  
             document.getElementById('faqQuestionInput').value = x.question || '';  
@@ -6293,7 +6361,7 @@
                 showToast('أدخلي السؤال والإجابة أولاً.', 'error');  
                 return;  
             }  
-            const old = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const old = getLocal(KEY_PUBLIC_FAQ, []);  
             const id = document.getElementById('faqEditId').value || ('faq-' + Date.now());  
             const next = [...old];  
             const idx = next.findIndex(x => x.id === id);  
@@ -6312,7 +6380,7 @@
         };  
   
         window.toggleFaqItemVisibility = async function(id) {  
-            const old = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const old = getLocal(KEY_PUBLIC_FAQ, []);  
             const next = old.map(x => x.id === id ? { ...x, visible: x.visible === false } : x);  
             if (!await saveLocalConfirmed(KEY_PUBLIC_FAQ, next)) {  
                 showToast('فشل الحفظ السحابي؛ لم يتغير وضع النشر.', 'error');  
@@ -6325,7 +6393,7 @@
   
         window.deleteFaqItem = async function(id) {  
             if (!confirm('هل تريدين حذف هذه البطاقة المنشورة نهائياً؟')) return;  
-            const old = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const old = getLocal(KEY_PUBLIC_FAQ, []);  
             const next = old.filter(x => x.id !== id);  
             if (!await saveLocalConfirmed(KEY_PUBLIC_FAQ, next)) {  
                 showToast('فشل الحذف السحابي؛ بقيت البطاقة.', 'error');  
@@ -6339,7 +6407,7 @@
         function renderAdminFaqPublishedList() {  
             const box = document.getElementById('adminFaqPublishedList');  
             if (!box) return;  
-            const items = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const items = getLocal(KEY_PUBLIC_FAQ, []);  
             items.sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));  
   
             box.innerHTML = items.length ? items.map(x => `  
@@ -6374,7 +6442,7 @@
                 showToast('راجعي نص السؤال واكتبي إجابة واضحة قبل النشر.', 'error');  
                 return;  
             }  
-            const oldFaq = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const oldFaq = getLocal(KEY_PUBLIC_FAQ, []);  
             const faqId = 'faq-' + id;  
             const nextFaq = [{  
                 id: faqId, question, answer, category,  
@@ -6439,7 +6507,7 @@
         window.setIncomingQuestionStatus = async function(id, status) {  
             if (!['pending','hidden','published'].includes(status)) return;  
             const q = adminIncomingQuestionsCache.find(x => x.id === id);  
-            const oldFaq = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const oldFaq = getLocal(KEY_PUBLIC_FAQ, []);  
             const faqId = 'faq-' + id;  
             const nextFaq = oldFaq.map(x => x.id === faqId ? { ...x, visible: status === 'published' } : x);  
   
@@ -6460,7 +6528,7 @@
   
         window.deleteIncomingQuestion = async function(id) {  
             if (!confirm('حذف السؤال الوارد وبطاقته المنشورة نهائياً؟')) return;  
-            const oldFaq = getLocal(KEY_PUBLIC_FAQ, defaultFaqList);  
+            const oldFaq = getLocal(KEY_PUBLIC_FAQ, []);  
             const nextFaq = oldFaq.filter(x => x.id !== ('faq-' + id));  
             if (!await saveLocalConfirmed(KEY_PUBLIC_FAQ, nextFaq)) return;  
             await supabaseClient.from('waei_incoming_questions').delete().eq('id', id);  
@@ -6728,12 +6796,12 @@
             if (imgUrl) {  
                 if (favicon) favicon.href = imgUrl;  
                 if (customHeaderImg) {  
-                    customHeaderImg.src = imgUrl;  
+                    wy17SetImageSource(customHeaderImg,imgUrl);  
                     customHeaderImg.classList.remove('hidden');  
                 }  
                 if (defaultHeaderIcon) defaultHeaderIcon.classList.add('hidden');  
                 if (footerImg) {  
-                    footerImg.src = imgUrl;  
+                    wy17SetImageSource(footerImg,imgUrl);  
                     footerImg.classList.remove('hidden');  
                 }  
                 if (footerDefault) footerDefault.classList.add('hidden');  
@@ -7770,17 +7838,15 @@
 
         // ==================== 28. SYSTEM BOOT ENGINE (DOM CONTENT LOADED) ====================
         window.addEventListener('DOMContentLoaded', async () => {
-            // Render the bundled interface immediately, without reading obsolete browser CMS data.
+            // Initialize existing components offscreen. Only the confirmed snapshot may make them visible.
             restoreCustomImages();
             applyFaviconAndLogo(getLocal(KEY_FAVICON_LOGO, ''));
-            applyUniversalTexts();
-            applyInlineTextEdits();
             applyStatsUI();
             applyShortTermUI();
             applySectionsVisibility();
             applySubElementsVisibility();
-            applyAllSectionCustomStyles();
             applyFooterAndWhatsappUI();
+            wy16ReapplyTextOverlays();
             loadAwarenessVideos();
             window.renderClientStatsGrid();
             window.updateFinancialCalc();
@@ -7804,9 +7870,8 @@
             });
             const wy15InitialOk=await firstRead;
             // Ensure cloud text edits are applied after the initial cloud snapshot is loaded.
-            if (typeof applyInlineTextEdits === 'function') applyInlineTextEdits();
-            if (typeof window.migrateLegacyFieldVisibility === 'function') window.migrateLegacyFieldVisibility();
-            if (typeof window.applyAllVisibilityStates === 'function') window.applyAllVisibilityStates();
+            if (wy15InitialOk && typeof window.migrateLegacyFieldVisibility === 'function') window.migrateLegacyFieldVisibility();
+            if (wy15InitialOk && typeof window.applyAllVisibilityStates === 'function') window.applyAllVisibilityStates();
 
             // No automatic public roster overwrite on launch; normal volunteer saves publish their confirmed roster.
             // Legacy images remain readable; only an explicit owner edit changes cloud content.
@@ -8168,7 +8233,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=16.0"></script>
+    <script src="./waei-live-effects.js?v=17.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
 </body>
 </html>

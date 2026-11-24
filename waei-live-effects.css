@@ -566,3 +566,24 @@ main [id^=screen-] .text-xs{font-size:calc(.75rem * var(--wy11-font-scale))}main
 #subSection-lungsComparison .wy15-lung-grid .aspect-video>span{font-size:9px;right:4px;top:4px;padding:2px 5px}
 #wy15-vape-extras{margin-top:16px}
 @media(max-width:390px){#subSection-lungsComparison{padding:8px!important}#subSection-lungsComparison .wy15-lung-grid{gap:6px}#subSection-lungsComparison .wy15-lung-grid>div{padding:6px}#subSection-lungsComparison .wy15-lung-grid h5{font-size:.72rem}#subSection-lungsComparison .wy15-lung-grid p{font-size:.67rem}}
+
+/* V17: compact FAQ cards. Flow-sized front, scrollable back; no text truncation. */
+#publicFaqSection{padding:clamp(12px,3vw,24px)!important}
+#publicFaqSection>div:first-child{gap:12px;padding-bottom:0}
+#publicFaqCards{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),280px))!important;justify-content:center;gap:12px!important;padding-top:0!important;align-items:stretch}
+#publicFaqCards .waei-flip-card{min-height:0;height:auto;min-width:0;max-width:280px;width:100%;margin-inline:auto}
+#publicFaqCards .waei-flip-inner{display:grid;grid-template-columns:minmax(0,1fr);min-height:0;height:100%;width:100%}
+#publicFaqCards .waei-flip-face{min-height:0;border-radius:17px;padding:12px;gap:10px}
+#publicFaqCards .waei-flip-front{position:relative;inset:auto;min-height:168px;grid-area:1/1;justify-content:space-between}
+#publicFaqCards .waei-flip-back{position:absolute;inset:0;min-height:0;gap:8px}
+#publicFaqCards .waei-flip-back>div:first-child{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+#publicFaqCards .card-float-badge,#publicFaqCards .card-float-title,#publicFaqCards .card-float-action{transform:none}
+#publicFaqCards .card-float-title{margin-top:10px!important}
+#publicFaqCards .card-float-title h4{font-size:clamp(13px,3.6vw,15px)!important;line-height:1.65!important;overflow-wrap:anywhere}
+#publicFaqCards .mystery-orb-3d{width:30px;height:30px;border-radius:9px;font-size:14px;animation:none;transform:none;flex:none}
+#publicFaqCards .card-float-badge>span{padding:3px 8px!important;font-size:10px!important}
+#publicFaqCards .card-float-action{padding-top:8px!important;gap:5px}
+#publicFaqCards .flip-action-btn{padding:6px 10px!important;font-size:11px!important;line-height:1.4;white-space:normal;min-height:32px}
+#publicFaqCards .waei-flip-back p{font-size:12px!important;line-height:1.8!important;overflow-wrap:anywhere}
+#publicFaqCards .waei-flip-back>div:last-child{padding-top:6px!important;gap:5px;flex-shrink:0}
+@media(max-width:480px){#publicFaqCards{grid-template-columns:minmax(0,272px)!important}#publicFaqSection>div:first-child{margin-bottom:0}#publicFaqSection>div+div{margin-top:12px!important}}
