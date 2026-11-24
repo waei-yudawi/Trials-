@@ -555,7 +555,7 @@ main [id^=screen-] .text-xs{font-size:calc(.75rem * var(--wy11-font-scale))}main
 .wy14-admin-btn.hidden{display:none!important}
 
 /* V15: comparison is shared and compact, all vape-only cards follow the selected panel. */
-#wy15-vape-extras[hidden],#subSection-lungsComparison[hidden],#wy15-sync-screen[hidden],#wy15-sync-warning[hidden],#wy15-sync-retry[hidden]{display:none!important}
+#wy15-vape-extras[hidden],#subSection-lungsComparison[hidden]{display:none!important}
 #subSection-lungsComparison{margin:12px 0;padding:12px!important;box-sizing:border-box;background:#f6f5f5;border-radius:15px}
 #subSection-lungsComparison .wy15-lung-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 #subSection-lungsComparison .wy15-lung-grid>div{min-width:0;padding:8px}
@@ -565,9 +565,4 @@ main [id^=screen-] .text-xs{font-size:calc(.75rem * var(--wy11-font-scale))}main
 #subSection-lungsComparison .wy15-lung-grid .aspect-video{position:relative;overflow:hidden;aspect-ratio:4/3;background:#f3f3f3}
 #subSection-lungsComparison .wy15-lung-grid .aspect-video>span{font-size:9px;right:4px;top:4px;padding:2px 5px}
 #wy15-vape-extras{margin-top:16px}
-#wy15-sync-screen{position:fixed;inset:0;background:#f4f3f2;z-index:2147483000;display:grid;place-items:center;padding:20px;text-align:center;direction:rtl;font-family:Cairo,sans-serif;color:#17243c}
-.wy15-sync-card{width:min(100%,360px);padding:24px;background:#fff;border:1px solid #e5dcdb;border-radius:20px;box-shadow:0 8px 25px #17243c0e}.wy15-sync-card strong{font-size:1.6rem;color:#982b2b}.wy15-sync-card p{font-size:.95rem;line-height:1.8;margin:10px 0}
-#wy15-sync-screen button,#wy15-sync-warning button{background:#982b2b;color:white;padding:8px 16px;border-radius:9px;font-weight:700;border:0;cursor:pointer}
-#wy15-sync-warning{position:fixed;z-index:10005;bottom:72px;left:12px;right:12px;max-width:470px;margin:auto;padding:9px 12px;border:1px solid #e4c8a0;background:#fff8e9;border-radius:10px;display:flex;gap:8px;align-items:center;justify-content:space-between;font:700 12px/1.6 Cairo,sans-serif;color:#794b13}
-html.wy15-content-pending body{overflow:hidden}
 @media(max-width:390px){#subSection-lungsComparison{padding:8px!important}#subSection-lungsComparison .wy15-lung-grid{gap:6px}#subSection-lungsComparison .wy15-lung-grid>div{padding:6px}#subSection-lungsComparison .wy15-lung-grid h5{font-size:.72rem}#subSection-lungsComparison .wy15-lung-grid p{font-size:.67rem}}

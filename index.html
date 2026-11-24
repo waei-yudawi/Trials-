@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html lang="ar" dir="rtl" class="scroll-smooth wy15-content-pending">  
+<html lang="ar" dir="rtl" class="scroll-smooth">  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="15.1">  
+    <meta name="waei-release" content="16.0">  
     <title>منصة وَعـي يُـداوي | كلية طب فلسطين - جامعة الأزهر غزة</title>  
       
     <!-- Dynamic Favicon Link -->  
@@ -496,7 +496,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=15.1">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=16.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -2567,7 +2567,7 @@
             if (!supabaseClient) return null;
             supabaseClient.auth.onAuthStateChange((_event, session) => {
                 const before=window.currentUserRole;applySupabaseUserRole(session?.user || null);
-                if(wy15CloudReady&&before!==window.currentUserRole)wy15ScheduleRefresh(0);
+                if(before!==window.currentUserRole)wy15ScheduleRefresh(0);
             });
             const { data, error } = await supabaseClient.auth.getSession();
             if (error) {
@@ -2912,10 +2912,17 @@
         const wy15ContentKeys = new Set(ALL_SYNC_KEYS.filter(k=>k!==KEY_VISITOR_LOGS&&k!==KEY_AUDIT_LOG));
         const wy15CloudContent = new Map(), wy15CloudVersions=new Map();
         let wy15VerifiedRole;
+        let wy16RetryDelay=1500;
+        let wy16NeedsRepaint=false;
         let wy15CloudReady = false, wy15CloudBusy = null, wy15CloudAgain = false, wy15WriteEpoch = 0, wy15Writes = 0, wy15RefreshTimer = 0, wy15RefreshDeadline = 0;
         function wy15Mirror(k, raw) {
-            if (wy15ContentKeys.has(k)) { if(raw===null)wy15CloudContent.delete(k);else wy15CloudContent.set(k,raw); }
-            try { const prev=localStorage.getItem(k);if(raw===null){if(prev!==null)localStorage.removeItem(k);}else if(prev!==raw)localStorage.setItem(k,raw); } catch(e) { console.warn('Local mirror unavailable:',k); }
+            const managed=wy15ContentKeys.has(k);
+            if(managed){if(raw===null)wy15CloudContent.delete(k);else wy15CloudContent.set(k,raw);}
+            try {
+                const prev=localStorage.getItem(k);
+                if(managed||raw===null){if(prev!==null)localStorage.removeItem(k);}
+                else if(prev!==raw)localStorage.setItem(k,raw);
+            }catch(e){console.warn('Local storage unavailable:',k);}
         }
         function getLocal(k, def) {
             try {
@@ -3055,7 +3062,7 @@
                     const confirmed=parseSupabasePayload(savedRow.payload);
                     // Compare the confirmed representation, including valid empty arrays/maps.
                     if(JSON.stringify(wy15Canonical(confirmed))!==JSON.stringify(wy15Canonical(parseSupabasePayload(stringifiedPayload))))throw new Error('لم يتطابق المحتوى المؤكد مع التعديل');
-                    wy15Mirror(key,JSON.stringify(confirmed));wy15CloudVersions.set(key,savedRow.updated_at??null);
+                    wy15Mirror(key,JSON.stringify(confirmed));wy15CloudVersions.set(key,savedRow.updated_at??null);wy16NeedsRepaint=true;
                 }
                 setSyncBadgeState('ok', 'تم تأكيد حفظ التعديل سحابياً ✓');
                 notifyAdminSync('ok', `تم حفظ وتأكيد القسم (${key}) بنجاح.`);
@@ -3069,13 +3076,9 @@
             } finally { if(managed){wy15Writes--;wy15WriteEpoch++;wy15ScheduleRefresh(300);} }
         }
 
+        // V16: freshness is silent for visitors. Only the existing admin sync badge reports errors.
         function wy15SetRefreshState(state) {
-            const panel=document.getElementById('wy15-sync-screen'),status=document.getElementById('wy15-sync-status'),retry=document.getElementById('wy15-sync-retry'),warning=document.getElementById('wy15-sync-warning');
-            if(panel)panel.hidden=wy15CloudReady;
-            if(status)status.textContent=state==='error'?'تعذر جلب أحدث المعلومات. تحقّق من اتصالك ثم أعد المحاولة.':'جارٍ التحقق من أحدث المعلومات…';
-            if(retry)retry.hidden=state!=='error';
-            if(warning)warning.hidden=!(wy15CloudReady&&state==='error');
-            document.documentElement.classList.toggle('wy15-content-pending',!wy15CloudReady);
+            if(state==='error')setSyncBadgeState('error','تعذر تحديث المحتوى من السحابة؛ ستتم إعادة المحاولة تلقائياً.');
         }
         function wy15ScheduleRefresh(delay=100) {
             const deadline=Date.now()+delay;
@@ -3089,7 +3092,6 @@
             showToast(ok?'تم جلب أحدث المحتوى من السحابة ✓':'تعذر التحقق من أحدث المحتوى',''+(ok?'success':'error'));
             return ok;
         };
-        window.wy15RetrySync=()=>{if(!supabaseClient){location.reload();return;}void fetchAllFromSupabase();};
         async function fetchAllFromSupabase() {
             if(wy15CloudBusy){wy15CloudAgain=true;return wy15CloudBusy;}
             if(wy15Writes){wy15ScheduleRefresh(350);return false;}
@@ -3127,7 +3129,8 @@
                     }
                     const first=!wy15CloudReady;
                     wy15CloudReady=true;wy15VerifiedRole=authRole;
-                    const repaint=first||changed.some(([k])=>wy15ContentKeys.has(k));
+                    const repaint=first||wy16NeedsRepaint||changed.some(([k])=>wy15ContentKeys.has(k));
+                    wy16NeedsRepaint=false;
                     if(repaint){wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();}
                     const overlays=new Set([KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS]);
                     for(const [key,value] of changed){if(overlays.has(key))continue;try{dispatchSyncEvent(key,value);}catch(err){console.warn('CMS repaint failed:',key,err);}}
@@ -3135,8 +3138,12 @@
                     if(repaint){
                         for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(err){console.warn('CMS overlay repaint failed:',err);}
                     }
-                    setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');wy15SetRefreshState('ok');return true;
-                }catch(err){console.warn('Cloud snapshot failed:',err);setSyncBadgeState('error','تعذر جلب أحدث نسخة');wy15SetRefreshState('error');return false;}
+                    wy16RetryDelay=1500;
+                    setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');return true;
+                }catch(err){
+                    console.warn('Cloud snapshot failed:',err);wy15SetRefreshState('error');
+                    wy15ScheduleRefresh(wy16RetryDelay);wy16RetryDelay=Math.min(30000,wy16RetryDelay*2);return false;
+                }
             })();
             try{return await wy15CloudBusy;}finally{wy15CloudBusy=null;if(wy15CloudAgain){wy15CloudAgain=false;wy15ScheduleRefresh(100);}}
         }
@@ -3416,6 +3423,7 @@
 
         // ==================== 7. BACKUP, RESTORE & TRASH BIN ====================
         window.exportFullSiteBackupJSON = function() {
+            if(!wy15CloudReady||wy15VerifiedRole!==window.currentUserRole){showToast('تعذر تأكيد أحدث المحتوى؛ حدّث المزامنة قبل تصدير النسخة الاحتياطية.','error');return;}
             try {
                 const fullBackup = {
                     version: '2.0-enterprise',
@@ -3424,7 +3432,7 @@
                     data: {}
                 };
                 ALL_SYNC_KEYS.forEach(k => {
-                    const raw = localStorage.getItem(k);
+                    const raw = wy15ContentKeys.has(k) ? (wy15CloudContent.get(k)??null) : localStorage.getItem(k);
                     if (raw !== null) {
                         try { fullBackup.data[k] = JSON.parse(raw); } catch(e) { fullBackup.data[k] = raw; }
                     }
@@ -5013,13 +5021,13 @@
             const stylesMap = getLocal(KEY_SECTION_STYLES, {});  
             stylesMap[secId] = { title: newTitle, bg: newBg };  
             const ok = await saveLocalConfirmed(KEY_SECTION_STYLES, stylesMap);  
-            if (ok) { applyAllSectionCustomStyles(); showToast('تم تطبيق التخصيصات ✓'); window.closeSectionCustomizer(); }  
+            if (ok) { wy16ReapplyTextOverlays(); showToast('تم تطبيق التخصيصات ✓'); window.closeSectionCustomizer(); }  
         };  
   
         const wy15StyleUndo=new Map();
         function wy15UndoSectionStyles(){
             for(const [target,old] of wy15StyleUndo){if(!target.isConnected)continue;
-                if(old.heading?.isConnected&&old.heading.textContent===old.applied)old.heading.textContent=old.before;
+                for(const r of old.texts||[]){if(r.el.isConnected&&r.el.textContent===r.applied)r.el.replaceChildren(...r.nodes);}
                 if(old.bg){for(const cls of [...target.classList])if(/^bg-/.test(cls))target.classList.remove(cls);for(const cls of old.bg)target.classList.add(cls);}
             }wy15StyleUndo.clear();
         }
@@ -5027,11 +5035,21 @@
             wy15UndoSectionStyles();
             const stylesMap=getLocal(KEY_SECTION_STYLES,{})||{};
             for(const [id,st] of Object.entries(stylesMap)){
-                const target=document.getElementById(id);if(!target||!st||typeof st!=='object')continue;const old={};
-                if(st.title){const h=target.querySelector('h2,h3,h4,h5');if(h){old.heading=h;old.before=h.textContent;old.applied=String(st.title);h.textContent=old.applied;}}
+                const target=document.getElementById(id);if(!target||!st||typeof st!=='object')continue;const old={texts:[]};
+                for(const [field,selector] of [['title','h2,h3,h4,h5'],['content','p']]){
+                    if(!Object.hasOwn(st,field))continue;
+                    const el=target.querySelector(selector);if(!el)continue;
+                    const applied=String(st[field]??'');
+                    old.texts.push({el,nodes:[...el.childNodes].map(n=>n.cloneNode(true)),applied});
+                    el.textContent=applied;
+                }
                 if(st.bg&&typeof st.bg==='string'){old.bg=[...target.classList].filter(cls=>/^bg-/.test(cls));old.bg.forEach(cls=>target.classList.remove(cls));for(const cls of st.bg.split(/\s+/))if(/^bg-[a-z0-9/\[\]#.-]+$/i.test(cls))target.classList.add(cls);}
                 wy15StyleUndo.set(target,old);
             }
+        }
+        function wy16ReapplyTextOverlays(){
+            wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();
+            applyAllSectionCustomStyles();applyUniversalTexts();applyInlineTextEdits();
         }
 
         function renderAdminSectionsMasterList() {  
@@ -5137,7 +5155,7 @@
                 heroSubtitle: document.getElementById('editHeroSubtitleInput').value.trim()  
             };  
             const ok = await saveLocalConfirmed(KEY_UNIVERSAL_TEXTS, texts);  
-            if (ok) { applyUniversalTexts(); showToast('تم حفظ وتعميم كافة النصوص ✓'); }  
+            if (ok) { wy16ReapplyTextOverlays(); showToast('تم حفظ وتعميم كافة النصوص ✓'); }  
         };  
   
         const wy15UniversalUndo=new Map();
@@ -5269,6 +5287,19 @@
             for (const [el,record] of wy15InlineUndo) if (el.isConnected && el.textContent===record.applied) el.textContent=record.before;
             wy15InlineUndo.clear();
         }
+        function wy16ResolveInlineKey(key){
+            if(key.startsWith('id:'))return document.getElementById(key.slice(3));
+            if(key.startsWith('v15path:')){try{return document.querySelector(key.slice(8));}catch(e){return null;}}
+            if(key.startsWith('v8path:'))return wy15ResolveTextPath(key.slice(7));
+            if(key.startsWith('path:'))return wy15ResolveTextPath(V8_LEGACY_TEXT_PATHS[key.slice(5)]);
+            return null;
+        }
+        function wy16SetInlineEdit(edits,key,value){
+            const target=wy16ResolveInlineKey(key);
+            if(target)for(const other of Object.keys(edits))if(other!==key&&wy16ResolveInlineKey(other)===target)delete edits[other];
+            if(value===undefined)delete edits[key];else edits[key]=value;
+            return edits;
+        }
         function applyInlineTextEdits(){
             wy15UndoInlineText();
             const edits = getLocal(KEY_INLINE_TEXT_EDITS, {}) || {};
@@ -5319,9 +5350,9 @@
             if(await window.waeiV8?.saveUniversal(target,updated))return;
             const key = inlineTextElementKey(target);  
             const edits = getLocal(KEY_INLINE_TEXT_EDITS, {});  
-            edits[key] = updated;  
+            wy16SetInlineEdit(edits,key,updated);  
             const ok = await saveLocalConfirmed(KEY_INLINE_TEXT_EDITS, edits);  
-            if (ok) { applyInlineTextEdits(); window.waeiV8?.freeCMS(); showToast('تم حفظ النص وتأكيد مزامنته سحابياً ✓'); }  
+            if (ok) { wy16ReapplyTextOverlays(); window.waeiV8?.freeCMS(); showToast('تم حفظ النص وتأكيد مزامنته سحابياً ✓'); }  
         }, true);
 
         // ==================== 21. CUSTOM IMAGE PICKER & RESTORE ====================
@@ -7155,40 +7186,11 @@
                     showToast('تم حفظ حالة الظهور، لكن فشل حفظ تخصيص المحتوى.', 'error');
                     return;
                 }
-                const target = document.getElementById(itemId);
-                if (target) {
-                    if (title) {
-                        const heading = target.querySelector('h2, h3, h4, h5');
-                        if (heading) heading.innerText = title;
-                    }
-                    if (content) {
-                        const paragraph = target.querySelector('p');
-                        if (paragraph) paragraph.innerText = content;
-                    }
-                }
-                if (typeof window.applyAllSectionCustomStyles === 'function') window.applyAllSectionCustomStyles();
+                wy16ReapplyTextOverlays();
                 showToast('تم حفظ وتعميم النصوص والتخصيصات وحالة الظهور سحابياً ✓');
             };
 
-            window.applyAllSectionCustomStyles = function () {
-                const stylesMap = getLocal(KEY_SECTION_STYLES, {}) || {};
-                Object.entries(stylesMap).forEach(([id, custom]) => {
-                    const target = document.getElementById(id);
-                    if (!target || !custom) return;
-                    if (Object.prototype.hasOwnProperty.call(custom, 'title')) {
-                        const heading = target.querySelector('h2, h3, h4, h5');
-                        if (heading) heading.innerText = String(custom.title ?? '');
-                    }
-                    if (Object.prototype.hasOwnProperty.call(custom, 'content')) {
-                        const paragraph = target.querySelector('p');
-                        if (paragraph) paragraph.innerText = String(custom.content ?? '');
-                    }
-                    if (custom.bg) {
-                        target.className = target.className.replace(/\bbg-[^\s]+/g, '').trim();
-                        custom.bg.split(/\s+/).filter(Boolean).forEach(className => target.classList.add(className));
-                    }
-                });
-            };
+            // The single undo-aware applyAllSectionCustomStyles above also restores removed edits.
 
             // 9) News photo gallery: carousel inside each card + full-screen lightbox.
             window.newsCardPhotoIndexes = window.newsCardPhotoIndexes || {};
@@ -7768,7 +7770,7 @@
 
         // ==================== 28. SYSTEM BOOT ENGINE (DOM CONTENT LOADED) ====================
         window.addEventListener('DOMContentLoaded', async () => {
-            // 1. الرندرة الفورية من الذاكرة المحلية لتفادي وميض التحميل
+            // Render the bundled interface immediately, without reading obsolete browser CMS data.
             restoreCustomImages();
             applyFaviconAndLogo(getLocal(KEY_FAVICON_LOGO, ''));
             applyUniversalTexts();
@@ -7794,10 +7796,13 @@
             switchMythBusterTab('vape');
             if (defaultOrgans.length > 0) window.selectAnatomyOrgan(defaultOrgans[0].id);
 
-            // 2. المصادقة والاتصال السحابي الحقيقي مع Supabase
-            try { await initializeSupabaseAuth(); } catch(e) { console.warn("Auth restore unavailable:",e); }
+            // Read public content immediately; authentication restores independently.
             setupSupabaseRealtimeSubscription();
-            const wy15InitialOk=await fetchAllFromSupabase();
+            const firstRead=fetchAllFromSupabase();
+            void initializeSupabaseAuth().catch(e=>console.warn('Auth restore unavailable:',e)).finally(()=>{
+                if(wy15VerifiedRole!==window.currentUserRole)wy15ScheduleRefresh(0);
+            });
+            const wy15InitialOk=await firstRead;
             // Ensure cloud text edits are applied after the initial cloud snapshot is loaded.
             if (typeof applyInlineTextEdits === 'function') applyInlineTextEdits();
             if (typeof window.migrateLegacyFieldVisibility === 'function') window.migrateLegacyFieldVisibility();
@@ -8163,9 +8168,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=15.1"></script>
+    <script src="./waei-live-effects.js?v=16.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
-<div id="wy15-sync-screen" role="status" aria-live="polite"><div class="wy15-sync-card"><strong>وعي يُداوي</strong><p id="wy15-sync-status">جارٍ التحقق من أحدث المعلومات…</p><button id="wy15-sync-retry" type="button" hidden onclick="wy15RetrySync()">إعادة المحاولة</button></div></div>
-<div id="wy15-sync-warning" role="status" hidden><span>تعذر التحقق من آخر تحديث. المعروض هو آخر نسخة مؤكدة في هذه الجلسة.</span><button type="button" onclick="wy15RetrySync()">تحديث</button></div>
 </body>
 </html>
