@@ -379,3 +379,113 @@
 @media(max-width:400px){#slimBentoTabsContainer.wy8-nav{gap:7px}#slimBentoTabsContainer.wy8-nav .bento-tab-stripe{gap:6px;padding:8px 7px;min-height:74px}#slimBentoTabsContainer.wy8-nav .wy8-nav-icon{width:34px;height:34px;flex-basis:34px;border-radius:8px}#slimBentoTabsContainer.wy8-nav .wy8-nav-icon.circle{border-radius:50%}#slimBentoTabsContainer.wy8-nav .wy8-wide{padding:8px 10px;gap:9px;min-height:68px}#slimBentoTabsContainer.wy8-nav .wy8-wide .wy8-nav-icon{width:40px;height:40px;flex-basis:40px}}
 @media(max-width:340px){#slimBentoTabsContainer.wy8-nav .bento-tab-stripe{padding:7px 6px;gap:5px}#slimBentoTabsContainer.wy8-nav .wy8-nav-icon{width:29px;height:29px;flex-basis:29px}#slimBentoTabsContainer.wy8-nav h3{font-size:.74rem}#slimBentoTabsContainer.wy8-nav .wy10-card-subtitle{font-size:.63rem}#slimBentoTabsContainer.wy8-nav .wy8-wide h3{font-size:.9rem}}
 @media(prefers-reduced-motion:reduce){#slimBentoTabsContainer.wy8-nav .bento-tab-stripe{transition:none;transform:none}}
+
+/* V11: light clinical glass. Scoped to public screens, never to CMS overlays. */
+:root{--wy11-accent:#982b2b;--wy11-bg:#f4f5f8;--wy11-ink:#111827;--wy11-muted:#526075;--wy11-radius:18px;--wy11-space:12px;--wy11-card-height:76px;--wy11-blur:14px;--wy11-glass:rgba(255,255,255,.78);--wy11-font:Cairo,sans-serif;--wy11-font-scale:1;--wy11-weight:800;--wy11-shadow:0 8px 28px #2931400b,0 1px 3px #29314007}
+body{background-color:var(--wy11-bg);background-image:radial-gradient(ellipse at 90% 5%,#b4515110,transparent 42%),radial-gradient(ellipse at 0% 32%,#9aaab814,transparent 45%);background-repeat:no-repeat}
+main [id^="screen-"]{min-width:0}
+main [id^="screen-"]>[hidden],.wy11-section-head[hidden],.wy11-section-head [hidden],.wy11-atlas-tools[hidden],.wy11-atlas-tools [hidden],.wy11-organ-image[hidden]{display:none!important}
+/* Headers deliberately differ by content and layout, with a consistent accent. */
+.wy11-section-head{--wy11-section-accent:var(--wy11-accent);position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:clamp(15px,3vw,25px);min-height:138px;overflow:hidden;margin:0 0 16px;border-radius:var(--wy11-radius);background:linear-gradient(125deg,#fff9,#fff2),#f1e6e5;border:1px solid #fff;box-shadow:var(--wy11-shadow),inset 0 0 0 1px #a14b4b13;backdrop-filter:blur(var(--wy11-blur));-webkit-backdrop-filter:blur(var(--wy11-blur));text-align:start}
+.wy11-section-head[data-theme=mist]{background:linear-gradient(135deg,#ffffffc7,#e4e9efc9);box-shadow:var(--wy11-shadow),inset 0 0 0 1px #7a8c9e23}
+.wy11-section-head[data-theme=sand]{background:linear-gradient(125deg,#fffdf7,#f0e9de);box-shadow:var(--wy11-shadow),inset 0 0 0 1px #ad97771c}
+.wy11-section-head[data-theme=plain]{background:var(--wy11-glass)}
+.wy11-section-head::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(115deg,#ffffff80,transparent 48%);border-radius:inherit}
+.wy11-section-head::after{content:"";position:absolute;inset-inline-start:clamp(15px,3vw,25px);bottom:0;width:46px;height:3px;border-radius:4px 4px 0 0;background:var(--wy11-section-accent);pointer-events:none}
+.wy11-head-copy{flex:1 1 0;min-width:0;position:relative;z-index:1}
+.wy11-head-kicker{font:700 calc(.75rem * var(--wy11-font-scale))/1.55 var(--wy11-font);color:var(--wy11-section-accent);display:block;margin-bottom:6px;overflow-wrap:anywhere}
+.wy11-head-copy h2{font:var(--wy11-weight) calc(clamp(1.25rem,4.4vw,2rem) * var(--wy11-font-scale))/1.4 var(--wy11-font);color:var(--wy11-ink);margin:0;letter-spacing:-.025em;overflow-wrap:anywhere}
+.wy11-head-copy p{font:500 calc(.86rem * var(--wy11-font-scale))/1.65 var(--wy11-font);color:var(--wy11-muted);margin:5px 0 0;overflow-wrap:anywhere}
+.wy11-head-art{flex:0 0 clamp(70px,24%,148px);aspect-ratio:1;display:grid;place-items:center;position:relative;background:#ffffff70;border:1px solid #ffffffb0;box-shadow:inset 0 0 0 1px #a46b6b0b,0 5px 15px #19253508;border-radius:18px;overflow:hidden;color:var(--wy11-section-accent);isolation:isolate}
+.wy11-head-art.circle{border-radius:50%}.wy11-head-art svg,.wy11-head-art img{width:86%;height:86%;max-width:100%;max-height:100%;object-fit:contain;display:block}.wy11-head-art i{font-size:2rem}.wy11-head-art.has-photo img{width:100%;height:100%;object-fit:cover}
+#wy11-head-lab .wy11-head-art{background-image:linear-gradient(#a4b0bc24 1px,transparent 1px),linear-gradient(90deg,#a4b0bc24 1px,transparent 1px);background-size:14px 14px}
+#wy11-head-team-field:has(.has-photo){min-height:168px}#wy11-head-team-field .has-photo{flex-basis:36%;aspect-ratio:4/3}
+#wy11-head-research .wy11-head-art{border-radius:12px;transform:rotate(-2deg)}#wy11-head-community .wy11-head-art{background:#fff8e9a0}
+/* Main page: preserve compact two-column geometry. */
+#slimBentoTabsContainer.wy8-nav{gap:clamp(7px,var(--wy11-space),13px)}
+#slimBentoTabsContainer.wy8-nav .bento-tab-stripe{background:linear-gradient(155deg,#fff9,transparent 70%),var(--wy11-glass);border:1px solid #d8dce4;box-shadow:var(--wy11-shadow),inset 0 1px #fff;border-radius:calc(var(--wy11-radius) * .78);min-height:var(--wy11-card-height);backdrop-filter:blur(var(--wy11-blur));-webkit-backdrop-filter:blur(var(--wy11-blur));transition:box-shadow .2s,border-color .2s,background .2s,transform .2s}
+#slimBentoTabsContainer.wy8-nav .wy8-wide{background:linear-gradient(105deg,#fff9,#f3e3e399),var(--wy11-glass);border-inline-start:3px solid var(--wy11-accent)}
+#slimBentoTabsContainer.wy8-nav .bento-tab-stripe:hover{box-shadow:0 7px 22px #982b2b15;border-color:#b67a7a;transform:translateY(-1px)}
+#slimBentoTabsContainer.wy8-nav h3{font-family:var(--wy11-font);font-weight:var(--wy11-weight);color:var(--wy11-ink);font-size:calc(clamp(.77rem,3.25vw,1.02rem) * var(--wy11-font-scale))}
+#slimBentoTabsContainer.wy8-nav .wy10-card-subtitle{font-family:var(--wy11-font);font-size:calc(clamp(.64rem,2.5vw,.82rem) * var(--wy11-font-scale));color:var(--wy11-muted)}
+#slimBentoTabsContainer.wy8-nav .wy8-wide h3{font-size:calc(clamp(.91rem,3.6vw,1.12rem) * var(--wy11-font-scale))}
+#slimBentoTabsContainer.wy8-nav .wy8-nav-icon{background:linear-gradient(145deg,#fdf7f6,#eddbdb);box-shadow:inset 0 1px #fff,0 2px 5px #982b2b0b}
+#slimBentoTabsContainer.wy8-nav .wy10-nav-heading h2{color:var(--wy11-ink);font-family:var(--wy11-font);font-weight:var(--wy11-weight)}#slimBentoTabsContainer.wy8-nav .wy10-nav-heading p{color:var(--wy11-muted)}
+/* Existing shells remain functional; remove nested-card appearance, not elements. */
+main [id^="screen-"] .bento-card{border-radius:var(--wy11-radius);box-shadow:var(--wy11-shadow);}
+main [id^="screen-"] .wy-v7-shell,main [id^="screen-"] .wy-lit-shell{border-radius:var(--wy11-radius);background:var(--wy11-glass)!important;box-shadow:var(--wy11-shadow)!important}
+#wy-refusal-v7 .wy-v7-panel{background:transparent!important;box-shadow:none!important;border:0!important;padding:8px 0!important}
+#wy-refusal-v7 .wy-v7-tabs,#wy8-lab-tabs{gap:4px;border-bottom:1px solid #dce0e6;padding-bottom:5px}
+#wy-refusal-v7 .wy-v7-tab,#wy8-lab-tabs .wy-v7-tab{background:transparent!important;border:0!important;border-radius:8px 8px 0 0!important;box-shadow:none!important;position:relative;min-height:54px;color:#475569!important}
+#wy-refusal-v7 .wy-v7-tab.is-active,#wy8-lab-tabs .wy-v7-tab.is-active{background:#f5e7e7!important;color:var(--wy11-accent)!important}
+#wy-refusal-v7 .wy-v7-tab.is-active::after,#wy8-lab-tabs .wy-v7-tab.is-active::after{content:"";position:absolute;bottom:0;inset-inline:6px;height:3px;border-radius:2px;background:var(--wy11-accent)}
+#wy8-lab-stage .wy8-lab-stage{background-image:linear-gradient(#9eaab41b 1px,transparent 1px),linear-gradient(90deg,#9eaab41b 1px,transparent 1px),radial-gradient(ellipse at center,#fff,#e9edf2)!important;background-size:19px 19px,19px 19px,100% 100%!important;border-color:#d8dee6!important;box-shadow:inset 0 1px #fff;border-radius:var(--wy11-radius)}
+#wy8-mirror .wy8-mirror-scene{background:radial-gradient(ellipse at 50% 45%,#fff 8%,#f1dfde 55%,#f8f5f4 90%);border:0;box-shadow:inset 0 0 0 1px #e1d7d5}
+/* Magazine layout: original data and visibility controls unchanged. */
+#wy11-field-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;background:transparent!important;gap:8px;padding:0!important}
+#wy11-field-tabs button{display:flex;align-items:center;gap:7px;text-align:start;justify-content:center;min-height:43px;border:1px solid #dce1e7;background:var(--wy11-glass);border-radius:12px;color:var(--wy11-muted);font:700 .8rem/1.5 var(--wy11-font);padding:8px;white-space:normal}
+#wy11-field-tabs button.hidden,#wy11-field-tabs button.admin-force-hidden{display:none!important}
+#wy11-field-tabs button.bg-white{border-color:#b87d7d;background:#f6e7e6!important;color:var(--wy11-accent)}
+#teamFieldSubTab-newsSubTab{background:transparent!important;border:0!important;box-shadow:none!important;padding:4px!important}
+#newsGridContainer>div{border-radius:var(--wy11-radius);border:1px solid #dfe3e8;box-shadow:var(--wy11-shadow);overflow:hidden}
+#newsGridContainer>div:first-child:not(:only-child){grid-column:1/-1}#newsGridContainer>div:first-child .aspect-video{max-height:370px}
+/* Atlas: isolated coordinates, one image, no connecting lines. */
+#wy11-impact-atlas{background:var(--wy11-glass);border-radius:var(--wy11-radius)}
+#anatomyStageWrapper{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:3/5;width:min(100%,360px);margin-inline:auto;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at center,#fff,#eeedef);border-radius:var(--wy11-radius);border:1px solid #e1e3e9}
+#anatomyMainBodyImage{display:block;max-width:100%;height:100%;width:100%;object-fit:contain;pointer-events:none}
+#anatomyHotspotsContainer{position:absolute;inset:0;pointer-events:none}#anatomyHotspotsContainer .wy-anatomy-hotspot{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;touch-action:manipulation}
+#anatomyStageWrapper.wy11-impact-dragging,#anatomyStageWrapper.wy11-impact-dragging .wy-anatomy-hotspot{touch-action:none;cursor:grab}
+#anatomyStageWrapper .wy-anatomy-hotspot .wy-organ-marker{box-shadow:0 0 0 3px #ffffffa0,0 2px 7px #24324424}
+.wy11-atlas-tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}.wy11-atlas-tools button{font:700 .75rem/1.5 Cairo,sans-serif;padding:7px 10px;border:1px solid #d7a8a8;border-radius:9px;color:#982b2b;background:#fff;cursor:pointer;min-height:34px}
+#wy11-impact-save{background:#982b2b;color:white}.wy11-media-field{display:grid;gap:6px}.wy11-organ-image{display:block;width:100%;max-height:220px;object-fit:contain;border-radius:12px;background:#f5f6f8}
+#organDetailBox{background:#ffffffa8;border:1px solid #e1e4e8;box-shadow:none}
+#timelineHealingWidget .wy-v7-content-grid{gap:14px;align-items:start}
+#timelineHealingWidget .wy-v7-visual{padding:8px;background:radial-gradient(ellipse at center,#fff,#f2ebea)!important;border:1px solid #e8dedb!important;box-shadow:none!important;border-radius:var(--wy11-radius)}
+#timelineHealingWidget .wy9-atlas-stage{width:min(100%,300px);margin:auto}
+#timelineHealingWidget .wy-v7-info{border:0!important;background:transparent!important;padding:2px 0!important;box-shadow:none!important}
+.wy11-timeline{margin:3px 0 12px;padding:8px 0 2px;direction:rtl}.wy11-time-ends{display:flex;justify-content:space-between;gap:8px;color:#526075;font:600 .72rem/1.5 Cairo,sans-serif}
+#wy11-recovery-slider{display:block;direction:rtl;width:100%;height:26px;margin:6px 0 0;accent-color:var(--wy11-accent);cursor:pointer;appearance:none;-webkit-appearance:none;background:transparent}
+#wy11-recovery-slider::-webkit-slider-runnable-track{height:7px;border-radius:10px;background:linear-gradient(to left,var(--wy11-accent) var(--wy11-progress,0%),#e0e4e9 var(--wy11-progress,0%))}
+#wy11-recovery-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;background:#fff;width:22px;height:22px;border:2px solid var(--wy11-accent);border-radius:50%;margin-top:-7.5px;box-shadow:0 3px 8px #343c4825}
+#wy11-recovery-slider::-moz-range-track{height:7px;background:#e0e4e9;border-radius:10px}#wy11-recovery-slider::-moz-range-progress{height:7px;background:var(--wy11-accent);border-radius:10px}#wy11-recovery-slider::-moz-range-thumb{width:20px;height:20px;background:#fff;border:2px solid var(--wy11-accent);border-radius:50%}
+#timelineHealingWidget #wy-v7-recovery-phases{display:flex!important;justify-content:space-between;gap:0;overflow:visible!important;padding:0;margin:0;min-height:18px}
+#timelineHealingWidget #wy-v7-recovery-phases .wy-v7-step{display:grid!important;place-items:center;flex:1 1 0;min-width:0;min-height:18px;height:22px;border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;position:relative}
+#timelineHealingWidget #wy-v7-recovery-phases .wy-v7-step::before{content:"";width:6px;height:6px;border-radius:50%;background:#aab2bf;display:block}
+#timelineHealingWidget #wy-v7-recovery-phases .wy-v7-step.is-active::before{width:9px;height:9px;background:var(--wy11-accent)}
+#timelineHealingWidget #wy-v7-recovery-phases .wy-v7-step small,#timelineHealingWidget #wy-v7-recovery-phases .wy-v7-step span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#timelineHealingWidget #wy-v7-recovery-title{font-size:1.35rem;color:var(--wy11-accent)!important;margin:3px 0 5px}
+#timelineHealingWidget #wy-v7-recovery-tag{display:none}
+#timelineHealingWidget .wy-v7-organ-tabs{display:flex!important;flex-wrap:wrap;gap:5px}
+#timelineHealingWidget .wy-v7-organ{flex:1 1 auto;min-height:34px;border-radius:9px;padding:5px 7px}
+#timelineHealingWidget .wy-v7-organ-note{background:#fff9!important;border:0!important;border-inline-start:3px solid var(--wy11-accent)!important;padding:11px 12px;border-radius:9px;box-shadow:0 2px 8px #17203206}
+#timelineHealingWidget .wy9-detail-title{border-bottom:0;padding-bottom:0}
+/* Reading and gallery layouts: use space and content, not nested frames. */
+#researchCardsGridContainer>div{border-radius:12px;border-inline-start:3px solid #d4b2b2;box-shadow:none;background:#ffffffa8}
+#screen-literature .wy-lit-shell{background:linear-gradient(135deg,#fff,#f8f5ef)!important}
+#wy-certificates-grid .wy-certificate-card,#wy-reviews-grid>article{box-shadow:var(--wy11-shadow)}
+#screen-calc #calcMonthlyWaste,#screen-calc #calcYearlyWaste{font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+/* Owner-only preview uses isolated variables. */
+.wy11-preview{grid-column:1/-1;background:radial-gradient(ellipse at 80% 20%,#ead2d2,var(--wy11-bg));padding:14px;border:1px solid #d9dfe5;border-radius:var(--wy11-radius);color:var(--wy11-muted);display:grid;gap:10px}.wy11-preview>small{font:700 .73rem/1.6 Cairo,sans-serif}.wy11-preview-card{background:var(--wy11-glass);backdrop-filter:blur(var(--wy11-blur));border:1px solid #fff;border-radius:var(--wy11-radius);padding:var(--wy11-space);min-height:var(--wy11-card-height);border-inline-start:3px solid var(--wy11-accent);box-shadow:var(--wy11-shadow);display:flex;flex-direction:column;gap:4px}.wy11-preview-card strong{font:var(--wy11-weight) calc(.95rem * var(--wy11-font-scale))/1.5 var(--wy11-font);color:var(--wy11-ink)}.wy11-preview-card span{font:500 calc(.78rem * var(--wy11-font-scale))/1.5 var(--wy11-font);color:var(--wy11-muted)}.wy11-preview .wy11-section-head{margin:0;min-height:100px;padding:12px}.wy11-preview .wy11-head-copy h2{font-size:1.2rem}
+/* Keep original floating credit and link; make its interaction quieter. */
+#floatingPoweredByLink{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 5px 19px #17203216!important;max-width:calc(100vw - 20px)}
+@media(max-width:700px){.wy11-section-head{min-height:117px;gap:10px;padding:14px}.wy11-head-art{flex-basis:75px;border-radius:14px}.wy11-head-copy h2{font-size:calc(1.4rem * var(--wy11-font-scale))}.wy11-head-copy p{font-size:calc(.78rem * var(--wy11-font-scale))}#timelineHealingWidget .wy9-atlas-stage{width:min(100%,250px)}#timelineHealingWidget .wy-v7-content-grid{grid-template-columns:minmax(0,1fr)}#wy11-head-team-field:has(.has-photo){min-height:128px}}
+@media(max-width:340px){.wy11-section-head{padding:12px;gap:8px}.wy11-head-art{flex-basis:60px}.wy11-head-copy h2{font-size:1.2rem}#slimBentoTabsContainer.wy8-nav .bento-tab-stripe{min-height:var(--wy11-card-height);padding:7px 6px;gap:5px}#slimBentoTabsContainer.wy8-nav h3{font-size:calc(.74rem * var(--wy11-font-scale))}#slimBentoTabsContainer.wy8-nav .wy10-card-subtitle{font-size:calc(.63rem * var(--wy11-font-scale))}}
+@media(prefers-reduced-motion:reduce){.wy11-section-head,#slimBentoTabsContainer .bento-tab-stripe{transition:none!important;animation:none!important;transform:none!important}}
+.wy8-no-motion .wy11-section-head,.wy8-no-motion #slimBentoTabsContainer .bento-tab-stripe{transition:none!important;animation:none!important;transform:none!important}
+#timelineHealingWidget .wy-v7-info{gap:7px;justify-content:flex-start}#timelineHealingWidget #wy-v7-recovery-title{margin:0 0 2px}#timelineHealingWidget .wy11-timeline{margin-bottom:4px}#timelineHealingWidget .wy11-phase-details{border-bottom:1px solid #e1e5e9;padding:7px 2px;color:#526075;font:600 .78rem/1.55 Cairo,sans-serif}#timelineHealingWidget .wy11-phase-details summary{cursor:pointer;color:#526075}#timelineHealingWidget .wy11-phase-details #wy-v7-recovery-message{margin:6px 0 0;font-weight:400}
+.wy11-no-glass .wy11-section-head{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:var(--wy11-shadow)}
+@media(max-width:700px){#timelineHealingWidget .wy9-atlas-stage{width:min(100%,218px)}.wy11-head-art.circle{aspect-ratio:1!important}}
+/* A single atlas with two views. No shared coordinates or shared images. */
+#wy11-atlas-switch{display:flex;gap:5px;padding:5px;background:#eef0f3;border:1px solid #e1e5e9;border-radius:14px;margin-bottom:10px}
+#wy11-atlas-switch button{flex:1 1 0%;min-width:0;min-height:43px;border:0;border-radius:10px;background:transparent;color:#526075;font:700 .83rem/1.5 var(--wy11-font);padding:6px;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer}
+#wy11-atlas-switch button[aria-pressed=true]{background:#fff;color:var(--wy11-accent);box-shadow:0 2px 7px #17203210,inset 0 0 0 1px #e5d5d5}#wy11-atlas-switch button[hidden]{display:none!important}
+#wy11-impact-atlas[data-atlas-mode=impact] #timelineHealingWidget,#wy11-impact-atlas[data-atlas-mode=recovery]>.wy11-impact-pane{display:none!important}
+#wy11-impact-atlas #timelineHealingWidget{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;margin:0!important}
+#wy11-impact-content{gap:16px}#anatomyOrgansPillButtons{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}#anatomyOrgansPillButtons .wy-organ-pill{display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;font:700 .76rem/1.5 Cairo,sans-serif;min-height:34px;border:1px solid #dfe3e8;border-radius:9px;background:#f5f6f8;color:#334155;cursor:pointer}
+#anatomyOrgansPillButtons .wy-organ-pill.is-selected{background:#f5e4e4;color:#982b2b;border-color:#b97a7a}
+#organDetailBox{border:0!important;border-inline-start:3px solid var(--wy11-accent)!important;padding:13px!important;border-radius:10px;color:#263244}#organDetailBox #organDetailTitle{margin:5px 0;font:800 1rem/1.5 Cairo,sans-serif}#organDetailBox #organDetailDesc{margin:7px 0;font-size:.9rem;line-height:1.75}#organDetailCategory,#organDetailStat{font-size:.78rem;color:#526075}
+#subSection-shortTermCard{border:1px solid #e2e5ea!important;padding:12px!important;border-radius:12px;background:#fff8!important}#shortTermSymptomsGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#shortTermSymptomsGrid>div{padding:8px;background:#f5f6f8;border:1px solid #e3e6eb;border-radius:9px;font-size:.78rem;line-height:1.6;text-align:center}
+@media(max-width:700px){#anatomyStageWrapper{width:min(100%,245px)}#wy11-impact-atlas{padding:12px!important}#wy11-impact-content{display:flex;flex-direction:column;align-items:stretch;gap:12px}}
+@keyframes wy11-enter{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){main [id^="screen-"]:not(.hidden)>.wy11-section-head{animation:wy11-enter .28s ease-out both}.wy11-head-art{transition:box-shadow .2s ease}.wy11-section-head:hover .wy11-head-art{box-shadow:inset 0 0 0 1px #a46b6b0b,0 7px 20px #19253512}}
+.wy8-no-motion main [id^="screen-"]>.wy11-section-head{animation:none!important;transform:none!important}
