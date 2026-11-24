@@ -495,7 +495,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=12">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=13">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -721,7 +721,7 @@
                     </div>  
                 </div>  
   
-                <div id="mythBusterContentBox" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2" data-revealed="false">  
+                <div id="mythBusterContentBox" class="pt-2" data-revealed="false">  
                     <div id="wy12-myth-card" class="p-5 rounded-2xl bg-white border border-rose-200 space-y-3 shadow-xs">  
                         <div class="flex items-center gap-2 text-rose-600 font-bold font-cairo text-sm">  
                             <i class="fa-solid fa-circle-xmark text-lg text-crimson"></i>  
@@ -733,10 +733,10 @@
                         <p id="mythDesc" class="text-xs text-slate-600 font-plex leading-relaxed">  
                             النكهات ممكن تخليك تفكر إنه آمن، لكن هذا مش صحيح.  
                         </p>
-                        <button type="button" id="wy12-reveal-fact" class="wy12-reveal" aria-controls="wy12-fact-card" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i> اكشف الحقيقة</button>
+                        <button type="button" id="wy12-reveal-fact" class="wy12-reveal" aria-controls="wy12-fact-card" aria-expanded="false"><i class="fa-solid fa-eye" aria-hidden="true"></i> اكشف الحقيقة</button>
                     </div>
 
-                    <div id="wy12-fact-card" class="p-5 rounded-2xl bg-white border border-emerald-200 space-y-3 shadow-xs" tabindex="-1">  
+                    <div id="wy12-fact-card" class="p-5 rounded-2xl bg-white border border-emerald-200 space-y-3 shadow-xs" tabindex="-1" aria-labelledby="factTitle" hidden>  
                         <div class="flex items-center gap-2 text-emerald-700 font-bold font-cairo text-sm">  
                             <i class="fa-solid fa-circle-check text-lg text-emerald-600"></i>  
                             <span>الحقيقة الطبية</span>  
@@ -747,7 +747,7 @@
                         <p id="factDesc" class="text-xs text-slate-600 font-plex leading-relaxed">  
                             قد يحتوي الرذاذ على النيكوتين ومعادن ومواد ضارة. النكهة الحلوة لا تعني أنه آمن.  
                         </p>
-                        <button type="button" id="wy12-reset-fact" class="wy12-reveal" hidden><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> العودة</button>  
+                        <button type="button" id="wy12-reset-fact" class="wy12-reveal" aria-controls="wy12-myth-card"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> العودة</button>  
                     </div>  
                 </div>  
             </div>  
@@ -8125,6 +8125,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=12"></script>
+    <script src="./waei-live-effects.js?v=13"></script>
 </body>
 </html>

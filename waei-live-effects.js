@@ -562,7 +562,17 @@ window.waeiV8=Object.freeze({refresh,mirror,calc,uploadMedia,inlineEdit,coreEdit
   const timers=new WeakMap();
   function animate(el,cls){if(!el||!motion())return;el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);clearTimeout(timers.get(el));timers.set(el,setTimeout(()=>el.classList.remove(cls),800));}
   function wrap(name,after){const original=window[name];if(typeof original!=='function')return;window[name]=function(...args){const result=original.apply(this,args);after(...args);return result;};}
-  function revealFact(on,focus=false){const box=$('mythBusterContentBox'),b=$('wy12-reveal-fact'),back=$('wy12-reset-fact'),fact=$('wy12-fact-card');if(!box||!b||!back||!fact)return;box.dataset.revealed=String(on);b.setAttribute('aria-pressed',String(on));back.hidden=!on;if(on){animate(fact,'wy12-fade');if(focus){fact.focus({preventScroll:true});fact.scrollIntoView({block:'nearest',behavior:motion()?'smooth':'instant'});}}else if(focus)b.focus({preventScroll:true});}
+  function revealFact(on,focus=false){
+    const box=$('mythBusterContentBox'),myth=$('wy12-myth-card'),fact=$('wy12-fact-card'),b=$('wy12-reveal-fact');
+    if(!box||!myth||!fact||!b)return;
+    const changed=box.dataset.revealed!==String(on);
+    // Replace the visible face of the same slot; never display both cards.
+    box.dataset.revealed=String(on);
+    myth.hidden=on;fact.hidden=!on;
+    b.setAttribute('aria-expanded',String(on));
+    if(changed)animate(on?fact:myth,'wy12-fade');
+    if(focus)(on?fact:b).focus({preventScroll:true});
+  }
   // Only the first visible appearance of a numeric statistic is animated. Exact published text is restored.
   const seenStats=new Set();let statsObserver;
   function watchStats(){const box=$('dynamicStatsGridContainer');if(!box||!statsObserver)return;statsObserver.disconnect();box.querySelectorAll('h4[data-wy-core]').forEach(n=>statsObserver.observe(n));}
@@ -580,7 +590,7 @@ window.waeiV8=Object.freeze({refresh,mirror,calc,uploadMedia,inlineEdit,coreEdit
   function certZoom(v){const sc=$('wy12-cert-scroll'),full=$('wy-certificate-full'),slider=$('wy12-cert-zoom');if(!sc||!full||!slider)return;const z=Math.max(100,Math.min(250,Number(v)||100));slider.value=z;full.style.width=z+'%';if(z===100){sc.scrollLeft=0;sc.scrollTop=0;}}
   function certificateControls(){const sc=$('wy12-cert-scroll'),slider=$('wy12-cert-zoom');if(!sc||!slider)return;slider.oninput=()=>certZoom(slider.value);document.querySelectorAll('[data-cert-zoom]').forEach(b=>b.onclick=()=>certZoom(Number(b.dataset.certZoom)===0?100:Number(slider.value)+25*Number(b.dataset.certZoom)));let startDistance=0,startZoom=100;const distance=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);sc.addEventListener('touchstart',e=>{if(e.touches.length===2){startDistance=distance(e.touches);startZoom=Number(slider.value);}}, {passive:true});sc.addEventListener('touchmove',e=>{if(e.touches.length===2&&startDistance>0){e.preventDefault();certZoom(startZoom*distance(e.touches)/startDistance);}}, {passive:false});sc.addEventListener('touchend',()=>startDistance=0,{passive:true});sc.addEventListener('dblclick',()=>certZoom(Number(slider.value)>100?100:175));}
   function install(){
-    $('wy12-reveal-fact')?.addEventListener('click',()=>revealFact(true,true));$('wy12-reset-fact')?.addEventListener('click',()=>revealFact(false,true));wrap('switchMythBusterTab',()=>revealFact(false));
+    $('wy12-reveal-fact')?.addEventListener('click',()=>revealFact(true,true));$('wy12-reset-fact')?.addEventListener('click',()=>revealFact(false,true));wrap('switchMythBusterTab',()=>revealFact(false));revealFact(false);
     if('IntersectionObserver' in window){statsObserver=new IntersectionObserver(entries=>{for(const ent of entries)if(ent.isIntersecting){statsObserver.unobserve(ent.target);countStat(ent.target);}}, {threshold:.6});watchStats();wrap('renderClientStatsGrid',watchStats);}
     wrap('updateFinancialCalc',graph);graph();certificateControls();
     wrap('switchMainScreen',id=>{const screen=$(id);animate(screen,'wy12-screen-in');queueTabs();if(id==='screen-calc')graph();});
