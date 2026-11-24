@@ -741,7 +741,7 @@ window.waeiV8=Object.freeze({refresh,mirror,calc,uploadMedia,inlineEdit,coreEdit
     const classic=$('wy14-classic'),vape=$('wy8-lab');if(!classic||!vape)return;
     $('wy14-lab-title').textContent=d.settings.labTitle;$('wy14-lab-intro').textContent=d.settings.labIntro;
     const cb=document.querySelector('[data-wy14-lab="classic"]'),vb=document.querySelector('[data-wy14-lab="vape"]');cb.querySelector('span').textContent=d.settings.labClassicLabel;vb.querySelector('span').textContent=d.settings.labVapeLabel;
-    cb.hidden=!routeAvailable('classic',d);cb.setAttribute('aria-pressed',String(labMode==='classic'));vb.setAttribute('aria-pressed',String(labMode==='vape'));classic.hidden=labMode!=='classic';vape.hidden=labMode!=='vape';if(labMode==='classic')renderClassic(d);else window.waeiV12?.queueTabs();
+    cb.hidden=!routeAvailable('classic',d);cb.setAttribute('aria-pressed',String(labMode==='classic'));vb.setAttribute('aria-pressed',String(labMode==='vape'));classic.hidden=labMode!=='classic';vape.hidden=labMode!=='vape';const extras=$('wy15-vape-extras');if(extras)extras.hidden=labMode!=='vape';if(labMode==='classic')renderClassic(d);else window.waeiV12?.queueTabs();
   }
   function fitRecoveryImage(){
     const stage=$('wy9-atlas-stage'), img=stage?.querySelector(':scope > img');if(!stage||!img)return;
@@ -803,4 +803,15 @@ window.waeiV8=Object.freeze({refresh,mirror,calc,uploadMedia,inlineEdit,coreEdit
   }
   window.waeiV14=Object.freeze({refresh,renderShort,editGroup,fitRecoveryImage,attachMediaPreview,setLab});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
+})();
+
+/* V15 release freshness: a new release replaces cached HTML on the next safe visit. */
+(()=>{
+ const version=document.querySelector('meta[name="waei-release"]')?.content;let checking=false;
+ function newer(a,b){const aa=a.split('.').map(Number),bb=b.split('.').map(Number);for(let i=0;i<Math.max(aa.length,bb.length);i++){const d=(aa[i]||0)-(bb[i]||0);if(d)return d>0;}return false;}
+ async function check(){if(checking||document.hidden||!version||!/^https?:$/.test(location.protocol))return;checking=true;try{const u=new URL('./waei-release.json',location.href);u.searchParams.set('_',String(Date.now()));const r=await fetch(u,{cache:'no-store'});if(!r.ok)return;const x=await r.json();if(typeof x.version!=='string'||!/^\d+(?:\.\d+)*$/.test(x.version)||!newer(x.version,version))return;
+ const edit=document.querySelector('#adminMasterModal:not(.hidden),.front-modal-layer:not(.hidden),#wy14-editor[open],.wy-v7-dialog-overlay:not([hidden])');
+ if(window.currentUserRole||window.inlineTextEditMode||edit)return;const target=new URL(location.href);target.searchParams.set('wyv',x.version);if(location.href!==target.href)location.replace(target.href);
+ }catch(e){}finally{checking=false;}}
+ document.addEventListener('visibilitychange',check);window.addEventListener('focus',check);window.addEventListener('pageshow',check);window.addEventListener('online',check);setInterval(check,60000);
 })();

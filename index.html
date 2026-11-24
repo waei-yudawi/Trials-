@@ -1,12 +1,13 @@
 <!DOCTYPE html>  
-<html lang="ar" dir="rtl" class="scroll-smooth">  
+<html lang="ar" dir="rtl" class="scroll-smooth wy15-content-pending">  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
     <!-- Cache refresh hints -->  
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
-    <meta http-equiv="Expires" content="0">  
+    <meta http-equiv="Expires" content="0">
+    <meta name="waei-release" content="15.1">  
     <title>منصة وَعـي يُـداوي | كلية طب فلسطين - جامعة الأزهر غزة</title>  
       
     <!-- Dynamic Favicon Link -->  
@@ -495,7 +496,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=14">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=15.1">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -1073,15 +1074,44 @@
                 </button>  
                 <span class="text-xs text-brandGray-500 font-plex">مختبر التدخين</span>  
             </div>
-<div id="clearPodLabSection"><div id="wy14-lab-switch" class="wy14-section wy14-lab-switch" aria-labelledby="wy14-lab-title"><div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i> مختبر التدخين</span><h2 id="wy14-lab-title">شو مخبّى وراء الدخان؟</h2><p id="wy14-lab-intro">اختار تجربة واكتشف المواد اللي بتدخل جسمك.</p></div><button type="button" class="owner-only-btn hidden wy14-admin-btn" onclick="waeiV14.editGroup('lab')"><i class="fa-solid fa-pen"></i> تعديل</button></div><div class="wy14-lab-tabs" role="group" aria-label="نوع المختبر"><button type="button" data-wy14-lab="classic" aria-controls="wy14-classic" aria-pressed="false"><i class="fa-solid fa-smoking" aria-hidden="true"></i><span>السيجارة التقليدية</span></button><button type="button" data-wy14-lab="vape" aria-controls="wy8-lab" aria-pressed="true"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span>السيجارة الإلكترونية (الفيب)</span></button></div></div>
+<div id="clearPodLabSection"><div id="wy14-lab-switch" class="wy14-section wy14-lab-switch" aria-labelledby="wy14-lab-title"><div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i> مختبر التدخين</span><h2 id="wy14-lab-title">شو مخبّى وراء الدخان؟</h2><p id="wy14-lab-intro">اختار تجربة واكتشف المواد اللي بتدخل جسمك.</p></div><button type="button" class="owner-only-btn hidden wy14-admin-btn" onclick="waeiV14.editGroup('lab')"><i class="fa-solid fa-pen"></i> تعديل</button></div>                <div id="subSection-lungsComparison" class="p-5 rounded-2xl bg-brandGray-50 border border-brandGray-200 space-y-4 relative group">  
+                    <div class="flex items-center justify-between pb-2 border-b border-brandGray-200">  
+                        <h4 class="font-cairo font-bold text-slate-900 text-sm sm:text-base" id="wy15-lung-title">كيف يؤثر دخان السجائر على الرئتين؟</h4>  
+                        <button type="button" onclick="openSectionCustomizer('subSection-lungsComparison')" class="owner-only-btn hidden px-2.5 py-1 bg-white hover:bg-brandGray-100 text-navy rounded-lg text-xs font-cairo font-bold border border-brandGray-300">  
+                            <i class="fa-solid fa-palette text-crimson ml-1"></i> تخصيص  
+                        </button>  
+                    </div>  
+                    <div class="wy15-lung-grid">  
+                        <div class="p-3 bg-white rounded-xl border border-brandGray-200 space-y-2">  
+                            <div class="relative aspect-video rounded-lg overflow-hidden bg-slate-900">  
+                                <img id="healthyLungImage" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="رئة سليمة" class="w-full h-full object-cover">  
+                                <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-bold font-cairo" id="wy15-lung-nonsmoker-label">NON SMOKER</span>  
+                                <button type="button" onclick="triggerCustomImagePicker('healthyLungImage')" class="owner-only-btn hidden absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-[10px] font-bold font-cairo rounded-lg">تغيير الصورة 📷</button>  
+                            </div>  
+                            <h5 class="font-cairo font-bold text-slate-800 text-xs" id="wy15-lung-healthy-title">رئة غير مدخن (طبيعية ونقية)</h5>  
+                            <p class="text-[11px] text-brandGray-600 font-plex" id="wy15-lung-healthy-desc">في الرئة السليمة تساعد الحويصلات الهوائية على تبادل الأكسجين مع الدم.</p>  
+                        </div>  
+  
+                        <div class="p-3 bg-white rounded-xl border border-red-200 space-y-2">  
+                            <div class="relative aspect-video rounded-lg overflow-hidden bg-slate-900">  
+                                <img id="smokerLungImage" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="رئة مدخن" class="w-full h-full object-cover grayscale contrast-125">  
+                                <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-crimson text-white text-[10px] font-bold font-cairo" id="wy15-lung-smoker-label">SMOKER</span>  
+                                <button type="button" onclick="triggerCustomImagePicker('smokerLungImage')" class="owner-only-btn hidden absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-[10px] font-bold font-cairo rounded-lg">تغيير الصورة 📷</button>  
+                            </div>  
+                            <h5 class="font-cairo font-bold text-crimson text-xs" id="wy15-lung-smoker-title">رئة مدخن (تلف وانسداد قطراني)</h5>  
+                            <p class="text-[11px] text-brandGray-600 font-plex" id="wy15-lung-smoker-desc">نسيج مسود متفحم برواسب القطران، شلل الأهداب، وفقدان دائم للقدرة على تبادل الأكسجين.</p>  
+                        </div>  
+                    </div>  
+                </div>
+<div class="wy14-lab-tabs" role="group" aria-label="نوع المختبر"><button type="button" data-wy14-lab="classic" aria-controls="wy14-classic" aria-pressed="false"><i class="fa-solid fa-smoking" aria-hidden="true"></i><span>السيجارة التقليدية</span></button><button type="button" data-wy14-lab="vape" aria-controls="wy8-lab" aria-pressed="true"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span>السيجارة الإلكترونية (الفيب)</span></button></div></div>
 <section id="wy14-classic" class="wy14-section wy14-classic" aria-labelledby="wy14-classic-title" hidden></section>
-<section id="wy8-lab" class="wy-v7-shell" aria-labelledby="wy8-lab-title"><div class="wy-v7-heading"><div><h2 id="wy8-lab-title">مختبر السيجارة الإلكترونية</h2><p id="wy8-lab-intro">اكتشف شو جوا الفيب.</p></div><span class="wy-v7-heading-badge"><i class="fa-solid fa-flask-vial"></i></span></div><div id="wy8-lab-tabs" class="wy-v7-tabs" role="tablist"></div><div id="wy8-lab-stage"></div><div id="wy8-lab-controls"></div><p id="wy8-lab-note" class="wy-v7-disclaimer">محاكاة توعوية رمزية؛ لا تمثل وصفة خلط أو قياساً مخبرياً.</p></section></div>
-            <!-- بطاقات السموم والمقارنة -->  
-            <div class="bento-card p-6 space-y-5">  
+<section id="wy8-lab" class="wy-v7-shell" aria-labelledby="wy8-lab-title"><div class="wy-v7-heading"><div><h2 id="wy8-lab-title">مختبر السيجارة الإلكترونية</h2><p id="wy8-lab-intro">اكتشف شو جوا الفيب.</p></div><span class="wy-v7-heading-badge"><i class="fa-solid fa-flask-vial"></i></span></div><div id="wy8-lab-tabs" class="wy-v7-tabs" role="tablist"></div><div id="wy8-lab-stage"></div><div id="wy8-lab-controls"></div><p id="wy8-lab-note" class="wy-v7-disclaimer">محاكاة توعوية رمزية؛ لا تمثل وصفة خلط أو قياساً مخبرياً.</p></section>
+            <!-- بطاقات مواد الفيب فقط -->  
+            <div id="wy15-vape-extras" class="bento-card p-6 space-y-5">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-100">  
                     <div>  
-                        <span class="text-xs font-bold text-crimson font-cairo">مواد ضارة في التدخين</span>  
-                        <h3 class="text-xl sm:text-2xl font-black text-slate-900 font-cairo">مواد ضارة ومصادرها</h3>  
+                        <span id="wy15-vape-toxins-kicker" class="text-xs font-bold text-crimson font-cairo">مواد ضارة في الفيب</span>  
+                        <h3 id="wy15-vape-toxins-title" class="text-xl sm:text-2xl font-black text-slate-900 font-cairo">مواد ضارة ومصادرها</h3>  
                     </div>  
                     <button type="button" onclick="openAddToxinCardModal()" class="owner-only-btn hidden px-3 py-1.5 bg-crimson hover:bg-crimson-dark text-white rounded-xl text-xs font-cairo font-bold shadow-xs">  
                         <i class="fa-solid fa-plus ml-1"></i> + إضافة مادة سامة  
@@ -1090,37 +1120,9 @@
   
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="toxinsCardsGridContainer"></div>  
   
-                <div id="subSection-lungsComparison" class="p-5 rounded-2xl bg-brandGray-50 border border-brandGray-200 space-y-4 relative group">  
-                    <div class="flex items-center justify-between pb-2 border-b border-brandGray-200">  
-                        <h4 class="font-cairo font-bold text-slate-900 text-sm sm:text-base">كيف يؤثر دخان السجائر على الرئتين؟</h4>  
-                        <button type="button" onclick="openSectionCustomizer('subSection-lungsComparison')" class="owner-only-btn hidden px-2.5 py-1 bg-white hover:bg-brandGray-100 text-navy rounded-lg text-xs font-cairo font-bold border border-brandGray-300">  
-                            <i class="fa-solid fa-palette text-crimson ml-1"></i> تخصيص  
-                        </button>  
-                    </div>  
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">  
-                        <div class="p-3 bg-white rounded-xl border border-brandGray-200 space-y-2">  
-                            <div class="relative aspect-video rounded-lg overflow-hidden bg-slate-900">  
-                                <img id="healthyLungImage" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="رئة سليمة" class="w-full h-full object-cover">  
-                                <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-bold font-cairo">NON SMOKER</span>  
-                                <button type="button" onclick="triggerCustomImagePicker('healthyLungImage')" class="owner-only-btn hidden absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-[10px] font-bold font-cairo rounded-lg">تغيير الصورة 📷</button>  
-                            </div>  
-                            <h5 class="font-cairo font-bold text-slate-800 text-xs">رئة غير مدخن (طبيعية ونقية)</h5>  
-                            <p class="text-[11px] text-brandGray-600 font-plex">في الرئة السليمة تساعد الحويصلات الهوائية على تبادل الأكسجين مع الدم.</p>  
-                        </div>  
-  
-                        <div class="p-3 bg-white rounded-xl border border-red-200 space-y-2">  
-                            <div class="relative aspect-video rounded-lg overflow-hidden bg-slate-900">  
-                                <img id="smokerLungImage" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="رئة مدخن" class="w-full h-full object-cover grayscale contrast-125">  
-                                <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-crimson text-white text-[10px] font-bold font-cairo">SMOKER</span>  
-                                <button type="button" onclick="triggerCustomImagePicker('smokerLungImage')" class="owner-only-btn hidden absolute bottom-2 left-2 px-2 py-1 bg-black/80 text-white text-[10px] font-bold font-cairo rounded-lg">تغيير الصورة 📷</button>  
-                            </div>  
-                            <h5 class="font-cairo font-bold text-crimson text-xs">رئة مدخن (تلف وانسداد قطراني)</h5>  
-                            <p class="text-[11px] text-brandGray-600 font-plex">نسيج مسود متفحم برواسب القطران، شلل الأهداب، وفقدان دائم للقدرة على تبادل الأكسجين.</p>  
-                        </div>  
-                    </div>  
-                </div>  
-            </div>  
-        </div>  
+            </div>
+            </div>
+        </div>
 
         <!-- ==================== SCREEN 5: RESEARCH & STUDIES ==================== -->  
         <div id="screen-research" class="hidden space-y-6">  
@@ -1838,8 +1840,8 @@
                 </div>  
                 <div class="flex items-center gap-2">  
                     <button type="button" onclick="syncAllLocalToCloudNow()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold font-cairo rounded-xl transition flex items-center gap-1.5 shadow-xs">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span class="hidden md:inline">مزامنة سحابية</span>
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        <span class="hidden md:inline">تحديث من السحابة</span>
                     </button>
                     <button type="button" onclick="handleAdminLogout()" class="px-3 py-1.5 bg-crimson hover:bg-crimson-dark text-white text-xs font-bold font-cairo rounded-xl transition flex items-center gap-1.5">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -2535,7 +2537,8 @@
             if (window.supabase && SUPABASE_URL) {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
                     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
-                    realtime: { params: { eventsPerSecond: 10 } }
+                    realtime: { params: { eventsPerSecond: 10 } },
+                    global: { fetch: (input, init={}) => fetch(input, {...init, cache: 'no-store'}) }
                 });
             }
         } catch(e) {
@@ -2563,7 +2566,8 @@
         async function initializeSupabaseAuth() {
             if (!supabaseClient) return null;
             supabaseClient.auth.onAuthStateChange((_event, session) => {
-                applySupabaseUserRole(session?.user || null);
+                const before=window.currentUserRole;applySupabaseUserRole(session?.user || null);
+                if(wy15CloudReady&&before!==window.currentUserRole)wy15ScheduleRefresh(0);
             });
             const { data, error } = await supabaseClient.auth.getSession();
             if (error) {
@@ -2905,14 +2909,23 @@
             return rawPayload;
         }
 
+        const wy15ContentKeys = new Set(ALL_SYNC_KEYS.filter(k=>k!==KEY_VISITOR_LOGS&&k!==KEY_AUDIT_LOG));
+        const wy15CloudContent = new Map(), wy15CloudVersions=new Map();
+        let wy15VerifiedRole;
+        let wy15CloudReady = false, wy15CloudBusy = null, wy15CloudAgain = false, wy15WriteEpoch = 0, wy15Writes = 0, wy15RefreshTimer = 0, wy15RefreshDeadline = 0;
+        function wy15Mirror(k, raw) {
+            if (wy15ContentKeys.has(k)) { if(raw===null)wy15CloudContent.delete(k);else wy15CloudContent.set(k,raw); }
+            try { const prev=localStorage.getItem(k);if(raw===null){if(prev!==null)localStorage.removeItem(k);}else if(prev!==raw)localStorage.setItem(k,raw); } catch(e) { console.warn('Local mirror unavailable:',k); }
+        }
         function getLocal(k, def) {
             try {
-                const item = localStorage.getItem(k);
-                return item !== null ? JSON.parse(item) : def;
+                const item = wy15ContentKeys.has(k) ? (wy15CloudContent.get(k) ?? null) : localStorage.getItem(k);
+                return item !== null ? JSON.parse(item) : (wy15ContentKeys.has(k)?structuredClone(def):def);
             } catch(e) { return def; }
         }
 
         async function saveLocal(k, v) {
+            if(wy15ContentKeys.has(k)) return await saveLocalConfirmed(k,v);
             try {
                 localStorage.setItem(k, JSON.stringify(v));
             } catch(e) {
@@ -2924,25 +2937,11 @@
         }
 
         async function saveLocalConfirmed(k, v) {
-            let previous = null;
-            try {
-                previous = localStorage.getItem(k);
-                localStorage.setItem(k, JSON.stringify(v));
-            } catch(e) {
-                notifyAdminSync('error', 'تعذر الحفظ المحلي؛ لم يتم اعتماد التعديل.');
-                return false;
-            }
+            // Never publish an unconfirmed local value. The confirmed server response becomes the mirror.
             const ok = await pushToSupabase(k, v);
-            if (!ok) {
-                try {
-                    if (previous === null) localStorage.removeItem(k);
-                    else localStorage.setItem(k, previous);
-                } catch(e) {}
-                logAdminAction('حفظ سحابي', k, false);
-                return false;
-            }
-            logAdminAction('تحديث وحفظ', k, true);
-            return true;
+            if (ok) { if(!wy15ContentKeys.has(k))wy15Mirror(k,JSON.stringify(v)); logAdminAction('تحديث وحفظ', k, true); return true; }
+            logAdminAction('حفظ سحابي', k, false);
+            return false;
         }
 
         function escapeHtml(value) {
@@ -3027,27 +3026,37 @@
             return true;
         }
 
+        function wy15Canonical(value){if(Array.isArray(value))return value.map(wy15Canonical);if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().map(k=>[k,wy15Canonical(value[k])]));return value;}
         async function pushToSupabase(key, data) {
+            const managed=wy15ContentKeys.has(key);
+            if(managed&&(!wy15CloudReady||wy15VerifiedRole!==window.currentUserRole)){notifyAdminSync('error','يجب تأكيد أحدث نسخة من السحابة قبل الحفظ.');return false;}
             if (!supabaseClient) {
                 setSyncBadgeState('error', 'Supabase غير متصل');
                 notifyAdminSync('error', 'لم يتم رفع التعديل؛ السحابة غير متصلة.');
                 return false;
             }
+            if(managed){wy15Writes++;wy15WriteEpoch++;}
             try {
                 setSyncBadgeState('syncing', 'جارٍ حفظ التعديل في السحابة...');
                 const stringifiedPayload = typeof data === 'string' ? data : JSON.stringify(data);
-                const { data: savedRow, error } = await supabaseClient
-                    .from(SUPABASE_TABLE_NAME)
-                    .upsert({
-                        store_key: key,
-                        payload: stringifiedPayload,
-                        updated_at: new Date().toISOString()
-                    }, { onConflict: 'store_key' })
-                    .select('store_key')
-                    .single();
+                const table=supabaseClient.from(SUPABASE_TABLE_NAME);
+                const next={store_key:key,payload:stringifiedPayload,updated_at:new Date().toISOString()};
+                let request;
+                if(managed&&wy15CloudVersions.has(key)){
+                    const revision=wy15CloudVersions.get(key);
+                    request=table.update({payload:next.payload,updated_at:next.updated_at}).eq('store_key',key);
+                    request=revision===null?request.is('updated_at',null):request.eq('updated_at',revision);
+                }else if(managed){request=table.insert(next);}else{request=table.upsert(next,{onConflict:'store_key'});}
+                const {data:savedRow,error}=await request.select('store_key,payload,updated_at').maybeSingle();
 
                 if (error) throw error;
-                if (!savedRow || savedRow.store_key !== key) throw new Error('لم يصل تأكيد الحفظ من الخادم');
+                if (!savedRow || savedRow.store_key !== key) throw new Error('المحتوى تغيّر على السحابة أو لم يصل تأكيد الحفظ؛ حدّث الصفحة ثم أعد التعديل.');
+                if(managed){
+                    const confirmed=parseSupabasePayload(savedRow.payload);
+                    // Compare the confirmed representation, including valid empty arrays/maps.
+                    if(JSON.stringify(wy15Canonical(confirmed))!==JSON.stringify(wy15Canonical(parseSupabasePayload(stringifiedPayload))))throw new Error('لم يتطابق المحتوى المؤكد مع التعديل');
+                    wy15Mirror(key,JSON.stringify(confirmed));wy15CloudVersions.set(key,savedRow.updated_at??null);
+                }
                 setSyncBadgeState('ok', 'تم تأكيد حفظ التعديل سحابياً ✓');
                 notifyAdminSync('ok', `تم حفظ وتأكيد القسم (${key}) بنجاح.`);
                 return true;
@@ -3057,108 +3066,96 @@
                 setSyncBadgeState('error', 'فشل الحفظ السحابي');
                 notifyAdminSync('error', `لم يتم حفظ (${key}). السبب: ${msg}`);
                 return false;
-            }
+            } finally { if(managed){wy15Writes--;wy15WriteEpoch++;wy15ScheduleRefresh(300);} }
         }
 
-        function collectAllLocalSyncKeys() {
-            const keys = new Set(ALL_SYNC_KEYS);
-            // Include new/custom content stores created by future CMS modules automatically.
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key && /^(wa3y_|waei_)/i.test(key)) keys.add(key);
-            }
-            return Array.from(keys).sort();
+        function wy15SetRefreshState(state) {
+            const panel=document.getElementById('wy15-sync-screen'),status=document.getElementById('wy15-sync-status'),retry=document.getElementById('wy15-sync-retry'),warning=document.getElementById('wy15-sync-warning');
+            if(panel)panel.hidden=wy15CloudReady;
+            if(status)status.textContent=state==='error'?'تعذر جلب أحدث المعلومات. تحقّق من اتصالك ثم أعد المحاولة.':'جارٍ التحقق من أحدث المعلومات…';
+            if(retry)retry.hidden=state!=='error';
+            if(warning)warning.hidden=!(wy15CloudReady&&state==='error');
+            document.documentElement.classList.toggle('wy15-content-pending',!wy15CloudReady);
         }
-
+        function wy15ScheduleRefresh(delay=100) {
+            const deadline=Date.now()+delay;
+            if(wy15RefreshTimer&&wy15RefreshDeadline<=deadline)return;
+            clearTimeout(wy15RefreshTimer);wy15RefreshDeadline=deadline;
+            wy15RefreshTimer=setTimeout(()=>{wy15RefreshTimer=0;wy15RefreshDeadline=0;void fetchAllFromSupabase();},delay);
+        }
+        // This button is deliberately pull-only. Confirmed saves already write each edit to Supabase.
         window.syncAllLocalToCloudNow = async function() {
-            if (!supabaseClient) {
-                showToast('خدمة Supabase غير متصلة حالياً', 'error');
-                notifyAdminSync('error', 'تعذر بدء المزامنة لأن اتصال Supabase غير متاح.');
-                return false;
-            }
-            showToast('جارٍ رفع ومزامنة كافة التعديلات إلى السحابة... ☁️');
-            notifyAdminSync('syncing', 'بدأت مزامنة جميع مفاتيح المحتوى والإعدادات المخزنة.');
-            let successCount = 0;
-            let failureCount = 0;
-            const keys = collectAllLocalSyncKeys();
-            for (const key of keys) {
-                const raw = localStorage.getItem(key);
-                if (raw === null) continue;
-                try {
-                    const parsed = JSON.parse(raw);
-                    const ok = await pushToSupabase(key, parsed);
-                    if (ok) successCount++; else failureCount++;
-                } catch(e) {
-                    failureCount++;
-                    console.warn('Full sync failed for key:', key, e);
-                }
-            }
-            if (successCount > 0 && failureCount === 0) {
-                showToast(`تم تأكيد مزامنة ${successCount} قسماً/إعداداً سحابياً بنجاح ✓`);
-                notifyAdminSync('ok', `نجحت جميع عمليات الحفظ: ${successCount} مفاتيح من أصل ${keys.length}.`, 'اكتملت المزامنة بنجاح');
-                return true;
-            }
-            showToast(`تمت مزامنة ${successCount} وفشل ${failureCount} من أصل ${keys.length}`, 'error');
-            notifyAdminSync('error', `مزامنة جزئية: نجح ${successCount} وفشل ${failureCount} من أصل ${keys.length}. راجع سجل الأخطاء قبل اعتبار المحتوى متزامناً.`);
-            return false;
+            const ok=await fetchAllFromSupabase();
+            showToast(ok?'تم جلب أحدث المحتوى من السحابة ✓':'تعذر التحقق من أحدث المحتوى',''+(ok?'success':'error'));
+            return ok;
         };
-
+        window.wy15RetrySync=()=>{if(!supabaseClient){location.reload();return;}void fetchAllFromSupabase();};
         async function fetchAllFromSupabase() {
-            if (!supabaseClient) return;
-            try {
-                const { data, error } = await supabaseClient.from(SUPABASE_TABLE_NAME).select('*');
-                if (error) {
-                    console.warn("Supabase fetch error:", error.message);
-                    setSyncBadgeState('error', 'فشل قراءة البيانات السحابية');
-                    return;
-                }
-                if (data && Array.isArray(data)) {
-                    data.forEach(row => {
-                        if (!row || !row.store_key) return;
-                        try {
-                            const parsed = parseSupabasePayload(row.payload);
-                            if (parsed !== null && parsed !== undefined) {
-                                localStorage.setItem(row.store_key, JSON.stringify(parsed));
-                                dispatchSyncEvent(row.store_key, parsed);
-                            }
-                        } catch(e) {}
-                    });
-                    setSyncBadgeState('ok', 'تمت المزامنة الحية مع السحابة ✓');
-                }
-            } catch(e) {
-                console.warn("Fetch exception:", e);
-            }
+            if(wy15CloudBusy){wy15CloudAgain=true;return wy15CloudBusy;}
+            if(wy15Writes){wy15ScheduleRefresh(350);return false;}
+            if(!supabaseClient){wy15SetRefreshState('error');return false;}
+            if(!wy15CloudReady)wy15SetRefreshState('loading');
+            const epoch=wy15WriteEpoch, authRole=window.currentUserRole;
+            wy15CloudBusy=(async()=>{
+                try {
+                    // Fetch the complete set; never interpret a truncated page as deletion.
+                    const data=[];
+                    for(let offset=0;;offset+=100){
+                        let query=supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').order('store_key',{ascending:true}).range(offset,offset+99);
+                        const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),18000);
+                        if(typeof query.abortSignal==='function')query=query.abortSignal(controller.signal);
+                        let result;try{result=await query;}finally{clearTimeout(timeout);}
+                        const {data:page,error}=result;
+                        if(error)throw error;
+                        if(!Array.isArray(page))throw new Error('Invalid cloud snapshot');
+                        data.push(...page);
+                        if(page.length<100)break;
+                        if(offset>=9900)throw new Error('Incomplete cloud snapshot');
+                    }
+                    if(epoch!==wy15WriteEpoch||authRole!==window.currentUserRole){wy15CloudAgain=true;return false;}
+                    const incoming=new Map(), versions=new Map();
+                    for(const row of data){if(!row?.store_key)continue;versions.set(row.store_key,row.updated_at??null);const parsed=parseSupabasePayload(row.payload);if(parsed!==null&&parsed!==undefined)incoming.set(row.store_key,JSON.stringify(parsed));}
+                    const changed=[];
+                    // Only registered CMS keys are managed; browser auth, likes and device IDs are untouched.
+                    for(const key of wy15ContentKeys){const raw=incoming.get(key)??null;const before=wy15CloudContent.get(key)??null;
+                        if(raw!==before)changed.push([key,raw===null?null:JSON.parse(raw)]);
+                        wy15Mirror(key,raw);if(versions.has(key))wy15CloudVersions.set(key,versions.get(key));else wy15CloudVersions.delete(key);
+                    }
+                    // Preserve existing analytics behavior; these are not public CMS data.
+                    for(const key of [KEY_VISITOR_LOGS,KEY_AUDIT_LOG])if(incoming.has(key)){
+                        const raw=incoming.get(key);let cached=null;try{cached=localStorage.getItem(key);}catch(e){}if(cached!==raw){wy15Mirror(key,raw);changed.push([key,JSON.parse(raw)]);}
+                    }
+                    const first=!wy15CloudReady;
+                    wy15CloudReady=true;wy15VerifiedRole=authRole;
+                    const repaint=first||changed.some(([k])=>wy15ContentKeys.has(k));
+                    if(repaint){wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();}
+                    const overlays=new Set([KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS]);
+                    for(const [key,value] of changed){if(overlays.has(key))continue;try{dispatchSyncEvent(key,value);}catch(err){console.warn('CMS repaint failed:',key,err);}}
+                    // Re-apply canonical overlays after dynamic renderers, even if their store did not change.
+                    if(repaint){
+                        for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(err){console.warn('CMS overlay repaint failed:',err);}
+                    }
+                    setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');wy15SetRefreshState('ok');return true;
+                }catch(err){console.warn('Cloud snapshot failed:',err);setSyncBadgeState('error','تعذر جلب أحدث نسخة');wy15SetRefreshState('error');return false;}
+            })();
+            try{return await wy15CloudBusy;}finally{wy15CloudBusy=null;if(wy15CloudAgain){wy15CloudAgain=false;wy15ScheduleRefresh(100);}}
         }
-
         function setupSupabaseRealtimeSubscription() {
-            if (!supabaseClient) return;
+            if(!supabaseClient)return;
             try {
-                supabaseClient
-                    .channel('wa3y_realtime_channel')
-                    .on('postgres_changes', { event: '*', schema: 'public', table: SUPABASE_TABLE_NAME }, payload => {
-                        if (payload?.eventType === 'DELETE' && payload.old?.store_key) {
-                            try {
-                                localStorage.removeItem(payload.old.store_key);
-                                dispatchSyncEvent(payload.old.store_key, null);
-                            } catch(e) {}
-                            return;
-                        }
-                        if (payload && payload.new && payload.new.store_key) {
-                            try {
-                                const parsed = parseSupabasePayload(payload.new.payload);
-                                if (parsed !== null && parsed !== undefined) {
-                                    localStorage.setItem(payload.new.store_key, JSON.stringify(parsed));
-                                    dispatchSyncEvent(payload.new.store_key, parsed);
-                                }
-                            } catch(e) {}
-                        }
-                    })
-                    .subscribe(status => {
-                        if (status === 'SUBSCRIBED') setSyncBadgeState('ok', 'المتابعة الحية نشطة ✓');
-                        else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED')
-                            setSyncBadgeState('error', 'المتابعة الحية متوقفة؛ أعيدي الاتصال');
-                    });
-            } catch(e) {}
+                supabaseClient.channel('wa3y_realtime_channel')
+                    // Notifications trigger a fresh read, never an out-of-order event payload.
+                    .on('postgres_changes',{event:'*',schema:'public',table:SUPABASE_TABLE_NAME},payload=>{
+                        const key=payload?.new?.store_key||payload?.old?.store_key;
+                        if(!key||wy15ContentKeys.has(key))wy15ScheduleRefresh(150);
+                        else if(window.currentUserRole&&(key===KEY_VISITOR_LOGS||key===KEY_AUDIT_LOG))wy15ScheduleRefresh(800);
+                    }).subscribe(status=>{if(status==='SUBSCRIBED')wy15ScheduleRefresh(100);else if(['CHANNEL_ERROR','TIMED_OUT','CLOSED'].includes(status))setSyncBadgeState('error','المتابعة الحية متوقفة؛ التحديث الدوري مستمر');});
+            }catch(e){console.warn('Realtime unavailable:',e);}
+            // Recover from sleeping mobile tabs, dropped realtime events, and reconnects.
+            const refresh=()=>{if(!document.hidden)wy15ScheduleRefresh(50);};
+            document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('online',refresh);window.addEventListener('pageshow',refresh);
+            window.addEventListener('storage',e=>{if(e.key&&wy15ContentKeys.has(e.key))wy15ScheduleRefresh(100);});
+            setInterval(()=>{if(!document.hidden)wy15ScheduleRefresh(50);},30000);
         }
 
         function dispatchSyncEvent(key, data) {
@@ -3251,6 +3248,7 @@
                 sections: [
                     { id: 'clearPodLabSection', title: 'مختبر التدخين', type: 'محاكي كيميائي' },
                     { id: 'wy14-classic', title: 'محاكاة السيجارة التقليدية', type: 'تجربة تفاعلية' },
+                    { id: 'wy15-vape-extras', title: 'مواد الفيب ومصادرها', type: 'بطاقات معرفية' },
                     { id: 'subSection-lungsComparison', title: 'مقارنة الرئة الوردية والمتفحمة', type: 'مقارنة تشريحية' }
                 ]
             },
@@ -3877,6 +3875,7 @@
                     throw new Error('يجب استخدام بريد موثق ومصرح له');
                 }
                 applySupabaseUserRole(user);
+                await fetchAllFromSupabase();
                 window.closeAdminLoginModal();
                 document.getElementById('adminPasswordInput').value = '';
                 showToast(expectedRole === 'owner' ? 'تم تسجيل دخول المالك بصلاحياته ✓' : 'تم تسجيل دخول المشرف العام ✓');
@@ -3931,7 +3930,7 @@
                     </div>
                     <div class="flex items-center flex-wrap gap-2">
                         <button type="button" onclick="syncAllLocalToCloudNow()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-cairo font-bold transition flex items-center gap-1.5 text-xs shadow-xs">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> رفع ومزامنة تعديلاتي ☁️
+                            <i class="fa-solid fa-cloud-arrow-down"></i> جلب أحدث المحتوى من السحابة ☁️
                         </button>
                         ${isOwner ? `
                         <button type="button" onclick="openFaviconLogoModal()" class="px-3 py-1.5 bg-crimson/90 hover:bg-crimson text-white rounded-xl font-cairo font-bold transition flex items-center gap-1.5 text-xs shadow-xs">
@@ -5017,21 +5016,24 @@
             if (ok) { applyAllSectionCustomStyles(); showToast('تم تطبيق التخصيصات ✓'); window.closeSectionCustomizer(); }  
         };  
   
-        function applyAllSectionCustomStyles() {  
-            const stylesMap = getLocal(KEY_SECTION_STYLES, {});  
-            for (let secId in stylesMap) {  
-                const target = document.getElementById(secId);  
-                if (target) {  
-                    const st = stylesMap[secId];  
-                    if (st.title) { const h = target.querySelector('h2, h3, h4, h5'); if (h) h.innerText = st.title; }  
-                    if (st.bg) {  
-                        target.className = target.className.replace(/bg-\S+/g, '');  
-                        st.bg.split(' ').forEach(cls => { if (cls) target.classList.add(cls); });  
-                    }  
-                }  
-            }  
-        }  
-  
+        const wy15StyleUndo=new Map();
+        function wy15UndoSectionStyles(){
+            for(const [target,old] of wy15StyleUndo){if(!target.isConnected)continue;
+                if(old.heading?.isConnected&&old.heading.textContent===old.applied)old.heading.textContent=old.before;
+                if(old.bg){for(const cls of [...target.classList])if(/^bg-/.test(cls))target.classList.remove(cls);for(const cls of old.bg)target.classList.add(cls);}
+            }wy15StyleUndo.clear();
+        }
+        function applyAllSectionCustomStyles(){
+            wy15UndoSectionStyles();
+            const stylesMap=getLocal(KEY_SECTION_STYLES,{})||{};
+            for(const [id,st] of Object.entries(stylesMap)){
+                const target=document.getElementById(id);if(!target||!st||typeof st!=='object')continue;const old={};
+                if(st.title){const h=target.querySelector('h2,h3,h4,h5');if(h){old.heading=h;old.before=h.textContent;old.applied=String(st.title);h.textContent=old.applied;}}
+                if(st.bg&&typeof st.bg==='string'){old.bg=[...target.classList].filter(cls=>/^bg-/.test(cls));old.bg.forEach(cls=>target.classList.remove(cls));for(const cls of st.bg.split(/\s+/))if(/^bg-[a-z0-9/\[\]#.-]+$/i.test(cls))target.classList.add(cls);}
+                wy15StyleUndo.set(target,old);
+            }
+        }
+
         function renderAdminSectionsMasterList() {  
             const container = document.getElementById('adminSectionsMasterList');  
             if (!container) return;  
@@ -5082,6 +5084,7 @@
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
                 { id: 'subSection-lungsComparison', label: 'كرت مقارنة الرئة السليمة والمتفحمة' },
+                { id: 'wy15-vape-extras', label: 'مواد الفيب ومصادرها' },
                 { id: 'subSection-epigeneticsCard', label: 'كرت تأثير التدخين على عمل الجينات' },
                 { id: 'subSection-bentoStats', label: 'كرت إحصائيات وأرقام إنجازات الحملة' },
                 { id: 'subSection-awarenessVideos', label: 'قسم الفيديوهات التوعوية الموثقة' }
@@ -5137,7 +5140,13 @@
             if (ok) { applyUniversalTexts(); showToast('تم حفظ وتعميم كافة النصوص ✓'); }  
         };  
   
-        function applyUniversalTexts() {
+        const wy15UniversalUndo=new Map();
+        function wy15UndoUniversalTexts(){
+            for(const [el,record] of wy15UniversalUndo)if(el.isConnected&&el.textContent===record.applied)el.textContent=record.before;
+            wy15UniversalUndo.clear();
+        }
+        function applyUniversalTexts(){
+            wy15UndoUniversalTexts();
             const texts = getLocal(KEY_UNIVERSAL_TEXTS, {}) || {};
             const bindings = {
                 topAnnounce: 'topAnnouncementText',
@@ -5151,7 +5160,7 @@
             Object.entries(bindings).forEach(([key, elementId]) => {
                 if (!Object.prototype.hasOwnProperty.call(texts, key)) return;
                 const element = document.getElementById(elementId);
-                if (element) element.innerText = String(texts[key] ?? '');
+                if(element){const value=String(texts[key]??'');wy15UniversalUndo.set(element,{before:element.textContent,applied:value});element.textContent=value;}
             });
         }  
   
@@ -5188,8 +5197,14 @@
             if (ok) { applyFooterAndWhatsappUI(); showToast('تم حفظ إعدادات الفوتر والواتساب ✓'); }  
         };  
   
-        function applyFooterAndWhatsappUI() {  
-            const fw = getLocal(KEY_FOOTER_WHATSAPP, null);  
+        const wy15FooterBase=new Map();
+        function applyFooterAndWhatsappUI() {
+            for(const id of ['footerBrandName','footerBrandDesc','footerPoweredByName','footerPoweredByLink','floatingPoweredByLink','floatingPoweredByName','floatingPoweredByLabel','floatingPoweredByIcon','floatingWhatsappBtn']){
+                const el=document.getElementById(id);if(!el)continue;
+                if(!wy15FooterBase.has(id))wy15FooterBase.set(id,{style:el.getAttribute('style'),href:el.getAttribute('href'),text:el.children.length?null:el.textContent});
+                const b=wy15FooterBase.get(id);for(const a of ['style','href']){if(b[a]===null)el.removeAttribute(a);else el.setAttribute(a,b[a]);}if(b.text!==null)el.textContent=b.text;
+            }
+            const fw = getLocal(KEY_FOOTER_WHATSAPP, null);
             if (!fw) return;  
             if (Object.prototype.hasOwnProperty.call(fw, 'brand') && document.getElementById('footerBrandName')) document.getElementById('footerBrandName').innerText = String(fw.brand ?? '');
             if (Object.prototype.hasOwnProperty.call(fw, 'desc') && document.getElementById('footerBrandDesc')) document.getElementById('footerBrandDesc').innerText = String(fw.desc ?? '');  
@@ -5239,17 +5254,35 @@
                 parts.unshift(tag + ':nth-of-type(' + index + ')');  
                 node = node.parentElement;  
             }  
-            return 'v8path:body>' + parts.join('>');  
+            return (el.closest('#screen-lab')?'v15path:body>':'v8path:body>') + parts.join('>');  
         }  
   
-        function applyInlineTextEdits() {  
-            const edits = getLocal(KEY_INLINE_TEXT_EDITS, {});  
-            Object.keys(edits).forEach(key => {  
+        const WY15_LAB_PATH_PREFIX = "body>main:nth-of-type(1)>div:nth-of-type(4)>";
+        const WY15_LAB_PATH_ALIASES = {"body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(1)>h4:nth-of-type(1)": "wy15-lung-title", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(1)": "wy15-lung-nonsmoker-label", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(1)>h5:nth-of-type(1)": "wy15-lung-healthy-title", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(1)>p:nth-of-type(1)": "wy15-lung-healthy-desc", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1)": "wy15-lung-smoker-label", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(2)>h5:nth-of-type(1)": "wy15-lung-smoker-title", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(2)>p:nth-of-type(1)": "wy15-lung-smoker-desc", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(1)": "wy15-vape-toxins-kicker", "body>main:nth-of-type(1)>div:nth-of-type(4)>div:nth-of-type(3)>div:nth-of-type(1)>div:nth-of-type(1)>h3:nth-of-type(1)": "wy15-vape-toxins-title"};
+        const wy15InlineUndo = new Map();
+        function wy15ResolveTextPath(path) {
+            if (!path) return null;
+            if (path.startsWith(WY15_LAB_PATH_PREFIX)) { const id=WY15_LAB_PATH_ALIASES[path]; return id ? document.getElementById(id) : null; }
+            try { return document.querySelector(path); } catch (_) { return null; }
+        }
+        function wy15UndoInlineText(){
+            for (const [el,record] of wy15InlineUndo) if (el.isConnected && el.textContent===record.applied) el.textContent=record.before;
+            wy15InlineUndo.clear();
+        }
+        function applyInlineTextEdits(){
+            wy15UndoInlineText();
+            const edits = getLocal(KEY_INLINE_TEXT_EDITS, {}) || {};
+            const canonical=getLocal(KEY_UNIVERSAL_TEXTS,{})||{};
+            const canonicalFields={topAnnouncementText:'topAnnounce',topTargetText:'topTarget',topFacultyText:'topFaculty',headerMainTitle:'headerMain',headerSubTitle:'headerSub',heroHeadline:'heroHeadline',heroSubtitle:'heroSubtitle'};
+            Object.keys(edits).sort((a,b)=>Number(a.startsWith("id:"))-Number(b.startsWith("id:"))).forEach(key => {  
                 let el = null;  
                 if (key.startsWith('id:')) el = document.getElementById(key.slice(3));  
-                else if (key.startsWith('v8path:')) { try { el = document.querySelector(key.slice(7)); } catch (_) {} }
-                else if (key.startsWith('path:')) { try { const p=V8_LEGACY_TEXT_PATHS[key.slice(5)]; if(p)el=document.querySelector(p); } catch (_) {} }  
-                if (el && !el.closest('#timelineHealingWidget .wy-v7-kicker,#wy-v7-panel-3 .wy-v7-doc-hello') && !el.closest('[data-wy8-text],[data-wy7-text],[data-wy-core]') && !el.children.length && typeof edits[key] === 'string') el.textContent = edits[key];  
+                else if (key.startsWith('v15path:')) { try{el=document.querySelector(key.slice(8));}catch(e){} }
+                else if (key.startsWith('v8path:')) el=wy15ResolveTextPath(key.slice(7));
+                else if (key.startsWith('path:')) el=wy15ResolveTextPath(V8_LEGACY_TEXT_PATHS[key.slice(5)]);
+                if(el&&Object.hasOwn(canonicalFields,el.id)&&Object.hasOwn(canonical,canonicalFields[el.id]))return;
+                if(el&&!el.closest('#subSection-lungsComparison')&&el.closest('#wy14-classic,#wy14-knowledge,#subSection-shortTermCard,#wy14-lab-switch')){const content=getLocal('wa3y_v14_content_v1',{});if(content&&Object.keys(content).length)return;}
+                if (el && !el.closest('#timelineHealingWidget .wy-v7-kicker,#wy-v7-panel-3 .wy-v7-doc-hello') && !el.closest('[data-wy8-text],[data-wy7-text],[data-wy-core]') && !el.children.length && typeof edits[key] === 'string') { if (!wy15InlineUndo.has(el)) wy15InlineUndo.set(el,{before:el.textContent,applied:edits[key]}); else wy15InlineUndo.get(el).applied=edits[key]; el.textContent=edits[key]; }  
             });  
         }  
   
@@ -5273,7 +5306,11 @@
             const mapped=event.target.closest('[data-wy8-text],[data-wy7-text]'); if(mapped&&window.waeiV8?.inlineEdit(mapped,event))return;
             const target = event.target.closest('h1,h2,h3,h4,h5,p,span,label,small,strong,em,a,button,li,blockquote');  
             if (!target || target.closest('#ownerFloatingContextBar, #adminMasterModal, .front-modal-layer, script, style')) return;  
-            if (target.closest('svg') || target.children.length > 0 || !target.textContent.trim()) return;  
+            if (target.closest('svg') || target.children.length > 0 || !target.textContent.trim()) return;
+            if(!target.closest('#subSection-lungsComparison')){
+                const group=target.closest('#wy14-classic')?'chemicals':target.closest('#wy14-knowledge')?'knowledge':target.closest('#subSection-shortTermCard')?'short':target.closest('#wy14-lab-switch')?'lab':null;
+                if(group&&window.waeiV14){event.preventDefault();event.stopImmediatePropagation();window.waeiV14.editGroup(group);return;}
+            }  
             event.preventDefault();  
             event.stopPropagation();  
             const current = target.textContent.trim();  
@@ -5284,7 +5321,7 @@
             const edits = getLocal(KEY_INLINE_TEXT_EDITS, {});  
             edits[key] = updated;  
             const ok = await saveLocalConfirmed(KEY_INLINE_TEXT_EDITS, edits);  
-            if (ok) { target.textContent = updated; window.waeiV8?.freeCMS(); showToast('تم حفظ النص وتأكيد مزامنته سحابياً ✓'); }  
+            if (ok) { applyInlineTextEdits(); window.waeiV8?.freeCMS(); showToast('تم حفظ النص وتأكيد مزامنته سحابياً ✓'); }  
         }, true);
 
         // ==================== 21. CUSTOM IMAGE PICKER & RESTORE ====================
@@ -5313,11 +5350,7 @@
                         map[imgId] = cloudUrl;  
                         const ok = await saveLocalConfirmed(KEY_CUSTOM_IMAGES, map);  
                         if (ok) {  
-                            const targetImg = document.getElementById(imgId);  
-                            if (targetImg) {
-                                targetImg.src = cloudUrl;
-                                targetImg.classList.remove('hidden');
-                            }
+                            restoreCustomImages();
                             if (imgId === 'scenarioCustomImg') {
                                 const avatarBox = document.getElementById('scenarioVisualAvatar');
                                 if (avatarBox) avatarBox.classList.add('hidden');
@@ -5330,19 +5363,25 @@
             }  
         };  
   
-        function restoreCustomImages() {  
-            const map = getLocal(KEY_CUSTOM_IMAGES, {});  
-            for (let id in map) {  
-                const img = document.getElementById(id);  
-                if (img) {
-                    img.src = map[id];
-                    img.classList.remove('hidden');
-                    if (id === 'scenarioCustomImg') {
-                        const avatarBox = document.getElementById('scenarioVisualAvatar');
-                        if (avatarBox) avatarBox.classList.add('hidden');
-                    }
-                }  
-            }  
+        const wy15ImageUndo=new Map();
+        function restoreCustomImages() {
+            const map=getLocal(KEY_CUSTOM_IMAGES,{})||{};
+            for(const [id,record] of wy15ImageUndo){
+                const img=document.getElementById(id);
+                if(!img||record.el!==img){wy15ImageUndo.delete(id);continue;}
+                if(!Object.hasOwn(map,id)||!map[id]){
+                    if(record.src===null)img.removeAttribute('src');else img.setAttribute('src',record.src);
+                    img.classList.toggle('hidden',record.hidden);
+                    if(id==='scenarioCustomImg')document.getElementById('scenarioVisualAvatar')?.classList.remove('hidden');
+                    wy15ImageUndo.delete(id);
+                }
+            }
+            for(const [id,src] of Object.entries(map)){
+                const img=document.getElementById(id);if(!img||typeof src!=='string'||!src)continue;
+                if(!wy15ImageUndo.has(id))wy15ImageUndo.set(id,{el:img,src:img.getAttribute('src'),hidden:img.classList.contains('hidden')});
+                if(img.getAttribute('src')!==src)img.setAttribute('src',src);
+                img.classList.remove('hidden');if(id==='scenarioCustomImg')document.getElementById('scenarioVisualAvatar')?.classList.add('hidden');
+            }
         }
 
         // ==================== 22. STATS & VIDEOS CMS ====================
@@ -6746,6 +6785,7 @@
                 { id: 'subSection-mythBusterSection', label: 'قسم كشف الأوهام السريرية بالأرقام' },
                 { id: 'subSection-shortTermCard', label: 'كرت أعراض المدى القصير' },
                 { id: 'subSection-lungsComparison', label: 'كرت مقارنة الرئة السليمة والمتفحمة' },
+                { id: 'wy15-vape-extras', label: 'مواد الفيب ومصادرها' },
                 { id: 'subSection-epigeneticsCard', label: 'كرت تأثير التدخين على عمل الجينات' },
                 { id: 'subSection-bentoStats', label: 'كرت إحصائيات وأرقام إنجازات الحملة' },
                 { id: 'subSection-awarenessVideos', label: 'قسم الفيديوهات التوعوية الموثقة' }
@@ -6781,15 +6821,7 @@
                     maps.sections[volunteersId] = false;
                     maps.sections[memoriesId] = false;
                     maps.sections[storiesId] = false;
-                    try {
-                        localStorage.setItem(KEY_SUB_ELEMENTS_VIS, JSON.stringify(maps.elements));
-                        localStorage.setItem(KEY_SECTIONS_VIS, JSON.stringify(maps.sections));
-                        // Migration writes must reach the same cloud store as normal CMS edits.
-                        Promise.all([
-                            pushToSupabase(KEY_SUB_ELEMENTS_VIS, maps.elements),
-                            pushToSupabase(KEY_SECTIONS_VIS, maps.sections)
-                        ]).catch(e => console.warn('Visibility migration sync failed:', e));
-                    } catch (e) {}
+                    // Legacy field state is derived by isElementVisibleState; persist only on explicit admin saves.
                 }
             }
 
@@ -6975,6 +7007,7 @@
             };
 
             // 7) Apply a visibility state consistently to every public-facing layer.
+            let wy15PreviousVisibilityIds=new Set();
             window.applyAllVisibilityStates = function () {
                 migrateLegacyFieldVisibility();
                 bindMissingTreeIds();
@@ -7021,8 +7054,10 @@
                 // Apply saved visibility to every element represented in the site tree, including dynamically bound IDs.
                 const allElementIds = new Set([
                     ...Object.keys(maps.elements),
+                    ...wy15PreviousVisibilityIds,
                     ...(typeof siteTreeStructure !== 'undefined' ? siteTreeStructure.flatMap(page => page.sections.map(section => section.id)) : [])
                 ]);
+                wy15PreviousVisibilityIds=new Set(Object.keys(maps.elements));
                 allElementIds.forEach(id => {
                     if (id === 'teamFieldSubTab-newsSubTab' || id === 'teamFieldSubTab-volunteersSubTab' || id === 'teamFieldSubTab-storiesSubTab' || id === 'teamFieldSubTab-memoriesSubTab' || id === 'screen-team-field') return;
                     const element = document.getElementById(id);
@@ -7760,23 +7795,20 @@
             if (defaultOrgans.length > 0) window.selectAnatomyOrgan(defaultOrgans[0].id);
 
             // 2. المصادقة والاتصال السحابي الحقيقي مع Supabase
-            await initializeSupabaseAuth();
-            await fetchAllFromSupabase();
+            try { await initializeSupabaseAuth(); } catch(e) { console.warn("Auth restore unavailable:",e); }
+            setupSupabaseRealtimeSubscription();
+            const wy15InitialOk=await fetchAllFromSupabase();
             // Ensure cloud text edits are applied after the initial cloud snapshot is loaded.
             if (typeof applyInlineTextEdits === 'function') applyInlineTextEdits();
             if (typeof window.migrateLegacyFieldVisibility === 'function') window.migrateLegacyFieldVisibility();
             if (typeof window.applyAllVisibilityStates === 'function') window.applyAllVisibilityStates();
 
-            if ((window.currentUserRole === 'owner' || window.currentUserRole === 'super_admin') && localStorage.getItem(KEY_VOLUNTEERS) !== null) {
-                const privateRoster = getLocal(KEY_VOLUNTEERS, []);
-                await saveLocalConfirmed(KEY_VOLUNTEERS_PUBLIC, privateRoster.map(toPublicVolunteer));
-            }
-            await migrateLegacyBase64ImagesToStorage();
-            setupSupabaseRealtimeSubscription();
+            // No automatic public roster overwrite on launch; normal volunteer saves publish their confirmed roster.
+            // Legacy images remain readable; only an explicit owner edit changes cloud content.
 
             // 3. تحديث المؤشرات وسجل الجلسات
             updateKPICounters();
-            if (!sessionStorage.getItem('wa3y_initial_visit_logged')) {
+            if (wy15InitialOk && !sessionStorage.getItem('wa3y_initial_visit_logged')) {
                 sessionStorage.setItem('wa3y_initial_visit_logged', 'true');
                 setTimeout(() => {
                     window.recordVisitorAction('دخول جديد للمنصة 🌐');
@@ -8131,7 +8163,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=14"></script>
+    <script src="./waei-live-effects.js?v=15.1"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
+<div id="wy15-sync-screen" role="status" aria-live="polite"><div class="wy15-sync-card"><strong>وعي يُداوي</strong><p id="wy15-sync-status">جارٍ التحقق من أحدث المعلومات…</p><button id="wy15-sync-retry" type="button" hidden onclick="wy15RetrySync()">إعادة المحاولة</button></div></div>
+<div id="wy15-sync-warning" role="status" hidden><span>تعذر التحقق من آخر تحديث. المعروض هو آخر نسخة مؤكدة في هذه الجلسة.</span><button type="button" onclick="wy15RetrySync()">تحديث</button></div>
 </body>
 </html>
