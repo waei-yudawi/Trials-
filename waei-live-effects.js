@@ -142,7 +142,7 @@
       const choice=rows?.[idx]?.choices?.[i];
       if(choice&&(choice.score==='good'||choice.deltaPurity===0))burst('check',$('clashArenaPlayBox'));
     });
-    wrap('switchMainScreen',screenId=>{ensureSurfaces();revealScreen(screenId);});
+    wrap('switchMainScreen',screenId=>{if(screenId==='screen-lab'||screenId==='screen-anatomy')ensureSurfaces();revealScreen(screenId);});
     wrap('switchTeamFieldSubTab',()=>{}); // Keep the original multi-layer visibility/permissions logic.
     document.addEventListener('keydown',event=>{
       const mark=event.target.closest?.('.wy-anatomy-hotspot');
