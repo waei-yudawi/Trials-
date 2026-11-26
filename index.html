@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html lang="ar" dir="rtl" class="scroll-smooth" data-wy17-freshness="pending" data-wy20-painted>  
+<html lang="ar" dir="rtl" class="scroll-smooth" data-wy17-freshness="pending" data-wy20-painted data-wy22-home="pending" data-wy22-rest="pending">  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
@@ -7,8 +7,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="21.0">
-    <!-- V21: HTML is visible from first paint; no cloud request can hide the page. -->
+    <meta name="waei-release" content="22.0">
+    <!-- V22: stable shell; cloud-confirmed content only on first visit. No blocking loading screen. -->
     <style id="wy17-first-paint">
       .hidden{display:none!important}
       #wy17-retry{display:none;text-align:center;font:400 11px system-ui,sans-serif;color:#64748b;line-height:1.7;padding:8px 12px 0}
@@ -16,6 +16,43 @@
       #wy17-retry button{margin-inline-start:6px;text-decoration:underline;color:#991b1b;background:none;border:0;padding:0;cursor:pointer}
       #wy17-retry button[hidden]{display:none!important}
       img[data-wy17-media-pending]{visibility:hidden!important}
+      /* First-paint gate exists in HTML itself, before any external script or CSS. */
+      html:not([data-wy22-home="ready"]) body > header > div,
+      html:not([data-wy22-home="ready"]) #siteLogoBox > *,
+      html:not([data-wy22-home="ready"]) #headerMainTitle,
+      html:not([data-wy22-home="ready"]) #headerSubTitle,
+      html:not([data-wy22-home="ready"]) body > nav button[onclick="scrollToAskForm()"],
+      html:not([data-wy22-home="ready"]) #drawerNavLinks,
+      html:not([data-wy22-home="ready"]) #mobileDrawer > div:last-child,
+      html:not([data-wy22-home="ready"]) footer > div > *,
+      html:not([data-wy22-home="ready"]) #floatingPoweredByLink,
+      html:not([data-wy22-home="ready"]) #floatingWhatsappBtn{visibility:hidden!important;pointer-events:none!important}
+      /* The permanent site name, menu and layout stay available. No old title is visible. */
+      html:not([data-wy22-home="ready"]) #headerMainTitle{position:relative;min-inline-size:7em;min-block-size:1.1em}
+      html:not([data-wy22-home="ready"]) #headerMainTitle::before{content:"وعي يداوي";position:absolute;inset-inline-start:0;inset-block-start:0;visibility:visible;color:#0f172a;white-space:nowrap}
+      html:not([data-wy22-home="ready"]) footer #footerLogoBox{visibility:visible!important;pointer-events:auto!important}
+      html:not([data-wy22-home="ready"]) footer #footerLogoBox > *{visibility:hidden!important}
+      html:not([data-wy22-home="ready"]) #revealedAdminGate:not(.hidden){visibility:visible!important;pointer-events:auto!important}
+      html:not([data-wy22-home="ready"]) #screen-home > *,
+      html:not([data-wy22-rest="ready"]) main > [id^="screen-"]:not(#screen-home) > *{display:none!important}
+      /* Neutral, nonanimated card geometry: no text, spinner, overlay or invented values. */
+      html:not([data-wy22-home="ready"]) #screen-home:not(.hidden)::before,
+      html:not([data-wy22-rest="ready"]) main > [id^="screen-"]:not(#screen-home):not(.hidden)::before{
+        content:"";display:block;height:clamp(180px,33vw,300px);border:1px solid #e8e3e3;border-radius:24px;
+        background:linear-gradient(#f1e8e8,#f1e8e8) right 22px top 28px/26% 16px no-repeat,
+          linear-gradient(#e5e8ed,#e5e8ed) right 22px top 66px/75% 24px no-repeat,
+          linear-gradient(#e5e8ed,#e5e8ed) right 22px top 104px/58% 24px no-repeat,
+          linear-gradient(#edf0f3,#edf0f3) right 22px top 152px/82% 10px no-repeat,#fff;
+      }
+      html:not([data-wy22-home="ready"]) #screen-home:not(.hidden)::after{
+        content:"";display:block;height:115px;margin-block-start:20px;border:1px solid #e2e8f0;border-radius:20px;
+        background:linear-gradient(#eef0f3,#eef0f3) right 20px center/55% 14px no-repeat,#fff;
+      }
+      #heroBadgeText:empty{display:none}
+      .inline-text-edit-mode [data-wy22-empty]:empty{display:inline-block!important;min-width:3em;min-height:1em;outline:1px dashed #94a3b8}
+      .inline-text-edit-mode [data-wy22-empty]:empty::before{content:"إضافة نص";color:#64748b;font-size:12px}
+      #homeDoctorMainImage:not([src]){visibility:hidden}
+      #floatingPoweredByLink[data-wy22-empty-link]{display:none!important}
     </style>
     <title>منصة وَعـي يُـداوي | كلية طب فلسطين - جامعة الأزهر غزة</title>  
       
@@ -511,7 +548,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=21.0">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=22.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -520,12 +557,12 @@
         <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">  
             <div class="flex items-center gap-2">  
                 <span class="inline-block w-2.5 h-2.5 rounded-full bg-crimson animate-pulse"></span>  
-                <span id="topAnnouncementText" class="font-bold text-slate-800">مبادرة الطب الوقائي – برعاية كلية طب فلسطين، جامعة الأزهر غزة</span>  
+                <span id="topAnnouncementText" class="font-bold text-slate-800" data-wy22-empty></span>  
             </div>  
             <div class="flex items-center gap-4 text-slate-500 font-medium">  
-                <span id="topTargetText">الفئة المستهدفة: طلبة المدارس واليافعين (13–16 عاماً)</span>  
+                <span id="topTargetText" data-wy22-empty></span>  
                 <span class="hidden sm:inline text-slate-300">|</span>  
-                <span id="topFacultyText" class="inline-block text-slate-500 font-cairo font-medium text-[11px] sm:text-xs tracking-wide">Palestine Faculty of Medicine</span>  
+                <span id="topFacultyText" class="inline-block text-slate-500 font-cairo font-medium text-[11px] sm:text-xs tracking-wide" data-wy22-empty></span>  
             </div>  
         </div>  
     </header>  
@@ -551,9 +588,7 @@
                     <h1 class="text-xl sm:text-3xl font-black text-slate-900 font-cairo tracking-tight whitespace-nowrap overflow-visible leading-none" id="headerMainTitle">  
                         وَعـي يُـداوي  
                     </h1>  
-                    <p class="text-[11px] sm:text-xs text-brandGray-500 font-bold font-plex whitespace-nowrap overflow-hidden text-ellipsis hidden xs:block mt-1" id="headerSubTitle">  
-                        حملة الوقاية والتوعية بأضرار التدخين  
-                    </p>  
+                    <p class="text-[11px] sm:text-xs text-brandGray-500 font-bold font-plex whitespace-nowrap overflow-hidden text-ellipsis hidden xs:block mt-1" id="headerSubTitle" data-wy22-empty></p>  
                 </div>  
             </div>  
   
@@ -637,16 +672,12 @@
                 <div class="relative z-10 max-w-3xl space-y-4">  
                     <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-crimson/10 text-crimson text-xs font-bold font-cairo border border-crimson/20">  
                         <i class="fa-solid fa-heart-pulse"></i>  
-                        <span id="heroBadgeText">قبل أن تجرّب، اعرف ما يدخل جسمك</span>  
+                        <span id="heroBadgeText" data-wy22-empty></span>  
                     </span>  
                       
-                    <h2 id="heroHeadline" class="text-2xl sm:text-4xl lg:text-[40px] font-black text-slate-900 font-cairo leading-[1.45] tracking-tight">  
-                        الوقاية تبدأ بالوعي،<br class="hidden sm:inline"> والوعي في الوقت المناسب قد يغيّر حياتك  
-                    </h2>  
+                    <h2 id="heroHeadline" class="text-2xl sm:text-4xl lg:text-[40px] font-black text-slate-900 font-cairo leading-[1.45] tracking-tight" data-wy22-empty></h2>  
                       
-                    <p id="heroSubtitle" class="text-sm sm:text-base text-slate-600 font-normal leading-[1.8] font-plex max-w-2xl mt-4">  
-                        مبادرة أطلقها طلبة كلية الطب البشري بجامعة الأزهر – غزة، لتوعية اليافعين بأضرار التدخين من خلال تجارب تفاعلية ومعلومات علمية. هل الأفضل أن تختار ألّا تبدأ التدخين، أم أن تبدأ ثم تواجه صعوبة الإقلاع؟  
-                    </p>  
+                    <p id="heroSubtitle" class="text-sm sm:text-base text-slate-600 font-normal leading-[1.8] font-plex max-w-2xl mt-4" data-wy22-empty></p>  
   
                     <div class="pt-2 flex flex-wrap items-center gap-3">  
                         <button type="button" onclick="switchMainScreen('screen-sayno')" class="px-4 py-2.5 rounded-xl bg-crimson hover:bg-crimson-dark text-white font-bold text-xs sm:text-sm font-cairo flex items-center gap-2 transition shadow-xs">  
@@ -675,7 +706,7 @@
             <div class="bento-card p-5 sm:p-7 space-y-4 relative group">  
                 <div class="flex flex-col md:flex-row items-center gap-6">  
                     <div class="relative w-full md:w-1/2 rounded-2xl overflow-hidden bg-brandGray-100 border border-brandGray-200 aspect-[16/10] sm:aspect-[16/9]">  
-                        <img id="homeDoctorMainImage" decoding="async" loading="lazy" fetchpriority="auto" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80" alt="كادر طبي وعي يداوي" class="w-full h-full object-cover">  
+                        <img id="homeDoctorMainImage" decoding="async" loading="lazy" fetchpriority="auto" alt="كادر طبي وعي يداوي" class="w-full h-full object-cover">  
                         <button type="button" onclick="triggerCustomImagePicker('homeDoctorMainImage')" class="owner-only-btn hidden absolute top-3 left-3 px-3 py-1.5 bg-black/75 hover:bg-black text-white text-xs font-bold font-cairo rounded-xl transition backdrop-blur-xs">  
                             <i class="fa-solid fa-camera ml-1 text-rose-300"></i> تغيير صورة الكادر 📷  
                         </button>  
@@ -702,7 +733,7 @@
                 <div class="flex items-center justify-between pb-3 border-b border-brandGray-200">  
                     <div>  
                         <span class="text-xs font-bold text-crimson font-cairo">الأثر الميداني المثبت</span>  
-                        <h3 class="text-base sm:text-xl font-black text-slate-900 font-cairo" id="statHeaderTitle">إنجازات وأرقام حملة «وعي يداوي»</h3>  
+                        <h3 class="text-base sm:text-xl font-black text-slate-900 font-cairo" id="statHeaderTitle" data-wy22-empty></h3>  
                     </div>  
                     <div class="flex items-center gap-2">  
                         <button type="button" onclick="openStatsEditModal()" class="owner-only-btn hidden px-3 py-1.5 bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 rounded-xl text-xs font-cairo font-bold border border-brandGray-300 transition">  
@@ -1335,11 +1366,9 @@
                         <i class="fa-solid fa-lock text-sm"></i>  
                     </button>  
                       
-                    <span class="font-cairo font-black text-slate-800 text-base" id="footerBrandName">حملة وعي يداوي</span>  
+                    <span class="font-cairo font-black text-slate-800 text-base" id="footerBrandName" data-wy22-empty></span>  
                 </div>  
-                <p class="max-w-md text-brandGray-500 leading-relaxed text-[11px]" id="footerBrandDesc">  
-                    مبادرة وقائية غير ربحية تنفذها طالبات وطلاب كلية الطب البشري – جامعة الأزهر غزة، بهدف رفع الوعي الصحي لدى المراهقين ومكافحة تدخين السجائر، الفيب، والشيشة.  
-                </p>  
+                <p class="max-w-md text-brandGray-500 leading-relaxed text-[11px]" id="footerBrandDesc" data-wy22-empty></p>  
             </div>  
   
             <div class="flex flex-col items-center md:items-end gap-1.5 text-center md:text-right">  
@@ -1351,11 +1380,11 @@
     </footer>  
   
     <!-- FLOATING POWERED-BY CREDIT: compact, editable from owner CMS -->
-    <a id="floatingPoweredByLink" href="https://www.instagram.com/dr_khalil_musabeh_med/" target="_blank" rel="noopener noreferrer" aria-label="Powered by Dr. Khalil Musabeh - Instagram" class="waei-powered-float fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full border bg-white/95 px-3 py-2 shadow-lg backdrop-blur-sm transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2">
+    <a id="floatingPoweredByLink" data-wy22-empty-link target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="waei-powered-float fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full border bg-white/95 px-3 py-2 shadow-lg backdrop-blur-sm transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2">
         <span class="inline-flex h-7 w-7 items-center justify-center rounded-full text-white text-sm" id="floatingPoweredByIcon" style="background:#9f1d24"><i class="fa-brands fa-instagram"></i></span>
         <span class="flex flex-col items-start leading-tight">
-            <span id="floatingPoweredByLabel" class="text-[9px] font-extrabold uppercase tracking-wider text-slate-500">Powered by</span>
-            <span id="floatingPoweredByName" class="text-[11px] sm:text-xs font-black font-cairo text-slate-900">Dr. Khalil Musabeh</span>
+            <span id="floatingPoweredByLabel" class="text-[9px] font-extrabold uppercase tracking-wider text-slate-500" data-wy22-empty></span>
+            <span id="floatingPoweredByName" class="text-[11px] sm:text-xs font-black font-cairo text-slate-900" data-wy22-empty></span>
         </span>
         <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-slate-400"></i>
     </a>
@@ -1370,7 +1399,7 @@
     </style>
 
     <!-- FLOATING WHATSAPP BUTTON -->  
-    <a id="floatingWhatsappBtn" href="https://wa.me/970590000000" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 left-5 z-40 w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-lg transition hover:scale-110" aria-label="WhatsApp">  
+    <a id="floatingWhatsappBtn" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 left-5 z-40 w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-lg transition hover:scale-110" aria-label="WhatsApp">  
         <i class="fa-brands fa-whatsapp"></i>  
     </a>  
   
@@ -2604,7 +2633,6 @@
         async function initializeSupabaseAuth() {
             if (!supabaseClient) return null;
             supabaseClient.auth.onAuthStateChange((_event, session) => {
-                wy21GuestCacheAllowed=!session;
                 applySupabaseUserRole(session?.user || null);
             });
             const { data, error } = await supabaseClient.auth.getSession();
@@ -2614,7 +2642,6 @@
                 return null;
             }
             applySupabaseUserRole(data?.session?.user || null);
-            wy21GuestCacheAllowed=!data?.session;wy21SaveCache();
             return data?.session || null;
         }
 
@@ -2824,12 +2851,7 @@
             { id: 'hm-10y', timeLabel: 'بعد 10 سنوات', organ: 'الرئتان', title: 'انخفاض خطر سرطان الرئة', impact: 'ينخفض خطر سرطان الرئة بعد الإقلاع مع مرور السنوات، لكنه لا يختفي بالضرورة تماماً.', labMarker: 'يقلّ الخطر مع الاستمرار في الابتعاد عن التدخين.', mediaUrl: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80', mediaType: 'image' }
         ];
 
-        const defaultStatsItems = [
-            { id: 'st-1', val: '18+', label: 'مدرسة ومركز شبابي', icon: 'fa-solid fa-school', color: 'crimson' },
-            { id: 'st-2', val: '2,400+', label: 'طالب ويافع مستفيد', icon: 'fa-solid fa-users', color: 'navy' },
-            { id: 'st-3', val: '45', label: 'طبيب وطبيبة متطوعين', icon: 'fa-solid fa-stethoscope', color: 'crimson' },
-            { id: 'st-4', val: '36+', label: 'ورشة وجلسة فحص تفاعلية', icon: 'fa-solid fa-hand-holding-medical', color: 'navy' }
-        ];
+        const defaultStatsItems = []; // V22: actual campaign figures come only from Supabase.
 
         const defaultMythData = {
             vape: {
@@ -2955,20 +2977,12 @@
         let wy17ReadGeneration=0,wy17AnalyticsBusy=false;
         let wy20LastSuccess=0,wy20Batching=false;
         const wy17RemovedListKeys=new Set();
-        const wy21HomeKeys=new Set([KEY_PUBLIC_FAQ,KEY_FAQ_SETTINGS,KEY_AWARENESS_VIDEOS,KEY_STATS,KEY_SHORT_TERM,KEY_FAVICON_LOGO,KEY_FOOTER_WHATSAPP,KEY_MYTH_DATA,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS,KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,'wa3y_v8_controls_v1','wa3y_v14_content_v1']);
-        const wy21CacheKeys=new Set([KEY_PUBLIC_FAQ,KEY_FAQ_SETTINGS,KEY_AWARENESS_VIDEOS,KEY_STATS,KEY_SHORT_TERM,KEY_FAVICON_LOGO,KEY_FOOTER_WHATSAPP,KEY_MYTH_DATA,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS,KEY_UNIVERSAL_TEXTS]);
-        const wy21CacheKey='waei_public_home_cache_v21';
-        let wy21GuestCacheAllowed=false,wy21CacheTime=0,wy21VisitorAdminRows=[];
-        function wy21HydrateCache(){
-            try{const c=JSON.parse(localStorage.getItem(wy21CacheKey)||'null');if(!c||!Number.isFinite(c.at)||Date.now()-c.at>86400000||c.at>Date.now()+60000||!Array.isArray(c.rows))return;
-                for(const [key,raw] of c.rows){if(wy21CacheKeys.has(key)&&typeof raw==='string'&&!wy15CloudContent.has(key)){JSON.parse(raw);wy15CloudContent.set(key,raw);}}
-                wy21CacheTime=c.at;
-            }catch(e){}
-        }
-        function wy21SaveCache(){
-            if(!wy21GuestCacheAllowed||window.currentUserRole||wy15VerifiedRole!==null||!wy15CloudReady)return;
-            try{const rows=[...wy15CloudContent].filter(([k])=>wy21CacheKeys.has(k));const raw=JSON.stringify({at:Date.now(),rows});if(raw.length<=1500000){localStorage.setItem(wy21CacheKey,raw);wy21CacheTime=Date.now();}else localStorage.removeItem(wy21CacheKey);}catch(e){}
-        }
+        const wy21HomeKeys=new Set([KEY_PUBLIC_FAQ,KEY_FAQ_SETTINGS,KEY_AWARENESS_VIDEOS,KEY_STATS,KEY_SHORT_TERM,KEY_FAVICON_LOGO,KEY_FOOTER_WHATSAPP,KEY_MYTH_DATA,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS,KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,'wa3y_v8_controls_v1','wa3y_v14_content_v1','wa3y_community_settings_v1']);
+        let wy21VisitorAdminRows=[];
+        function wy22DiscardLegacyCache(){try{localStorage.removeItem('waei_public_home_cache_v21');}catch(e){}}
+        function wy22SetGate(part,ready){document.documentElement.dataset[part==='home'?'wy22Home':'wy22Rest']=ready?'ready':'pending';}
+        function wy22HomeReady(){return document.documentElement.dataset.wy22Home==='ready';}
+        function wy22RestReady(){return document.documentElement.dataset.wy22Rest==='ready';}
         function wy17Freshness(state){
             const root=document.documentElement;
             root.setAttribute('data-wy20-painted','');
@@ -2976,16 +2990,17 @@
             if(state==='pending'&&wy20LastSuccess)state='refreshing';
             root.dataset.wy17Freshness=state;
             const text=document.getElementById('wy20-status-text'),retry=document.getElementById('wy20-retry-button');
-            if(text&&state==='failed')text.textContent=wy20LastSuccess||wy21CacheTime?'تعذر التحديث الآن؛ تظهر آخر معلومات متاحة.':'تعذر الاتصال؛ تظهر المعلومات الأساسية المتاحة.';
+            if(text&&state==='failed')text.textContent=wy22HomeReady()?'تعذر إكمال التحديث الآن؛ تظهر المعلومات المؤكدة خلال هذه الزيارة.':'تعذر الاتصال بالخادم. سيظهر المحتوى عند استعادة الاتصال.';
             if(retry)retry.hidden=state!=='failed';
         }
         function wy17Invalidate(hard=false,previousRole=null){
             wy17ReadGeneration++;
             if(hard){
+                wy22SetGate('home',false);wy22SetGate('rest',false);
                 const wasAdmin=Boolean(previousRole||wy15VerifiedRole);
                 wy15CloudReady=false;wy15CloudVersions.clear();wy15VerifiedRole=undefined;
                 if(wasAdmin&&!window.currentUserRole){
-                    wy15CloudContent.clear();wy17RemovedListKeys.clear();wy21VisitorAdminRows=[];wy20LastSuccess=0;wy21HydrateCache();
+                    wy15CloudContent.clear();wy17RemovedListKeys.clear();wy21VisitorAdminRows=[];wy20LastSuccess=0;wy22DiscardLegacyCache();
                     try{wy21ResetGuestView();}catch(e){console.warn('Guest view reset:',e);}
                 }
             }
@@ -2995,8 +3010,8 @@
         // A changed image must never briefly keep displaying the previous bitmap while the new URL loads.
         function wy17SetImageSource(img,src){
             if(!img)return;
-            if(img.getAttribute('src')===src)return;
             if(!src){img.removeAttribute('src');img.removeAttribute('data-wy17-media-pending');return;}
+            if(img.getAttribute('src')===src)return;
             img.setAttribute('data-wy17-media-pending','');
             const expected=String(src);
             const loaded=()=>{if(img.getAttribute('src')===expected&&img.complete&&img.naturalWidth>0)img.removeAttribute('data-wy17-media-pending');};
@@ -3237,7 +3252,7 @@
         async function wy20ReadSnapshot(onHome){
             if(!onHome)return wy21ReadGroup([...wy15ContentKeys]);
             const home=await wy21ReadGroup([...wy21HomeKeys]);
-            if(home.length)onHome(home);
+            onHome(home);
             const rest=await wy21ReadGroup([...wy15ContentKeys].filter(k=>!wy21HomeKeys.has(k)));
             return [...home,...rest];
         }
@@ -3245,7 +3260,7 @@
         const wy21ScreenFor=new Map([[KEY_VOLUNTEERS,'screen-team-field'],[KEY_VOLUNTEERS_PUBLIC,'screen-team-field'],[KEY_NEWS,'screen-team-field'],[KEY_TEAM_STORIES,'screen-team-field'],[KEY_TEAM_STORIES_SETTINGS,'screen-team-field'],[KEY_ORGANS,'screen-anatomy'],[KEY_TOXINS,'screen-lab'],[KEY_RESEARCH,'screen-research'],[KEY_SCENARIOS,'screen-sayno'],[KEY_WY_V7_CONTENT,'screen-sayno'],[KEY_WY_LITERATURE,'screen-literature'],['wa3y_certificates_v1','screen-community'],['wa3y_reviews_v1','screen-community'],['wa3y_memories_v1','screen-community'],['wa3y_community_settings_v1','screen-community']]);
         const wy21Groups=new Map([[KEY_VOLUNTEERS,'volunteers'],[KEY_VOLUNTEERS_PUBLIC,'volunteers'],[KEY_WY_V7_CONTENT,'v7'],[KEY_WY_LITERATURE,'v7'],['wa3y_certificates_v1','community'],['wa3y_reviews_v1','community'],['wa3y_memories_v1','community'],['wa3y_community_settings_v1','community']]);
         const wy21PendingRenders=new Map();let wy21IdleRender=false;
-        function wy21ActiveScreen(){return document.querySelector('main > div[id^="screen-"]:not(.hidden)')?.id||'screen-home';}
+        function wy21ActiveScreen(){return document.querySelector('main > [id^="screen-"]:not(.hidden)')?.id||'screen-home';}
         function wy21ApplyOverlays(){
             wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();
             for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(e){console.warn('CMS overlay repaint:',e);}
@@ -3270,8 +3285,15 @@
             wy21ApplyOverlays();wy21QueueIdle();
         }
         function wy21ApplyEarlyHome(rows){
-            const keys=[];for(const row of rows){if(!wy21HomeKeys.has(row?.store_key))continue;const value=parseSupabasePayload(row.payload);if(value===null||value===undefined)continue;const raw=JSON.stringify(value);if(wy15CloudContent.get(row.store_key)!==raw){wy15CloudContent.set(row.store_key,raw);keys.push(row.store_key);}}
-            if(keys.length)wy21RenderChanged(keys);
+            const incoming=new Map(),versions=new Map();
+            for(const row of rows){if(!wy21HomeKeys.has(row?.store_key))continue;versions.set(row.store_key,row.updated_at??null);const value=parseSupabasePayload(row.payload);if(value===null||value===undefined)continue;incoming.set(row.store_key,JSON.stringify(value));}
+            if(!incoming.size)throw new Error('No confirmed home CMS rows');
+            for(const key of wy21HomeKeys){wy15Mirror(key,incoming.get(key)??null);if(versions.has(key))wy15CloudVersions.set(key,versions.get(key));else wy15CloudVersions.delete(key);}
+            wy21RenderChanged([...wy21HomeKeys]);
+            // Community settings also edit the shared drawer; render only its label now.
+            const community=getLocal('wa3y_community_settings_v1',{});
+            if(typeof community?.nav==='string')document.querySelectorAll('.wy-nav-label').forEach(el=>el.textContent=community.nav);
+            wy22SetGate('home',true);
         }
         function wy21ResetGuestView(){wy21PendingRenders.clear();wy21RenderChanged([...wy15ContentKeys],true);}
         async function fetchAllFromSupabase() {
@@ -3300,14 +3322,21 @@
                         if(raw!==before)changed.push([key,raw===null?null:JSON.parse(raw)]);
                         if(!wy15CloudReady||raw!==before)wy15Mirror(key,raw);if(versions.has(key))wy15CloudVersions.set(key,versions.get(key));else wy15CloudVersions.delete(key);
                     }
+                    if(!wy22HomeReady()&&!authRole&&![...wy21HomeKeys].some(key=>incoming.has(key)))throw new Error('No confirmed home CMS rows');
                     const first=!wy15CloudReady;
                     wy15CloudReady=true;wy15VerifiedRole=authRole;
                     const repaint=first||wy16NeedsRepaint||changed.length>0||revisionChanged||roleChanged;
                     wy16NeedsRepaint=false;
                     // Update the current screen immediately. Hidden screens are rendered in small idle tasks.
-                    if(repaint)wy21RenderChanged(roleChanged&&authRole?[...wy15ContentKeys]:changed.map(([key])=>key),Boolean(window.currentUserRole));
+                    if(repaint){
+                        const initialKeys=first||roleChanged?[...wy15ContentKeys].filter(key=>!wy22HomeReady()||!wy21HomeKeys.has(key)):[];
+                        const renderKeys=[...new Set([...initialKeys,...changed.map(([key])=>key)])];
+                        wy21RenderChanged(renderKeys,Boolean(window.currentUserRole));
+                    }
+                    if(!wy22HomeReady())wy22SetGate('home',true);
+                    wy22SetGate('rest',true);
+                    if(first)wy21IdleBoot();
                     if(changed.length||first||roleChanged)try{updateKPICounters();}catch(err){console.warn('Counters repaint failed:',err);}
-                    wy21SaveCache();
                     wy16RetryDelay=1500;
                     wy17Freshness('ready');setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');
                     if(window.currentUserRole)void wy17RefreshAnalytics();return true;
@@ -3343,6 +3372,9 @@
             window.addEventListener('focus',()=>refresh());
             window.addEventListener('offline',()=>{wy17ReadGeneration++;wy15SetRefreshState('error');});
             window.addEventListener('online',()=>{wy17Invalidate();refresh(true);});
+            // Safari/Chromium back-forward cache can restore a complete previous page without a new document.
+            // Close only the content gates before suspension; require another confirmed read on restoration.
+            window.addEventListener('pagehide',e=>{if(e.persisted){wy17ReadGeneration++;wy15CloudReady=false;wy22SetGate('home',false);wy22SetGate('rest',false);}});
             window.addEventListener('pageshow',e=>{if(e.persisted){wy17Invalidate();refresh(true);}else refresh();});
             window.addEventListener('storage',e=>{if(e.key&&wy15ContentKeys.has(e.key))wy15ScheduleRefresh(100);});
             setInterval(()=>{if(!document.hidden&&!wy15CloudBusy&&navigator.onLine!==false)wy15ScheduleRefresh(50);},30000);
@@ -5381,11 +5413,11 @@
             });  
             document.getElementById('editFooterBrandInput').value = fw.brand;  
             document.getElementById('editFooterDescInput').value = fw.desc;  
-            document.getElementById('editPoweredByNameInput').value = fw.powerName || 'Dr. Khalil Musabeh';  
+            document.getElementById('editPoweredByNameInput').value = fw.powerName || '';  
             if (document.getElementById('editPoweredByLabelInput')) document.getElementById('editPoweredByLabelInput').value = fw.powerLabel || 'Powered by';
             if (document.getElementById('editPoweredByColorInput')) document.getElementById('editPoweredByColorInput').value = /^#[0-9a-f]{6}$/i.test(fw.powerColor || '') ? fw.powerColor : '#9f1d24';
             if (document.getElementById('editPoweredByStyleInput')) document.getElementById('editPoweredByStyleInput').value = fw.powerStyle === 'filled' ? 'filled' : 'slim';
-            document.getElementById('editPoweredByUrlInput').value = fw.powerUrl || 'https://www.instagram.com/dr_khalil_musabeh_med/';  
+            document.getElementById('editPoweredByUrlInput').value = fw.powerUrl || '';  
             document.getElementById('editWhatsappNumberInput').value = fw.wNum || '';  
             document.getElementById('toggleWhatsappVisibleCheckbox').checked = fw.wVis !== false;  
         }  
@@ -5413,22 +5445,23 @@
                 const b=wy15FooterBase.get(id);for(const a of ['style','href']){if(b[a]===null)el.removeAttribute(a);else el.setAttribute(a,b[a]);}if(b.text!==null)el.textContent=b.text;
             }
             const fw = getLocal(KEY_FOOTER_WHATSAPP, null);
-            if (!fw) {const w=document.getElementById('floatingWhatsappBtn');if(w)w.style.display='none';return;}  
+            if (!fw) {const w=document.getElementById('floatingWhatsappBtn');if(w)w.style.display='none';document.getElementById('floatingPoweredByLink')?.setAttribute('data-wy22-empty-link','');return;}  
             if (Object.prototype.hasOwnProperty.call(fw, 'brand') && document.getElementById('footerBrandName')) document.getElementById('footerBrandName').innerText = String(fw.brand ?? '');
             if (Object.prototype.hasOwnProperty.call(fw, 'desc') && document.getElementById('footerBrandDesc')) document.getElementById('footerBrandDesc').innerText = String(fw.desc ?? '');  
             const powerNameEl = document.getElementById('footerPoweredByName');  
             const powerLinkEl = document.getElementById('footerPoweredByLink');  
-            const safeName = String(fw.powerName ?? 'Dr. Khalil Musabeh');
+            const safeName = String(fw.powerName ?? '');
             const safeLabel = String(fw.powerLabel ?? 'Powered by');
             const safeColor = /^#[0-9a-f]{6}$/i.test(String(fw.powerColor || '')) ? String(fw.powerColor) : '#9f1d24';
-            const safeUrl = String(fw.powerUrl || 'https://www.instagram.com/dr_khalil_musabeh_med/');
-            const validPowerUrl = /^https:\/\/(www\.)?instagram\.com\//i.test(safeUrl) ? safeUrl : 'https://www.instagram.com/dr_khalil_musabeh_med/';
+            const safeUrl = String(fw.powerUrl || '');
+            const validPowerUrl = /^https:\/\/(www\.)?instagram\.com\//i.test(safeUrl) ? safeUrl : '';
             const floatLink = document.getElementById('floatingPoweredByLink');
             const floatName = document.getElementById('floatingPoweredByName');
             const floatLabel = document.getElementById('floatingPoweredByLabel');
             const floatIcon = document.getElementById('floatingPoweredByIcon');
             if (floatLink) {
-                floatLink.href = validPowerUrl;
+                floatLink.toggleAttribute('data-wy22-empty-link',!validPowerUrl||!safeName.trim());
+                if(validPowerUrl)floatLink.href=validPowerUrl;else floatLink.removeAttribute('href');
                 floatLink.style.borderColor = safeColor;
                 floatLink.style.setProperty('--waei-power-color', safeColor);
                 const filled = fw.powerStyle === 'filled';
@@ -5530,7 +5563,7 @@
             const mapped=event.target.closest('[data-wy8-text],[data-wy7-text]'); if(mapped&&window.waeiV8?.inlineEdit(mapped,event))return;
             const target = event.target.closest('h1,h2,h3,h4,h5,p,span,label,small,strong,em,a,button,li,blockquote');  
             if (!target || target.closest('#ownerFloatingContextBar, #adminMasterModal, #wy17-retry, .front-modal-layer, script, style')) return;  
-            if (target.closest('svg') || target.children.length > 0 || !target.textContent.trim()) return;
+            if (target.closest('svg') || target.children.length > 0 || (!target.textContent.trim()&&!target.hasAttribute('data-wy22-empty'))) return;
             if(!target.closest('#subSection-lungsComparison')){
                 const group=target.closest('#wy14-classic')?'chemicals':target.closest('#wy14-knowledge')?'knowledge':target.closest('#subSection-shortTermCard')?'short':target.closest('#wy14-lab-switch')?'lab':null;
                 if(group&&window.waeiV14){event.preventDefault();event.stopImmediatePropagation();window.waeiV14.editGroup(group);return;}
@@ -5613,12 +5646,12 @@
             const container = document.getElementById('dynamicStatsGridContainer');
             if (!container) return;
             const statsData = getLocal(KEY_STATS, {
-                header: 'إنجازات وأرقام حملة «وعي يداوي»',
+                header: '',
                 items: defaultStatsItems
             });
 
             const headerEl = document.getElementById('statHeaderTitle');
-            if (headerEl && statsData.header) {headerEl.innerText = statsData.header;headerEl.dataset.wyCore='stats:header:header';}
+            if (headerEl) {headerEl.innerText = String(statsData.header??'');headerEl.dataset.wyCore='stats:header:header';}
 
             const items = statsData.items || defaultStatsItems;
             if (items.length === 0) {
@@ -5641,7 +5674,7 @@
             const modal = document.getElementById('statsEditModal');  
             if (!modal) return;  
             const statsData = getLocal(KEY_STATS, {  
-                header: document.getElementById('statHeaderTitle')?.innerText || 'إنجازات وأرقام حملة «وعي يداوي»',  
+                header: document.getElementById('statHeaderTitle')?.innerText || '',  
                 items: defaultStatsItems  
             });  
             document.getElementById('editStatHeaderTitleInput').value = statsData.header || 'إنجازات وأرقام حملة «وعي يداوي»';  
@@ -8054,15 +8087,15 @@
         wy21SDK?.addEventListener('load',wy21Connect);
         wy21SDK?.addEventListener('error',()=>{wy17Freshness('failed');wy21SdkRetryTimer=setTimeout(wy21RetrySDK,15000);});
         window.addEventListener('online',()=>{if(!wy21Connected)wy21RetrySDK();});
-        wy21HydrateCache();
+        wy22DiscardLegacyCache();
         window.addEventListener('DOMContentLoaded',()=>{
             // Native HTML is already visible even if the SDK or network is unavailable.
             wy21Booted=true;
-            for(const fn of [restoreCustomImages,()=>applyFaviconAndLogo(getLocal(KEY_FAVICON_LOGO,'')),applyStatsUI,applyShortTermUI,applySectionsVisibility,applySubElementsVisibility,applyFooterAndWhatsappUI,wy16ReapplyTextOverlays,loadAwarenessVideos,renderPublicFaq,()=>switchMythBusterTab('vape')])try{fn();}catch(e){console.warn('Home initialization:',e);}
+            // Public content is rendered from the first confirmed snapshot, not seed or browser cache.
             updateKPICounters();
             // Count each document opening independently of cloud availability, and never gate on a successful read.
             window.recordVisitorAction('دخول جديد للمنصة 🌐');
-            setTimeout(()=>{wy21Connect();wy21IdleBoot();if(!supabaseClient){if(navigator.onLine===false)wy17Freshness('failed');else if(!wy21SdkRetryTimer)wy21SdkRetryTimer=setTimeout(()=>{if(!wy21Connected){wy17Freshness('failed');wy21RetrySDK();}},12000);}},0);
+            setTimeout(()=>{wy21Connect();if(!supabaseClient){if(navigator.onLine===false)wy17Freshness('failed');else if(!wy21SdkRetryTimer)wy21SdkRetryTimer=setTimeout(()=>{if(!wy21Connected){wy17Freshness('failed');wy21RetrySDK();}},12000);}},0);
         },{once:true});
     </script>
     <!-- WAEI: all editable content and moderation logic lives in THIS index file -->
@@ -8412,7 +8445,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=21.0"></script>
+    <script src="./waei-live-effects.js?v=22.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
 
 <script>
