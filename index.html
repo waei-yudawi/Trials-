@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="18.0">
+    <meta name="waei-release" content="19.0">
     <!-- Never paint editable bundled/obsolete text while the first cloud snapshot is unconfirmed. No fullscreen overlay. -->
     <style id="wy17-first-paint">
       html:not([data-wy17-freshness="ready"]) body header > div,
@@ -512,7 +512,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=18.0">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=19.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -1656,9 +1656,10 @@
     <div id="publishNewsDedicatedModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden items-center justify-center p-4 front-modal-layer">  
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-brandGray-200 space-y-4 max-h-[90vh] overflow-y-auto font-plex">  
             <div class="flex items-center justify-between pb-3 border-b border-brandGray-100">  
-                <h3 class="text-base font-black text-slate-900 font-cairo flex items-center gap-2"><i class="fa-solid fa-newspaper text-crimson"></i> نشر وتغطية نشاط ميداني جديد</h3>  
+                <h3 id="publishNewsModalTitle" class="text-base font-black text-slate-900 font-cairo flex items-center gap-2"><i class="fa-solid fa-newspaper text-crimson"></i> نشر وتغطية نشاط ميداني جديد</h3>  
                 <button type="button" onclick="closePublishNewsModal()" class="text-brandGray-400 hover:text-slate-900 text-lg">✕</button>  
             </div>  
+            <input type="hidden" id="newsEditIdInput" value="">
             <div class="space-y-3 text-xs">  
                 <div>  
                     <label class="block font-bold text-slate-800 mb-1 font-cairo">عنوان النشاط / التغطية:</label>  
@@ -1678,24 +1679,32 @@
                         </select>  
                     </div>  
                 </div>  
-                <div>  
-                    <label class="block font-bold text-slate-800 mb-1 font-cairo">تفاصيل ومجريات التغطية:</label>  
-                    <textarea id="newsDescInput" rows="3" placeholder="اكتب تفاصيل النزول الميداني..." class="w-full p-2.5 border border-brandGray-200 rounded-xl focus:border-crimson focus:outline-none"></textarea>  
+                <div>
+                    <label class="block font-bold text-slate-800 mb-1 font-cairo" for="newsSchoolLinkInput">رابط منشور المدرسة (اختياري):</label>
+                    <input type="url" id="newsSchoolLinkInput" placeholder="https://..." dir="ltr" class="w-full p-2.5 border border-brandGray-200 rounded-xl font-mono text-xs focus:border-crimson focus:outline-none">
+                    <p class="mt-1 text-[10px] leading-5 text-slate-500">سيظهر داخل الخبر زر يفتح منشور المدرسة مباشرة.</p>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-800 mb-1 font-cairo" for="newsDescInput">نص الخبر وتفاصيله:</label>
+                    <textarea id="newsDescInput" rows="5" placeholder="اكتب ما حدث في النشاط، ومكانه، ومن شارك فيه، وأبرز ما تحقق..." class="w-full p-2.5 border border-brandGray-200 rounded-xl focus:border-crimson focus:outline-none"></textarea>
                 </div>  
                 <div class="p-3 bg-brandGray-50 rounded-xl border border-dashed border-brandGray-300 space-y-2">  
-                    <label class="block font-bold text-slate-800 font-cairo">رفع صور الفعالية (صور متعددة):</label>  
-                    <input type="file" id="newsPhotosInput" multiple accept="image/*" class="w-full text-xs text-brandGray-600">  
+                    <label class="block font-bold text-slate-800 font-cairo">إضافة صور جديدة (اختياري):</label>  
+                    <input type="file" id="newsPhotosInput" multiple accept="image/*" class="w-full text-xs text-brandGray-600">
+                    <p id="newsExistingMediaNote" class="text-[10px] leading-5 text-slate-500">إذا أضفت صوراً جديدة فستُضاف إلى الصور الحالية، ولن تُحذف الصور السابقة.</p>  
                 </div>  
                 <div class="p-3 bg-rose-50/50 rounded-xl border border-dashed border-rose-200 space-y-2">  
                     <label class="block font-bold text-crimson font-cairo">إضافة فيديو للنشاط (يوتيوب أو ملف مباشر):</label>  
-                    <input type="text" id="newsVideoUrlInput" placeholder="رابط يوتيوب: https://www.youtube.com/watch?v=..." class="w-full p-2 border border-slate-200 rounded-xl font-mono text-xs mb-1 focus:border-crimson focus:outline-none">  
-                    <span class="block text-[10px] text-slate-500">أو رفع ملف فيديو من جهازك:</span>  
+                    <input type="text" id="newsVideoUrlInput" placeholder="رابط يوتيوب أو فيديو مباشر: https://..." dir="ltr" class="w-full p-2 border border-slate-200 rounded-xl font-mono text-xs mb-1 focus:border-crimson focus:outline-none">
+                    <label class="flex items-center gap-2 text-[10px] text-slate-600 font-cairo"><input type="checkbox" id="newsRemoveVideoInput" class="accent-crimson"> إزالة الفيديو الحالي من الخبر</label>  
+                    <span class="block text-[10px] text-slate-500">اترك الرابط كما هو للاحتفاظ بالفيديو. اختيار ملف جديد يستبدل الفيديو الحالي.</span>
+                    <span class="block text-[10px] text-slate-500">أو ارفع ملف فيديو جديداً:</span>  
                     <input type="file" id="newsVideoFileInput" accept="video/mp4,video/webm" class="w-full text-xs text-brandGray-600">  
                 </div>  
             </div>  
             <div class="flex items-center justify-end gap-2 pt-2 border-t border-brandGray-100">  
                 <button type="button" onclick="closePublishNewsModal()" class="px-4 py-2 bg-brandGray-100 text-brandGray-700 text-xs font-bold font-cairo rounded-xl">إلغاء</button>  
-                <button type="button" onclick="savePublishedNewsNow()" class="px-4 py-2 bg-crimson hover:bg-crimson-dark text-white text-xs font-bold font-cairo rounded-xl shadow-xs">نشر النشاط فوراً ✓</button>  
+                <button type="button" id="newsSaveButton" onclick="savePublishedNewsNow()" class="px-4 py-2 bg-crimson hover:bg-crimson-dark text-white text-xs font-bold font-cairo rounded-xl shadow-xs">نشر النشاط فوراً ✓</button>  
             </div>  
         </div>  
     </div>  
@@ -6577,93 +6586,234 @@
         };
 
         // ==================== 26. NEWS & FIELD ACTIVITIES CMS ====================
-        window.openPublishNewsModal = function() {  
-            const modal = document.getElementById('publishNewsDedicatedModal');  
-            if (modal) {  
-                document.getElementById('newsTitleInput').value = '';  
-                document.getElementById('newsDateInput').value = new Date().toLocaleDateString('ar-EG');  
-                document.getElementById('newsDescInput').value = '';  
-                document.getElementById('newsPhotosInput').value = '';  
-                const vidUrl = document.getElementById('newsVideoUrlInput'); if (vidUrl) vidUrl.value = '';
-                const vidFile = document.getElementById('newsVideoFileInput'); if (vidFile) vidFile.value = '';
-                modal.classList.remove('hidden');  
-                modal.classList.add('flex');  
-            }  
-        };  
-  
-        window.closePublishNewsModal = function() {  
-            const modal = document.getElementById('publishNewsDedicatedModal');  
-            if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }  
-        };  
-  
-        window.savePublishedNewsNow = async function() {  
-            const title = document.getElementById('newsTitleInput').value.trim();  
-            const date = document.getElementById('newsDateInput').value.trim() || new Date().toLocaleDateString('ar-EG');  
-            const category = document.getElementById('newsCategoryInput').value;  
-            const desc = document.getElementById('newsDescInput').value.trim();  
-            const photosInput = document.getElementById('newsPhotosInput');  
-            const vidUrl = document.getElementById('newsVideoUrlInput')?.value.trim() || '';
-            const vidFileInput = document.getElementById('newsVideoFileInput');
+        function safeNewsExternalUrl(value) {
+            const raw = String(value || '').trim();
+            if (!raw) return '';
+            const normalized = /^https?:\/\//i.test(raw) ? raw : 'https://' + raw;
+            try {
+                const parsed = new URL(normalized);
+                return ['https:', 'http:'].includes(parsed.protocol) ? parsed.href : '';
+            } catch (error) {
+                return '';
+            }
+        }
 
-            if (!title) {  
-                showToast('يرجى كتابة عنوان النشاط الميداني أولاً', 'error');  
-                return;  
-            }  
-  
-            let news = getLocal(KEY_NEWS, []);  
-            let finalVideo = vidUrl;
-
-            showToast('جارٍ رفع وسائط التغطية الميدانية...', 'success');
-            if (vidFileInput && vidFileInput.files && vidFileInput.files[0]) {
-                try {
-                    finalVideo = await uploadToSupabaseStorage(vidFileInput.files[0], 'news/videos');
-                } catch(e) { console.warn(e); }
+        window.openPublishNewsModal = function(newsId = '') {
+            const modal = document.getElementById('publishNewsDedicatedModal');
+            if (!modal) return;
+            const newsList = getLocal(KEY_NEWS, []);
+            const editId = String(newsId || '');
+            const current = editId ? newsList.find(item => String(item.id) === editId) : null;
+            if (editId && !current) {
+                showToast('لم نعثر على الخبر المطلوب تعديله. حدّث الصفحة وحاول مرة أخرى.', 'error');
+                return;
             }
 
-            let loadedImgs = [];
-            if (photosInput && photosInput.files && photosInput.files.length > 0) {  
-                for (const file of Array.from(photosInput.files)) {  
-                    try { loadedImgs.push(await uploadToSupabaseStorage(file, 'news')); } catch(e){}  
-                }  
-            }  
+            const setValue = (id, value) => {
+                const element = document.getElementById(id);
+                if (element) element.value = value ?? '';
+            };
+            setValue('newsEditIdInput', current ? current.id : '');
+            setValue('newsTitleInput', current?.title || '');
+            setValue('newsDateInput', current?.date || new Date().toLocaleDateString('ar-EG'));
+            setValue('newsCategoryInput', current?.category || 'نزول ميداني');
+            setValue('newsDescInput', current?.desc ?? current?.content ?? '');
+            setValue('newsSchoolLinkInput', current?.schoolLink || current?.schoolPostUrl || current?.schoolUrl || '');
+            setValue('newsPhotosInput', '');
+            setValue('newsVideoFileInput', '');
+            setValue('newsVideoUrlInput', current?.videoUrl || current?.video || '');
+            const removeVideo = document.getElementById('newsRemoveVideoInput');
+            if (removeVideo) removeVideo.checked = false;
 
-            news.unshift({  
-                id: 'n-' + Date.now(),  
-                title, date, category,  
-                desc: desc || 'تغطية ميدانية معتمدة من كادر كلية الطب.',  
-                images: loadedImgs.length > 0 ? loadedImgs : ['https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80'],
-                video: finalVideo
-            });  
-            const ok = await saveLocalConfirmed(KEY_NEWS, news);  
-            if (ok) {  
-                renderAdminNewsCards();  
-                window.renderClientNewsCards();  
-                window.closePublishNewsModal();  
-                showToast('تم نشر النشاط الميداني وتعميمه سحابياً ✓');  
-            } else {  
-                showToast('فشل تأكيد نشر النشاط على السحابة', 'error');  
-            }  
-        };  
-  
-        function renderAdminNewsCards() {  
-            const container = document.getElementById('adminNewsListContainer');  
-            if (!container) return;  
-            const news = getLocal(KEY_NEWS, []);  
-            container.innerHTML = news.map(n => `  
-                <div class="p-3 bg-brandGray-50 rounded-2xl border border-brandGray-200 space-y-2 text-xs">  
-                    <div class="flex items-center justify-between">  
-                        <h5 class="font-bold text-slate-800 font-cairo">${escapeHtml(n.title)}</h5>  
-                        <span class="px-2 py-0.5 bg-rose-50 text-crimson rounded-md text-[10px] font-bold font-cairo">${escapeHtml(n.category || 'ميداني')}</span>  
-                    </div>  
-                    <p class="text-[11px] text-brandGray-600 font-plex line-clamp-2">${escapeHtml(n.desc)}</p>  
-                    <div class="flex items-center justify-between pt-1">  
-                        <span class="text-[10px] text-brandGray-400 font-num">${n.date} (${(n.images || []).length} صور ${n.video ? '+ فيديو' : ''})</span>  
-                        <button type="button" onclick="deleteNewsItem('${n.id}')" class="text-crimson font-cairo font-bold">حذف الخبر</button>  
-                    </div>  
-                </div>  
-            `).join('');  
-        }  
-  
+            const rawImages = current?.images ?? current?.photos ?? current?.imgs ?? current?.gallery ?? [];
+            const imageCount = Array.isArray(rawImages) ? rawImages.length : (rawImages ? 1 : 0);
+            const hasSingleImage = Boolean(current?.image || current?.img || current?.photo || current?.cover);
+            const note = document.getElementById('newsExistingMediaNote');
+            if (note) {
+                note.textContent = current
+                    ? `هذا الخبر يحتوي حالياً على ${Math.max(imageCount, hasSingleImage ? 1 : 0)} صورة. ستبقى الصور الحالية، وستُضاف إليها أي صور جديدة تختارها.`
+                    : 'إذا أضفت صوراً جديدة فستُضاف إلى الصور الحالية، ولن تُحذف الصور السابقة.';
+            }
+
+            const title = document.getElementById('publishNewsModalTitle');
+            if (title) title.innerHTML = `<i class="fa-solid fa-newspaper text-crimson"></i> ${current ? 'تعديل الخبر الميداني' : 'نشر وتغطية نشاط ميداني جديد'}`;
+            const saveButton = document.getElementById('newsSaveButton');
+            if (saveButton) saveButton.textContent = current ? 'حفظ تعديلات الخبر ✓' : 'نشر النشاط فوراً ✓';
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.closePublishNewsModal = function() {
+            const modal = document.getElementById('publishNewsDedicatedModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+
+        window.savePublishedNewsNow = async function() {
+            if (!['owner', 'super_admin'].includes(window.currentUserRole)) {
+                showToast('تحتاج إلى صلاحية إدارية لتعديل الأخبار أو نشرها.', 'error');
+                return;
+            }
+
+            const editId = String(document.getElementById('newsEditIdInput')?.value || '');
+            const title = document.getElementById('newsTitleInput').value.trim();
+            const date = document.getElementById('newsDateInput').value.trim() || new Date().toLocaleDateString('ar-EG');
+            const category = document.getElementById('newsCategoryInput').value;
+            const desc = document.getElementById('newsDescInput').value.trim();
+            const schoolLinkRaw = document.getElementById('newsSchoolLinkInput')?.value.trim() || '';
+            const schoolLink = safeNewsExternalUrl(schoolLinkRaw);
+            const photosInput = document.getElementById('newsPhotosInput');
+            const vidUrl = document.getElementById('newsVideoUrlInput')?.value.trim() || '';
+            const vidFileInput = document.getElementById('newsVideoFileInput');
+            const removeVideo = Boolean(document.getElementById('newsRemoveVideoInput')?.checked);
+            const saveButton = document.getElementById('newsSaveButton');
+
+            if (!title) {
+                showToast('يرجى كتابة عنوان الخبر أولاً.', 'error');
+                return;
+            }
+            if (schoolLinkRaw && !schoolLink) {
+                showToast('رابط منشور المدرسة غير صحيح. أدخل رابطاً يبدأ بـ https:// أو http://.', 'error');
+                return;
+            }
+
+            const news = getLocal(KEY_NEWS, []);
+            const existingIndex = editId ? news.findIndex(item => String(item.id) === editId) : -1;
+            const existing = existingIndex >= 0 ? news[existingIndex] : null;
+            if (editId && !existing) {
+                showToast('تغيّر الخبر في السحابة. حدّث الصفحة قبل إجراء التعديل.', 'error');
+                return;
+            }
+
+            if (saveButton) {
+                saveButton.disabled = true;
+                saveButton.textContent = editId ? 'جارٍ حفظ التعديلات...' : 'جارٍ نشر الخبر...';
+            }
+
+            try {
+                showToast('جارٍ تجهيز وسائط الخبر وحفظه في السحابة...', 'success');
+
+                const existingVideo = existing?.videoUrl || existing?.video || '';
+                let finalVideo = removeVideo ? '' : (vidUrl || existingVideo);
+                if (vidFileInput && vidFileInput.files && vidFileInput.files[0]) {
+                    try {
+                        finalVideo = await uploadToSupabaseStorage(vidFileInput.files[0], 'news/videos');
+                    } catch (error) {
+                        console.warn('News video upload failed:', error);
+                        throw new Error('تعذّر رفع الفيديو إلى التخزين السحابي. لم يتم حفظ التعديل.');
+                    }
+                }
+
+                const loadedImgs = [];
+                if (photosInput && photosInput.files && photosInput.files.length > 0) {
+                    for (const file of Array.from(photosInput.files)) {
+                        try {
+                            loadedImgs.push(await uploadToSupabaseStorage(file, 'news'));
+                        } catch (error) {
+                            console.warn('News photo upload failed:', error);
+                            throw new Error('تعذّر رفع إحدى الصور إلى التخزين السحابي. لم يتم حفظ التعديل.');
+                        }
+                    }
+                }
+
+                const placeholderImage = 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80';
+                const rawExistingImages = existing?.images ?? existing?.photos ?? existing?.imgs ?? existing?.gallery ?? [];
+                let existingImages = Array.isArray(rawExistingImages)
+                    ? rawExistingImages.map(photo => typeof photo === 'string' ? photo : (photo?.url || photo?.src || '')).filter(Boolean)
+                    : (typeof rawExistingImages === 'string' && rawExistingImages.trim() ? [rawExistingImages.trim()] : []);
+                const singleImage = existing?.image || existing?.img || existing?.photo || existing?.cover || '';
+                if (singleImage && !existingImages.includes(singleImage)) existingImages.unshift(singleImage);
+                if (loadedImgs.length && existingImages.length === 1 && existingImages[0] === placeholderImage) existingImages = [];
+                const finalImages = Array.from(new Set([...existingImages, ...loadedImgs]));
+                if (!existing && !finalImages.length) finalImages.push(placeholderImage);
+
+                const updatedNewsItem = {
+                    ...(existing || {}),
+                    id: existing?.id || ('n-' + Date.now()),
+                    title,
+                    date,
+                    category,
+                    desc: desc || 'تغطية ميدانية من فريق وعي يداوي.',
+                    images: finalImages,
+                    video: finalVideo,
+                    videoUrl: finalVideo,
+                    schoolLink,
+                    schoolPostUrl: schoolLink,
+                    schoolUrl: schoolLink,
+                    updatedAt: new Date().toISOString()
+                };
+                if (existing && Object.prototype.hasOwnProperty.call(existing, 'photos')) updatedNewsItem.photos = finalImages;
+                if (existing && Object.prototype.hasOwnProperty.call(existing, 'imgs')) updatedNewsItem.imgs = finalImages;
+                if (existing && Object.prototype.hasOwnProperty.call(existing, 'gallery')) updatedNewsItem.gallery = finalImages;
+                if (existing && Array.isArray(existing.media)) updatedNewsItem.media = finalImages;
+
+                const nextNews = existing
+                    ? news.map((item, index) => index === existingIndex ? updatedNewsItem : item)
+                    : [updatedNewsItem, ...news];
+
+                const ok = await saveLocalConfirmed(KEY_NEWS, nextNews);
+                if (!ok) {
+                    showToast('لم يؤكد Supabase حفظ الخبر. بقيت نافذة التعديل مفتوحة ولم نعتمد التغيير.', 'error');
+                    return;
+                }
+
+                renderAdminNewsCards();
+                window.renderClientNewsCards();
+                window.closePublishNewsModal();
+                showToast(existing ? 'تم تعديل الخبر نفسه ومزامنته سحابياً ✓' : 'تم نشر الخبر ومزامنته سحابياً ✓');
+            } catch (error) {
+                showToast(error?.message || 'تعذّر حفظ الخبر. حاول مرة أخرى.', 'error');
+            } finally {
+                if (saveButton) {
+                    saveButton.disabled = false;
+                    saveButton.textContent = editId ? 'حفظ تعديلات الخبر ✓' : 'نشر النشاط فوراً ✓';
+                }
+            }
+        };
+
+        function renderAdminNewsCards() {
+            const container = document.getElementById('adminNewsListContainer');
+            if (!container) return;
+            const news = getLocal(KEY_NEWS, []);
+            if (!news.length) {
+                container.innerHTML = '<div class="col-span-full py-8 text-center text-xs text-brandGray-400 font-cairo">لا توجد أخبار ميدانية محفوظة حالياً.</div>';
+                return;
+            }
+            container.innerHTML = news.map(n => {
+                const jsId = escapeHtml(JSON.stringify(String(n.id ?? '')));
+                const images = n.images ?? n.photos ?? [];
+                const imageCount = Array.isArray(images) ? images.length : (images ? 1 : 0);
+                const hasVideo = Boolean(n.videoUrl || n.video);
+                const schoolLink = safeNewsExternalUrl(n.schoolLink || n.schoolPostUrl || n.schoolUrl || '');
+                return `
+                    <article class="wy-news-admin-item p-4 bg-white rounded-2xl border border-brandGray-200 space-y-3">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="min-w-0">
+                                <span class="text-[10px] text-crimson font-cairo font-bold">خبر ميداني</span>
+                                <h5 class="font-bold text-slate-900 font-cairo mt-1">${escapeHtml(n.title)}</h5>
+                                <p class="text-[10px] text-brandGray-500 font-num mt-1">${escapeHtml(n.date || '')}</p>
+                            </div>
+                            <span class="px-2 py-1 bg-rose-50 text-crimson rounded-lg text-[10px] font-bold font-cairo shrink-0">${escapeHtml(n.category || 'ميداني')}</span>
+                        </div>
+                        <p class="text-xs text-brandGray-600 font-plex leading-6 line-clamp-3">${escapeHtml(n.desc || n.content || '')}</p>
+                        <div class="flex flex-wrap gap-2 text-[10px] text-slate-500">
+                            <span><i class="fa-regular fa-images ml-1"></i>${imageCount} صور</span>
+                            ${hasVideo ? '<span><i class="fa-solid fa-video ml-1"></i>فيديو</span>' : ''}
+                            ${schoolLink ? '<span><i class="fa-solid fa-link ml-1"></i>مرتبط بمنشور مدرسة</span>' : ''}
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
+                            <button type="button" onclick="openPublishNewsModal(${jsId})" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-700 text-white text-xs font-cairo font-bold"><i class="fa-solid fa-pen-to-square ml-1"></i>تعديل الخبر</button>
+                            ${schoolLink ? `<a href="${escapeHtml(schoolLink)}" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-cairo font-bold"><i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>منشور المدرسة</a>` : ''}
+                            <button type="button" onclick="deleteNewsItem(${jsId})" class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-crimson text-xs font-cairo font-bold mr-auto">حذف الخبر</button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
         window.renderClientNewsCards = function() {  
             const container = document.getElementById('newsGridContainer');  
             if (!container) return;  
@@ -6673,7 +6823,9 @@
                 return;  
             }  
             container.innerHTML = news.map(n => {
-                const ytId = extractYouTubeId(n.video);
+                const ytId = extractYouTubeId(n.videoUrl || n.video);
+                const jsId = escapeHtml(JSON.stringify(String(n.id ?? '')));
+                const schoolLink = safeNewsExternalUrl(n.schoolLink || n.schoolPostUrl || n.schoolUrl || '');
                 return `  
                 <div class="bg-white rounded-2xl border border-brandGray-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between group">  
                     <div class="relative w-full aspect-video bg-slate-900 overflow-hidden">  
@@ -6693,18 +6845,26 @@
                             <h4 class="font-cairo font-black text-slate-800 text-sm mt-0.5 leading-snug">${escapeHtml(n.title)}</h4>  
                             <p class="text-xs text-brandGray-600 font-plex mt-1 leading-relaxed">${escapeHtml(n.desc)}</p>  
                         </div>  
+                        ${schoolLink ? `<a href="${escapeHtml(schoolLink)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-crimson text-xs font-cairo font-bold hover:underline"><i class="fa-solid fa-arrow-up-right-from-square"></i> عرض منشور المدرسة</a>` : ''}
                         <div class="pt-2 border-t border-brandGray-100 flex items-center justify-between text-[11px] text-brandGray-400">  
-                            <span>كلية طب فلسطين</span>  
-                            <button type="button" onclick="deleteNewsItem('${n.id}')" class="owner-only-btn ${window.currentUserRole === 'owner' ? '' : 'hidden'} text-crimson font-bold font-cairo text-xs">حذف</button>  
+                            <span>وعي يداوي • كلية طب فلسطين</span>  
+                            <div class="flex gap-2">  
+                                <button type="button" onclick="openPublishNewsModal(${jsId})" class="owner-only-btn ${['owner', 'super_admin'].includes(window.currentUserRole) ? '' : 'hidden'} text-slate-700 font-bold font-cairo text-xs">تعديل</button>  
+                                <button type="button" onclick="deleteNewsItem(${jsId})" class="owner-only-btn ${window.currentUserRole === 'owner' ? '' : 'hidden'} text-crimson font-bold font-cairo text-xs">حذف</button>  
+                            </div>  
                         </div>  
                     </div>  
                 </div>  
             `}).join('');  
         };  
   
-        window.deleteNewsItem = async function(id) {  
+        window.deleteNewsItem = async function(id) {
+            if (!['owner', 'super_admin'].includes(window.currentUserRole)) {
+                showToast('\u0647\u0630\u0627 \u0627\u0644\u0625\u062c\u0631\u0627\u0621 \u0644\u0644\u0645\u0634\u0631\u0641\u064a\u0646 \u0627\u0644\u0645\u0639\u062a\u0645\u062f\u064a\u0646 \u0641\u0642\u0637.', 'error');
+                return;
+            }
             if (!confirm('تأكيد حذف هذا الخبر الميداني نهائياً؟')) return;  
-            let news = getLocal(KEY_NEWS, []).filter(n => n.id !== id);  
+            let news = getLocal(KEY_NEWS, []).filter(n => String(n.id) !== String(id));  
             const ok = await saveLocalConfirmed(KEY_NEWS, news);  
             if (ok) {  
                 renderAdminNewsCards();  
@@ -7375,7 +7535,7 @@
                 if (!container) return;
                 const newsList = getLocal(KEY_NEWS, []);
                 if (!Array.isArray(newsList) || newsList.length === 0) {
-                    container.innerHTML = '<div class="col-span-full py-10 text-center text-xs text-brandGray-400 font-cairo">لا توجد تغطيات أو أخبار ميدانية منشورة حالياً.</div>';
+                    container.innerHTML = '<div class="col-span-full py-10 text-center text-xs text-brandGray-400 font-cairo">لا توجد أخبار أو تغطيات ميدانية منشورة حالياً.</div>';
                     return;
                 }
 
@@ -7389,9 +7549,8 @@
                     let photos = extractNewsPhotos(item);
                     const videoUrl = String(item.videoUrl || item.video || '').trim();
                     const ytId = videoUrl && typeof extractYouTubeId === 'function' ? extractYouTubeId(videoUrl) : null;
+                    const schoolLink = safeNewsExternalUrl(item.schoolLink || item.schoolPostUrl || item.schoolUrl || '');
 
-                    // The original publisher adds a stock cover when a post contains video but no photos.
-                    // Treat that one stock cover as a poster, so the video remains the primary media.
                     if (videoUrl && photos.length === 1 && photos[0] === placeholderImage) photos = [];
                     const photoUrls = photos.map(safeNewsMediaUrl).filter(Boolean);
                     newsPhotoListsById.set(itemId, photoUrls);
@@ -7405,52 +7564,66 @@
 
                     if (photoUrls.length) {
                         mediaHtml = `
-                            <div class="relative aspect-[16/10] bg-slate-900 overflow-hidden group/news-slider">
-                                <img id="news-card-img-${domToken}" src="${escapeHtml(photoUrls[currentIndex])}" alt="${escapeHtml(item.title || 'صورة النشاط الميداني')}" loading="lazy" onclick="openNewsGalleryLightbox(${jsId}, ${currentIndex})" decoding="async" fetchpriority="low" draggable="false" class="w-full h-full object-cover cursor-zoom-in transition-opacity duration-150">
+                            <div class="wy-news-media relative aspect-[16/10] bg-slate-900 overflow-hidden group/news-slider">
+                                <img id="news-card-img-${domToken}" src="${escapeHtml(photoUrls[currentIndex])}" alt="${escapeHtml(item.title || 'صورة الخبر الميداني')}" loading="lazy" onclick="openNewsGalleryLightbox(${jsId}, ${currentIndex})" decoding="async" fetchpriority="low" draggable="false" class="w-full h-full object-cover cursor-zoom-in transition-opacity duration-150">
                                 ${multiplePhotos ? `
                                     <button type="button" aria-label="الصورة السابقة" onclick="stepNewsCardPhoto(${jsId}, -1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/75 hover:bg-crimson text-white flex items-center justify-center text-sm shadow-md transition z-20"><i class="fa-solid fa-chevron-right"></i></button>
                                     <button type="button" aria-label="الصورة التالية" onclick="stepNewsCardPhoto(${jsId}, 1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/75 hover:bg-crimson text-white flex items-center justify-center text-sm shadow-md transition z-20"><i class="fa-solid fa-chevron-left"></i></button>
-                                    <span id="news-card-counter-${domToken}" class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-black/80 text-white font-num text-[11px] font-bold backdrop-blur-xs z-20">${currentIndex + 1} / ${photoUrls.length} 📷</span>
+                                    <span id="news-card-counter-${domToken}" class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-black/80 text-white font-num text-[11px] font-bold backdrop-blur-xs z-20">${currentIndex + 1} / ${photoUrls.length} صور</span>
                                 ` : ''}
-                                <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-crimson text-white text-[10px] font-bold font-cairo shadow-xs z-10">${escapeHtml(item.category || 'نزول ميداني')}</span>
+                                <span class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-crimson text-white text-[10px] font-bold font-cairo shadow-xs z-10">${escapeHtml(item.category || 'نشاط ميداني')}</span>
                             </div>`;
                     } else if (videoUrl && ytId) {
-                        mediaHtml = `<div class="relative aspect-[16/10] bg-slate-900"><iframe title="فيديو ${escapeHtml(item.title || 'التغطية الميدانية')}" class="w-full h-full border-0" src="https://www.youtube.com/embed/${escapeHtml(ytId)}" allowfullscreen loading="lazy"></iframe></div>`;
+                        mediaHtml = `<div class="wy-news-media relative aspect-[16/10] bg-slate-900"><iframe title="فيديو ${escapeHtml(item.title || 'الخبر الميداني')}" class="w-full h-full border-0" src="https://www.youtube.com/embed/${escapeHtml(ytId)}" allowfullscreen loading="lazy"></iframe></div>`;
                     } else if (videoUrl) {
                         const safeVideoUrl = safeNewsMediaUrl(videoUrl);
                         mediaHtml = safeVideoUrl
-                            ? `<div class="relative aspect-[16/10] bg-slate-900"><video src="${escapeHtml(safeVideoUrl)}" controls playsinline preload="metadata" class="w-full h-full object-contain"></video></div>`
-                            : '<div class="aspect-[16/10] bg-slate-100 flex items-center justify-center text-xs text-slate-500 font-cairo">تعذر عرض رابط الفيديو</div>';
+                            ? `<div class="wy-news-media relative aspect-[16/10] bg-slate-900"><video src="${escapeHtml(safeVideoUrl)}" controls playsinline preload="metadata" class="w-full h-full object-contain"></video></div>`
+                            : '<div class="wy-news-media aspect-[16/10] bg-slate-100 flex items-center justify-center text-xs text-slate-500 font-cairo">تعذر عرض رابط الفيديو</div>';
                     } else {
                         const fallback = safeNewsMediaUrl(placeholderImage);
-                        mediaHtml = `<div class="relative aspect-[16/10] bg-slate-100"><img src="${escapeHtml(fallback)}" alt="صورة توضيحية" loading="lazy" class="w-full h-full object-cover"></div>`;
+                        mediaHtml = `<div class="wy-news-media relative aspect-[16/10] bg-slate-100"><img src="${escapeHtml(fallback)}" alt="صورة توضيحية للخبر" loading="lazy" class="w-full h-full object-cover"></div>`;
                     }
 
                     const extraVideoBlock = photoUrls.length && videoUrl ? `
-                        <div class="pt-2">
+                        <div class="wy-news-extra-video">
                             ${ytId
-                                ? `<a href="${escapeHtml(safeNewsMediaUrl(videoUrl))}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-bold font-cairo text-crimson hover:underline"><i class="fa-brands fa-youtube"></i> مشاهدة فيديو التغطية</a>`
+                                ? `<a href="${escapeHtml(safeNewsMediaUrl(videoUrl))}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-bold font-cairo text-crimson hover:underline"><i class="fa-brands fa-youtube"></i> مشاهدة فيديو الخبر</a>`
                                 : (safeNewsMediaUrl(videoUrl) ? `<video src="${escapeHtml(safeNewsMediaUrl(videoUrl))}" controls playsinline preload="metadata" class="w-full rounded-xl max-h-48 bg-black mt-1"></video>` : '')}
+                        </div>` : '';
+                    const schoolLinkBlock = schoolLink ? `
+                        <a href="${escapeHtml(schoolLink)}" target="_blank" rel="noopener noreferrer" class="wy-news-school-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            <span>عرض منشور المدرسة</span>
+                        </a>` : '';
+                    const adminActions = ['owner', 'super_admin'].includes(window.currentUserRole) ? `
+                        <div class="wy-news-admin-actions">
+                            <button type="button" onclick="openPublishNewsModal(${jsId})"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> تعديل</button>
+                            <button type="button" onclick="deleteNewsItem(${jsId})" class="wy-news-delete"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> حذف</button>
                         </div>` : '';
 
                     return `
-                        <article class="bg-white rounded-2xl border border-brandGray-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-200 flex flex-col justify-between">
-                            <div>
-                                ${mediaHtml}
-                                <div class="p-4 space-y-2">
-                                    <div class="flex items-center justify-between text-[11px] text-brandGray-400 font-num">
-                                        <span><i class="fa-regular fa-calendar ml-1 text-crimson"></i>${escapeHtml(item.date || '')}</span>
-                                        ${multiplePhotos ? `<button type="button" onclick="openNewsGalleryLightbox(${jsId}, ${currentIndex})" class="text-crimson font-cairo font-bold hover:underline">تقليب الصور (${photoUrls.length})</button>` : ''}
-                                    </div>
-                                    <h4 class="font-cairo font-black text-slate-900 text-sm sm:text-base leading-snug">${escapeHtml(item.title || '')}</h4>
-                                    <p class="text-xs text-brandGray-600 font-plex leading-relaxed whitespace-pre-line">${escapeHtml(item.desc || item.content || '')}</p>
-                                    ${extraVideoBlock}
+                        <article class="wy-news-card ${index === 0 ? 'wy-news-featured' : ''}" data-news-id="${escapeHtml(itemId)}">
+                            ${mediaHtml}
+                            <div class="wy-news-content">
+                                <div class="wy-news-kicker">
+                                    <span>تغطية ميدانية</span>
+                                    <span class="wy-news-kicker-dot" aria-hidden="true"></span>
+                                    <span>وعي يداوي</span>
                                 </div>
+                                <div class="wy-news-meta">
+                                    <span><i class="fa-regular fa-calendar-days" aria-hidden="true"></i>${escapeHtml(item.date || '')}</span>
+                                    ${multiplePhotos ? `<button type="button" onclick="openNewsGalleryLightbox(${jsId}, ${currentIndex})">عرض الصور (${photoUrls.length})</button>` : ''}
+                                </div>
+                                <h4 class="wy-news-title">${escapeHtml(item.title || '')}</h4>
+                                <p class="wy-news-description">${escapeHtml(item.desc || item.content || '')}</p>
+                                ${extraVideoBlock}
+                                ${schoolLinkBlock}
                             </div>
-                            <div class="px-4 pb-3 pt-2 border-t border-brandGray-100 flex items-center justify-between text-[11px] text-brandGray-400">
-                                <span>كلية طب فلسطين</span>
-                                <button type="button" onclick="deleteNewsItem(${jsId})" class="owner-only-btn ${window.currentUserRole === 'owner' ? '' : 'hidden'} text-crimson font-bold font-cairo text-xs">حذف</button>
-                            </div>
+                            <footer class="wy-news-footer">
+                                <span>فريق وعي يداوي • كلية طب فلسطين</span>
+                                ${adminActions}
+                            </footer>
                         </article>`;
                 }).join('');
             };
@@ -8251,7 +8424,84 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=18.0"></script>
+    <script src="./waei-live-effects.js?v=19.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
+
+<script>
+/* WAEI V19: make difficult health terms easier for readers aged 13-16. */
+(() => {
+    'use strict';
+    const replacements = [
+        [/الارتهان\s+للنيكوتين/gu, 'الاعتماد الشديد على النيكوتين'],
+        [/ارتهان\s+النيكوتين/gu, 'الاعتماد على النيكوتين'],
+        [/الارتهان/gu, 'الاعتماد الشديد'],
+        [/ارتهان/gu, 'اعتماد شديد'],
+        [/التعزيز\s+الإيجابي/gu, 'مكافأة تشجّع على تكرار السلوك'],
+        [/التعزيز\s+السلبي/gu, 'تخفيف شعور مزعج بطريقة قد تشجّع على تكرار السلوك'],
+        [/التعزيز/gu, 'التشجيع'],
+        [/الانتكاس/gu, 'العودة إلى التدخين بعد التوقف'],
+        [/الاعتمادية/gu, 'الاعتماد'],
+        [/التأقلم\s+العصبي/gu, 'تأقلم الدماغ'],
+        [/التكيف\s+العصبي/gu, 'تأقلم الدماغ'],
+        [/المحفزات/gu, 'الأشياء التي تذكّرك بالتدخين'],
+        [/المثيرات/gu, 'الأشياء التي قد تدفعك للتدخين'],
+        [/السلوك\s+القهري/gu, 'سلوك يصعب التحكم فيه'],
+        [/التبعية\s+النفسية/gu, 'الاعتماد النفسي'],
+        [/الاستبطان/gu, 'مراجعة النفس'],
+        [/المتلازمة/gu, 'مجموعة الأعراض'],
+        [/الانسحاب\s+النيكوتيني/gu, 'أعراض التوقف عن النيكوتين'],
+        [/الأعراض\s+الانسحابية/gu, 'الأعراض التي قد تظهر بعد التوقف'],
+        [/التضيق\s+الوعائي/gu, 'ضيق الأوعية الدموية'],
+        [/الانقباض\s+الوعائي/gu, 'ضيق الأوعية الدموية'],
+        [/القصبات\s+الهوائية/gu, 'الشعب الهوائية'],
+        [/القصبات/gu, 'الشعب الهوائية'],
+        [/الفسيولوجية/gu, 'الجسدية'],
+        [/الفسيولوجي/gu, 'الجسدي'],
+        [/السيكولوجية/gu, 'النفسية'],
+        [/السيكولوجي/gu, 'النفسي'],
+        [/المواد\s+المسرطنة/gu, 'مواد قد تسبب السرطان'],
+        [/الانسداد\s+الرئوي\s+المزمن/gu, 'مرض رئوي مزمن يجعل التنفس صعباً']
+    ];
+
+    const excluded = 'script,style,textarea,input,select,option,code,pre,noscript,[contenteditable="true"]';
+
+    function simplifyTextNode(node) {
+        if (!node || node.nodeType !== Node.TEXT_NODE || !node.nodeValue) return;
+        const parent = node.parentElement;
+        if (!parent || parent.closest(excluded)) return;
+        let next = node.nodeValue;
+        for (const [pattern, replacement] of replacements) next = next.replace(pattern, replacement);
+        if (next !== node.nodeValue) node.nodeValue = next;
+    }
+
+    function simplifyTree(root) {
+        if (!root) return;
+        if (root.nodeType === Node.TEXT_NODE) {
+            simplifyTextNode(root);
+            return;
+        }
+        if (root.nodeType !== Node.ELEMENT_NODE && root !== document) return;
+        if (root.nodeType === Node.ELEMENT_NODE && root.matches(excluded)) return;
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) simplifyTextNode(node);
+    }
+
+    function start() {
+        simplifyTree(document.body);
+        const observer = new MutationObserver(records => {
+            for (const record of records) {
+                if (record.type === 'characterData') simplifyTextNode(record.target);
+                for (const node of record.addedNodes || []) simplifyTree(node);
+            }
+        });
+        observer.observe(document.body, { subtree: true, childList: true, characterData: true });
+    }
+
+    if (document.body) start();
+    else document.addEventListener('DOMContentLoaded', start, { once: true });
+})();
+</script>
+
 </body>
 </html>
