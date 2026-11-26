@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html lang="ar" dir="rtl" class="scroll-smooth" data-wy17-freshness="pending">  
+<html lang="ar" dir="rtl" class="scroll-smooth" data-wy17-freshness="pending" data-wy20-painted>  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
@@ -7,29 +7,16 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="20.0">
-    <!-- V20: confirm cloud content before first paint; keep the last verified view during background refresh. -->
+    <meta name="waei-release" content="21.0">
+    <!-- V21: HTML is visible from first paint; no cloud request can hide the page. -->
     <style id="wy17-first-paint">
-      html:not([data-wy20-painted]) body header > div,
-      html:not([data-wy20-painted]) body nav > div {visibility:hidden!important}
-      html:not([data-wy20-painted]) body main > :not(#wy17-retry),
-      html:not([data-wy20-painted]) body footer,
-      html:not([data-wy20-painted]) #floatingPoweredByLink,
-      html:not([data-wy20-painted]) #floatingWhatsappBtn,
-      html:not([data-wy20-painted]) #mobileDrawer,
-      html:not([data-wy20-painted]) #mobileDrawerBackdrop {display:none!important}
-      #wy17-retry{display:none;padding:10px 12px;text-align:center;font:500 12px system-ui,sans-serif;color:#475569;background:#faf8f7;border:1px solid #e7e1df;border-radius:12px;line-height:1.7}
-      html:not([data-wy20-painted]) #wy17-retry{display:block;min-height:130px;padding:40px 16px;max-width:560px;margin:24px auto}
-      html[data-wy20-painted][data-wy17-freshness="refreshing"] #wy17-retry,
-      html[data-wy20-painted][data-wy17-freshness="failed"] #wy17-retry{display:block}
-      html[data-wy17-freshness="failed"] #wy17-retry{border-color:#e7c6bf;color:#8b2525}
-      #wy17-retry button{margin-inline-start:8px;padding:5px 10px;border-radius:8px;border:1px solid #d8cdca;color:#991b1b;background:white}
+      .hidden{display:none!important}
+      #wy17-retry{display:none;text-align:center;font:400 11px system-ui,sans-serif;color:#64748b;line-height:1.7;padding:8px 12px 0}
+      html[data-wy17-freshness="failed"] #wy17-retry{display:block}
+      #wy17-retry button{margin-inline-start:6px;text-decoration:underline;color:#991b1b;background:none;border:0;padding:0;cursor:pointer}
       #wy17-retry button[hidden]{display:none!important}
-      @media (prefers-reduced-motion:no-preference){html:not([data-wy20-painted])[data-wy17-freshness="pending"] #wy17-retry::before{content:"";display:block;width:18px;height:18px;border:2px solid #eadbd7;border-top-color:#991b1b;border-radius:50%;margin:0 auto 12px;animation:wy20-spin .9s linear infinite}@keyframes wy20-spin{to{transform:rotate(360deg)}}}
-      html[data-wy20-painted] #wy17-retry{position:fixed;bottom:76px;inset-inline:12px;max-width:560px;margin:0 auto;z-index:60;box-shadow:0 4px 20px #0f172a12}
-      html[data-wy20-painted][data-wy17-freshness="refreshing"] #wy17-retry{pointer-events:none}
       img[data-wy17-media-pending]{visibility:hidden!important}
-    </style>  
+    </style>
     <title>منصة وَعـي يُـداوي | كلية طب فلسطين - جامعة الأزهر غزة</title>  
       
     <!-- Dynamic Favicon Link -->  
@@ -50,12 +37,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
       
     <!-- Supabase JS Client CDN -->  
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
+    <script id="wy21-supabase-sdk" async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
   
     <!-- Tailwind CSS CDN -->  
     <script src="https://cdn.tailwindcss.com"></script>  
     <script>  
-        tailwind.config = {  
+        if(window.tailwind)tailwind.config = {  
             theme: {  
                 extend: {  
                     colors: {  
@@ -524,7 +511,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=20.0">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=21.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -640,7 +627,7 @@
   
     <!-- MAIN APP WRAPPER -->  
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 w-full flex-1 space-y-6">  
-        <aside id="wy17-retry" role="status" aria-live="polite"><span id="wy20-status-text">جارٍ جلب أحدث محتوى من السحابة…</span> <button id="wy20-retry-button" type="button" hidden onclick="window.wy17RetryContent()">إعادة المحاولة</button></aside>
+
   
         <!-- ==================== SCREEN 1: HOME ==================== -->  
         <div id="screen-home" class="space-y-6">  
@@ -1360,6 +1347,7 @@
 <span class="text-xs text-slate-600 font-bold">© 2026 Palestine Faculty of Medicine. All Rights Reserved.</span>  
             </div>  
         </div>  
+        <aside id="wy17-retry" role="status" aria-live="polite"><span id="wy20-status-text"></span> <button id="wy20-retry-button" type="button" hidden onclick="window.wy17RetryContent()">تحديث</button></aside>
     </footer>  
   
     <!-- FLOATING POWERED-BY CREDIT: compact, editable from owner CMS -->
@@ -2466,19 +2454,20 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-200">  
                         <div><h3 class="text-base font-black text-navy font-cairo flex items-center gap-2"><i class="fa-solid fa-chart-line text-emerald-600"></i> مرصد نشاط الزوار وإحصائيات الدخول الحية</h3></div>  
                         <div class="flex items-center gap-2">  
-                            <button type="button" onclick="renderAdminVisitorAnalytics()" class="px-3 py-1.5 bg-brandGray-100 hover:bg-brandGray-200 text-navy rounded-xl text-xs font-bold font-cairo transition"><i class="fa-solid fa-rotate ml-1"></i> تحديث السجل</button>  
+                            <button type="button" onclick="window.wy21RefreshVisitorPanel()" class="px-3 py-1.5 bg-brandGray-100 hover:bg-brandGray-200 text-navy rounded-xl text-xs font-bold font-cairo transition"><i class="fa-solid fa-rotate ml-1"></i> تحديث السجل</button>  
                             <button type="button" onclick="clearVisitorLogsHistory()" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-crimson rounded-xl text-xs font-bold font-cairo border border-red-200 transition"><i class="fa-solid fa-trash-can ml-1"></i> تصفير السجل</button>  
                         </div>  
                     </div>  
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">  
-                        <div class="p-3.5 bg-brandGray-50 rounded-2xl border border-brandGray-200"><span class="text-[11px] text-brandGray-500 font-cairo font-bold">إجمالي الزيارات</span><h4 class="text-2xl font-black text-slate-800 font-num mt-0.5" id="visStatTotalViews">0</h4></div>  
+                        <div class="p-3.5 bg-brandGray-50 rounded-2xl border border-brandGray-200"><span class="text-[11px] text-brandGray-500 font-cairo font-bold">المتصفحات المرصودة</span><h4 class="text-2xl font-black text-slate-800 font-num mt-0.5" id="visStatTotalViews">0</h4></div>  
                         <div class="p-3.5 bg-brandGray-50 rounded-2xl border border-brandGray-200"><span class="text-[11px] text-brandGray-500 font-cairo font-bold">الهواتف المحمولة</span><h4 class="text-2xl font-black text-crimson font-num mt-0.5" id="visStatMobileCount">0</h4></div>  
                         <div class="p-3.5 bg-brandGray-50 rounded-2xl border border-brandGray-200"><span class="text-[11px] text-brandGray-500 font-cairo font-bold">الحواسيب والأجهزة اللوحية</span><h4 class="text-2xl font-black text-slate-800 font-num mt-0.5" id="visStatDesktopCount">0</h4></div>  
-                        <div class="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200"><span class="text-[11px] text-emerald-700 font-cairo font-bold">حالة الرصد السحابي</span><h4 class="text-sm font-black text-emerald-600 font-cairo mt-1.5">نشط ومباشر ✓</h4></div>  
+                        <div class="p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200"><span class="text-[11px] text-emerald-700 font-cairo font-bold">مرات الدخول المسجلة</span><h4 id="visStatEntryCount" class="text-2xl font-black text-emerald-600 font-num mt-0.5">0</h4></div>  
                     </div>  
+                    <p class="text-[11px] text-slate-500 font-plex">لكل متصفح معرّف عشوائي مستقل؛ السجل لا يستخدم رقم الجهاز الحقيقي. السجلات السابقة محفوظة ومنفصلة، ولا يمكن ربطها تلقائياً بالمتصفحات الجديدة.</p>
                     <div class="overflow-x-auto border border-brandGray-200 rounded-2xl">  
                         <table class="w-full text-xs text-right divide-y divide-brandGray-200">  
-                            <thead class="bg-brandGray-50 text-brandGray-600 font-cairo font-bold"><tr><th class="p-3">الوقت</th><th class="p-3">الجهاز</th><th class="p-3">الحدث</th><th class="p-3">المعرف</th></tr></thead>  
+                            <thead class="bg-brandGray-50 text-brandGray-600 font-cairo font-bold"><tr><th class="p-3">الوقت</th><th class="p-3">الجهاز والمتصفح</th><th class="p-3">العمليات بالترتيب</th><th class="p-3">معرّف المتصفح</th></tr></thead>  
                             <tbody id="adminVisitorLogsTableBody" class="divide-y divide-brandGray-100 font-plex"></tbody>  
                         </table>  
                     </div>  
@@ -2571,6 +2560,8 @@
         const SUPABASE_STORAGE_BUCKET = 'campaign-assets';
 
         let supabaseClient = null;
+        function wy21InitClient(){
+        if(supabaseClient)return supabaseClient;
         try {
             if (window.supabase && SUPABASE_URL) {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -2582,6 +2573,9 @@
         } catch(e) {
             console.warn("Supabase init notice:", e);
         }
+        return supabaseClient;
+        }
+        wy21InitClient();
 
         const OWNER_EMAILS = new Set(['marah.h.musallam21@gmail.com', 'dr.khalil.lectures@gmail.com']);
         const SUPER_ADMIN_EMAILS = new Set(['pmsf.education@gmail.com']);
@@ -2596,19 +2590,21 @@
         let wy20AuthUIInitialized=false;
         function applySupabaseUserRole(user) {
             const role = user && (user.email_confirmed_at || user.confirmed_at) ? roleForVerifiedEmail(user.email) : null;
-            const roleChanged=window.currentUserRole!==role;
+            const previousRole=window.currentUserRole;
+            const roleChanged=previousRole!==role;
             const changed=roleChanged||window.currentSupabaseUser?.id!==(role?user?.id:undefined);
             window.currentSupabaseUser = role ? user : null;
             window.currentUserRole = role;
             if(changed||!wy20AuthUIInitialized){wy20AuthUIInitialized=true;applyActiveAdminUI();}
             // An authentication transition must not keep a snapshot from another role visible.
-            if(roleChanged){wy17Invalidate(true);wy15ScheduleRefresh(0);}
+            if(roleChanged){wy17Invalidate(true,previousRole);wy15ScheduleRefresh(0);}
             return role;
         }
 
         async function initializeSupabaseAuth() {
             if (!supabaseClient) return null;
             supabaseClient.auth.onAuthStateChange((_event, session) => {
+                wy21GuestCacheAllowed=!session;
                 applySupabaseUserRole(session?.user || null);
             });
             const { data, error } = await supabaseClient.auth.getSession();
@@ -2618,6 +2614,7 @@
                 return null;
             }
             applySupabaseUserRole(data?.session?.user || null);
+            wy21GuestCacheAllowed=!data?.session;wy21SaveCache();
             return data?.session || null;
         }
 
@@ -2956,26 +2953,45 @@
         let wy15VerifiedRole;
         let wy16RetryDelay=1500;
         let wy17ReadGeneration=0,wy17AnalyticsBusy=false;
-        let wy20LastSuccess=0,wy20InitialRead=null,wy20Batching=false;
+        let wy20LastSuccess=0,wy20Batching=false;
         const wy17RemovedListKeys=new Set();
+        const wy21HomeKeys=new Set([KEY_PUBLIC_FAQ,KEY_FAQ_SETTINGS,KEY_AWARENESS_VIDEOS,KEY_STATS,KEY_SHORT_TERM,KEY_FAVICON_LOGO,KEY_FOOTER_WHATSAPP,KEY_MYTH_DATA,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS,KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,'wa3y_v8_controls_v1','wa3y_v14_content_v1']);
+        const wy21CacheKeys=new Set([KEY_PUBLIC_FAQ,KEY_FAQ_SETTINGS,KEY_AWARENESS_VIDEOS,KEY_STATS,KEY_SHORT_TERM,KEY_FAVICON_LOGO,KEY_FOOTER_WHATSAPP,KEY_MYTH_DATA,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS,KEY_UNIVERSAL_TEXTS]);
+        const wy21CacheKey='waei_public_home_cache_v21';
+        let wy21GuestCacheAllowed=false,wy21CacheTime=0,wy21VisitorAdminRows=[];
+        function wy21HydrateCache(){
+            try{const c=JSON.parse(localStorage.getItem(wy21CacheKey)||'null');if(!c||!Number.isFinite(c.at)||Date.now()-c.at>86400000||c.at>Date.now()+60000||!Array.isArray(c.rows))return;
+                for(const [key,raw] of c.rows){if(wy21CacheKeys.has(key)&&typeof raw==='string'&&!wy15CloudContent.has(key)){JSON.parse(raw);wy15CloudContent.set(key,raw);}}
+                wy21CacheTime=c.at;
+            }catch(e){}
+        }
+        function wy21SaveCache(){
+            if(!wy21GuestCacheAllowed||window.currentUserRole||wy15VerifiedRole!==null||!wy15CloudReady)return;
+            try{const rows=[...wy15CloudContent].filter(([k])=>wy21CacheKeys.has(k));const raw=JSON.stringify({at:Date.now(),rows});if(raw.length<=1500000){localStorage.setItem(wy21CacheKey,raw);wy21CacheTime=Date.now();}else localStorage.removeItem(wy21CacheKey);}catch(e){}
+        }
         function wy17Freshness(state){
             const root=document.documentElement;
-            if(state==='ready'){root.setAttribute('data-wy20-painted','');wy20LastSuccess=Date.now();}
-            const painted=root.hasAttribute('data-wy20-painted');
-            if(state==='pending'&&painted)state='refreshing';
+            root.setAttribute('data-wy20-painted','');
+            if(state==='ready')wy20LastSuccess=Date.now();
+            if(state==='pending'&&wy20LastSuccess)state='refreshing';
             root.dataset.wy17Freshness=state;
             const text=document.getElementById('wy20-status-text'),retry=document.getElementById('wy20-retry-button');
-            const message=state==='failed'?(painted?'تعذر التحقق من التحديث. تُعرض آخر نسخة مؤكدة خلال هذه الزيارة.':'تعذر جلب أحدث محتوى. يرجى إعادة المحاولة.'):
-                state==='refreshing'?'جارٍ التحقق من أحدث المعلومات…':'جارٍ جلب أحدث محتوى من السحابة…';
-            if(text&&state!=='ready'&&text.textContent!==message)text.textContent=message;
+            if(text&&state==='failed')text.textContent=wy20LastSuccess||wy21CacheTime?'تعذر التحديث الآن؛ تظهر آخر معلومات متاحة.':'تعذر الاتصال؛ تظهر المعلومات الأساسية المتاحة.';
             if(retry)retry.hidden=state!=='failed';
         }
-        function wy17Invalidate(hard=false){
+        function wy17Invalidate(hard=false,previousRole=null){
             wy17ReadGeneration++;
-            if(hard)document.documentElement.removeAttribute('data-wy20-painted');
+            if(hard){
+                const wasAdmin=Boolean(previousRole||wy15VerifiedRole);
+                wy15CloudReady=false;wy15CloudVersions.clear();wy15VerifiedRole=undefined;
+                if(wasAdmin&&!window.currentUserRole){
+                    wy15CloudContent.clear();wy17RemovedListKeys.clear();wy21VisitorAdminRows=[];wy20LastSuccess=0;wy21HydrateCache();
+                    try{wy21ResetGuestView();}catch(e){console.warn('Guest view reset:',e);}
+                }
+            }
             wy17Freshness('pending');
         }
-        window.wy17RetryContent=()=>{if(!supabaseClient){location.reload();return;}wy17Invalidate();wy15ScheduleRefresh(0);};
+        window.wy17RetryContent=()=>{wy17Invalidate();if(supabaseClient)wy15ScheduleRefresh(0);else wy21RetrySDK();};
         // A changed image must never briefly keep displaying the previous bitmap while the new URL loads.
         function wy17SetImageSource(img,src){
             if(!img)return;
@@ -2995,13 +3011,14 @@
                 if(error||!Array.isArray(data)||role!==window.currentUserRole)return;
                 for(const row of data){const key=row.store_key;if(![KEY_VISITOR_LOGS,KEY_AUDIT_LOG].includes(key))continue;
                     const value=parseSupabasePayload(row.payload);if(value===null||value===undefined)continue;const raw=JSON.stringify(value);
-                    if(localStorage.getItem(key)!==raw){wy15Mirror(key,raw);try{dispatchSyncEvent(key,value);}catch(e){console.warn('Analytics repaint failed',e);}}
+                    if(key===KEY_VISITOR_LOGS?JSON.stringify(wy21VisitorAdminRows)!==raw:localStorage.getItem(key)!==raw){wy15Mirror(key,raw);try{dispatchSyncEvent(key,value);}catch(e){console.warn('Analytics repaint failed',e);}}
                 }
             }catch(e){console.warn('Analytics read failed',e);}finally{wy17AnalyticsBusy=false;}
         }
         let wy16NeedsRepaint=false;
         let wy15CloudReady = false, wy15CloudBusy = null, wy15CloudAgain = false, wy15WriteEpoch = 0, wy15Writes = 0, wy15RefreshTimer = 0, wy15RefreshDeadline = 0;
         function wy15Mirror(k, raw) {
+            if(k===KEY_VISITOR_LOGS){wy21VisitorAdminRows=raw===null?[]:JSON.parse(raw);try{localStorage.removeItem(k);}catch(e){}return;}
             const managed=wy15ContentKeys.has(k);
             if(managed){if(raw===null)wy15CloudContent.delete(k);else wy15CloudContent.set(k,raw);}
             try {
@@ -3029,6 +3046,7 @@
         }
 
         function getLocal(k, def) {
+            if(k===KEY_VISITOR_LOGS)return window.currentUserRole?wy21VisitorAdminRows:def;
             try {
                 const item = wy15ContentKeys.has(k) ? (wy15CloudContent.get(k) ?? null) : localStorage.getItem(k);
                 if(item!==null)return wy18NormalizeCopy(k,JSON.parse(item));
@@ -3199,11 +3217,11 @@
             return ok;
         };
         // A single in-flight snapshot; start it before the heavier presentation boot.
-        async function wy20ReadSnapshot(){
+        async function wy21ReadGroup(keys){
             // Fetch the complete set; never interpret a truncated page as deletion.
             const data=[];
             for(let offset=0;;offset+=100){
-                let query=supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').in('store_key',[...wy15ContentKeys]).order('store_key',{ascending:true}).range(offset,offset+99);
+                let query=supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').in('store_key',keys).order('store_key',{ascending:true}).range(offset,offset+99);
                 const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),18000);
                 if(typeof query.abortSignal==='function')query=query.abortSignal(controller.signal);
                 let result;try{result=await query;}finally{clearTimeout(timeout);}
@@ -3216,12 +3234,46 @@
             }
             return data;
         }
-        function wy20StartInitialRead(){
-            if(!supabaseClient||wy20InitialRead)return;
-            const role=window.currentUserRole, generation=wy17ReadGeneration, epoch=wy15WriteEpoch;
-            const result=wy20ReadSnapshot().then(data=>({data}),error=>({error}));
-            wy20InitialRead={role,generation,epoch,result};
+        async function wy20ReadSnapshot(onHome){
+            if(!onHome)return wy21ReadGroup([...wy15ContentKeys]);
+            const home=await wy21ReadGroup([...wy21HomeKeys]);
+            if(home.length)onHome(home);
+            const rest=await wy21ReadGroup([...wy15ContentKeys].filter(k=>!wy21HomeKeys.has(k)));
+            return [...home,...rest];
         }
+        const wy21Overlays=new Set([KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS]);
+        const wy21ScreenFor=new Map([[KEY_VOLUNTEERS,'screen-team-field'],[KEY_VOLUNTEERS_PUBLIC,'screen-team-field'],[KEY_NEWS,'screen-team-field'],[KEY_TEAM_STORIES,'screen-team-field'],[KEY_TEAM_STORIES_SETTINGS,'screen-team-field'],[KEY_ORGANS,'screen-anatomy'],[KEY_TOXINS,'screen-lab'],[KEY_RESEARCH,'screen-research'],[KEY_SCENARIOS,'screen-sayno'],[KEY_WY_V7_CONTENT,'screen-sayno'],[KEY_WY_LITERATURE,'screen-literature'],['wa3y_certificates_v1','screen-community'],['wa3y_reviews_v1','screen-community'],['wa3y_memories_v1','screen-community'],['wa3y_community_settings_v1','screen-community']]);
+        const wy21Groups=new Map([[KEY_VOLUNTEERS,'volunteers'],[KEY_VOLUNTEERS_PUBLIC,'volunteers'],[KEY_WY_V7_CONTENT,'v7'],[KEY_WY_LITERATURE,'v7'],['wa3y_certificates_v1','community'],['wa3y_reviews_v1','community'],['wa3y_memories_v1','community'],['wa3y_community_settings_v1','community']]);
+        const wy21PendingRenders=new Map();let wy21IdleRender=false;
+        function wy21ActiveScreen(){return document.querySelector('main > div[id^="screen-"]:not(.hidden)')?.id||'screen-home';}
+        function wy21ApplyOverlays(){
+            wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();
+            for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(e){console.warn('CMS overlay repaint:',e);}
+        }
+        function wy21Dispatch(key){
+            const before=wy20Batching;wy20Batching=true;
+            try{dispatchSyncEvent(key,getLocal(key,null));}catch(e){console.warn('CMS repaint failed:',key,e);}finally{wy20Batching=before;}
+        }
+        function wy21Idle(fn){if(typeof requestIdleCallback==='function')requestIdleCallback(fn,{timeout:450});else setTimeout(fn,32);}
+        function wy21QueueIdle(){if(wy21IdleRender||!wy21PendingRenders.size)return;wy21IdleRender=true;wy21Idle(()=>{wy21IdleRender=false;const first=wy21PendingRenders.entries().next().value;if(!first)return;wy21PendingRenders.delete(first[0]);wy21Dispatch(first[1]);if(!wy21PendingRenders.size)wy21ApplyOverlays();else wy21QueueIdle();});}
+        function wy21FlushScreen(screen){
+            let changed=wy21RunBootScreen(screen);for(const [group,key] of [...wy21PendingRenders])if(wy21ScreenFor.get(key)===screen||group==='v7'&&['screen-literature','screen-sayno'].includes(screen)){wy21PendingRenders.delete(group);wy21Dispatch(key);changed=true;}
+            if(changed)wy21ApplyOverlays();
+        }
+        function wy21RenderChanged(keys,forceAll=false){
+            const active=wy21ActiveScreen(),seen=new Set();
+            for(const key of keys){if(wy21Overlays.has(key))continue;const group=wy21Groups.get(key)||key;if(seen.has(group))continue;seen.add(group);
+                const screen=wy21ScreenFor.get(key);if(forceAll||window.currentUserRole||!screen||screen===active||group==='v7'&&['screen-literature','screen-sayno'].includes(active)){wy21PendingRenders.delete(group);wy21Dispatch(key);}
+                else wy21PendingRenders.set(group,key);
+            }
+            if(keys.includes('wa3y_community_settings_v1')&&window.currentUserRole)try{window.waeiCommunity?.setupSettingInputs();}catch(e){}
+            wy21ApplyOverlays();wy21QueueIdle();
+        }
+        function wy21ApplyEarlyHome(rows){
+            const keys=[];for(const row of rows){if(!wy21HomeKeys.has(row?.store_key))continue;const value=parseSupabasePayload(row.payload);if(value===null||value===undefined)continue;const raw=JSON.stringify(value);if(wy15CloudContent.get(row.store_key)!==raw){wy15CloudContent.set(row.store_key,raw);keys.push(row.store_key);}}
+            if(keys.length)wy21RenderChanged(keys);
+        }
+        function wy21ResetGuestView(){wy21PendingRenders.clear();wy21RenderChanged([...wy15ContentKeys],true);}
         async function fetchAllFromSupabase() {
             if(wy15CloudBusy){wy15CloudAgain=true;return wy15CloudBusy;}
             if(wy15Writes){wy15ScheduleRefresh(350);return false;}
@@ -3230,11 +3282,8 @@
             const epoch=wy15WriteEpoch, authRole=window.currentUserRole, generation=wy17ReadGeneration;
             wy15CloudBusy=(async()=>{
                 try {
-                    const early=wy20InitialRead;wy20InitialRead=null;
-                    let data;
-                    if(early&&early.role===authRole&&early.generation===generation&&early.epoch===epoch){
-                        const result=await early.result;if(result.error)throw result.error;data=result.data;
-                    }else data=await wy20ReadSnapshot();
+                    const initialGuest=!wy15CloudReady&&!authRole;
+                    const data=await wy20ReadSnapshot(initialGuest?rows=>{if(epoch===wy15WriteEpoch&&authRole===window.currentUserRole&&generation===wy17ReadGeneration)wy21ApplyEarlyHome(rows);}:null);
                     if(epoch!==wy15WriteEpoch||authRole!==window.currentUserRole||generation!==wy17ReadGeneration){wy15CloudAgain=true;return false;}
                     // A wholly empty response on this established site may be an RLS/session error, not a license to show seed data.
                     if(!data.some(row=>wy15ContentKeys.has(row?.store_key)))throw new Error('No confirmed CMS rows');
@@ -3255,26 +3304,10 @@
                     wy15CloudReady=true;wy15VerifiedRole=authRole;
                     const repaint=first||wy16NeedsRepaint||changed.length>0||revisionChanged||roleChanged;
                     wy16NeedsRepaint=false;
-                    if(repaint){wy15UndoInlineText();wy15UndoUniversalTexts();wy15UndoSectionStyles();}
-                    const overlays=new Set([KEY_CUSTOM_IMAGES,KEY_SECTION_STYLES,KEY_UNIVERSAL_TEXTS,KEY_INLINE_TEXT_EDITS,KEY_SECTIONS_VIS,KEY_SUB_ELEMENTS_VIS]);
-                    // Several stores share the same renderer. Read the entire confirmed map first,
-                    // then run each shared renderer once and update the counters once.
-                    const groups=new Map([[KEY_VOLUNTEERS,'volunteers'],[KEY_VOLUNTEERS_PUBLIC,'volunteers'],[KEY_WY_V7_CONTENT,'v7'],[KEY_WY_LITERATURE,'v7'],['wa3y_certificates_v1','community'],['wa3y_reviews_v1','community'],['wa3y_memories_v1','community'],['wa3y_community_settings_v1','community']]);
-                    const rendered=new Set();wy20Batching=true;
-                    try{
-                        for(const [key,value] of changed){
-                            if(overlays.has(key))continue;
-                            const group=groups.get(key)||key;
-                            if(rendered.has(group))continue;rendered.add(group);
-                            try{dispatchSyncEvent(key,value);}catch(err){console.warn('CMS repaint failed:',key,err);}
-                        }
-                        if(changed.some(([key])=>key==='wa3y_community_settings_v1'))try{window.waeiCommunity?.setupSettingInputs();}catch(err){console.warn('Community settings repaint failed:',err);}
-                    }finally{wy20Batching=false;}
+                    // Update the current screen immediately. Hidden screens are rendered in small idle tasks.
+                    if(repaint)wy21RenderChanged(roleChanged&&authRole?[...wy15ContentKeys]:changed.map(([key])=>key),Boolean(window.currentUserRole));
                     if(changed.length||first||roleChanged)try{updateKPICounters();}catch(err){console.warn('Counters repaint failed:',err);}
-                    // Re-apply canonical overlays after dynamic renderers, even if their store did not change.
-                    if(repaint){
-                        for(const fn of [()=>window.applyAllVisibilityStates?.(),restoreCustomImages,applyAllSectionCustomStyles,applyUniversalTexts,applyInlineTextEdits,()=>window.waeiV8?.freeCMS()])try{fn();}catch(err){console.warn('CMS overlay repaint failed:',err);}
-                    }
+                    wy21SaveCache();
                     wy16RetryDelay=1500;
                     wy17Freshness('ready');setSyncBadgeState('ok','تم جلب أحدث نسخة من السحابة ✓');
                     if(window.currentUserRole)void wy17RefreshAnalytics();return true;
@@ -3728,7 +3761,7 @@
         function updateKPICounters() {
             const volCount = getLocal(KEY_VOLUNTEERS, defaultVolunteers).length;
             const newsCount = getLocal(KEY_NEWS, []).length;
-            const visCount = getLocal(KEY_VISITOR_LOGS, []).length;
+            const visCount = window.wy21VisitorCount?.() ?? getLocal(KEY_VISITOR_LOGS, []).length;
             const faqCount = getLocal(KEY_PUBLIC_FAQ, []).length;
 
             const elVol = document.getElementById('kpiVolunteersCount');
@@ -3782,7 +3815,7 @@
             if (tabId === 'volunteersCMS') renderAdminVolunteersTable();  
             if (tabId === 'questionsCMS') loadAdminQuestionsList();  
             if (tabId === 'newsCMS') renderAdminNewsCards();  
-            if (tabId === 'visitorLogsCMS') renderAdminVisitorAnalytics();  
+            if (tabId === 'visitorLogsCMS') {renderAdminVisitorAnalytics();void window.wy21RefreshVisitorPanel?.();}  
             if (tabId === 'anatomyCMS') renderAdminOrgansManagementList();
             if (tabId === 'wyV7CMS' || tabId === 'literatureCMS') window.waeiV7?.admin();  
             if (tabId === 'labAndResearchCMS') { renderAdminToxinsList(); renderAdminResearchList(); }  
@@ -3903,6 +3936,7 @@
             const target = document.getElementById(screenId);
             if (target) {
                 target.classList.remove('hidden');
+                wy21FlushScreen(screenId);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             if (screenId === 'screen-team-field') {
@@ -6017,7 +6051,7 @@
 
             let list = getLocal(KEY_VOLUNTEERS_PUBLIC, []);
             if (!list.length) {
-                const priv = getLocal(KEY_VOLUNTEERS, defaultVolunteers);
+                const priv = getLocal(KEY_VOLUNTEERS, []);
                 list = priv.map(toPublicVolunteer);
             }
 
@@ -7857,225 +7891,116 @@
                 else if (event.key === 'ArrowRight') window.stepLightboxPhoto(-1);
             });
 
-            // 10) One persistent ID per browser/device; activity labels are aggregated without duplicates.
-            let inMemoryDeviceId = '';
-            function getUniqueDeviceId() {
-                const storageKey = 'wa3y_device_uid';
-                let id = inMemoryDeviceId;
-                try { id = localStorage.getItem(storageKey) || id || ''; } catch (e) {}
-                if (!id) {
-                    const randomPart = (window.crypto && typeof window.crypto.randomUUID === 'function')
-                        ? window.crypto.randomUUID().replace(/-/g, '').slice(0, 16).toUpperCase()
-                        : Math.random().toString(36).slice(2, 12).toUpperCase();
-                    id = 'DEV-' + Date.now().toString(36).toUpperCase() + '-' + randomPart;
-                    try { localStorage.setItem(storageKey, id); } catch (e) {}
-                }
-                inMemoryDeviceId = id;
-                return id;
+            // V21: pseudonymous, origin-local browser IDs; never derive identity from device type or UA.
+            const wy21BrowserKey='waei_browser_uid_v21', wy21OutboxPrefix='waei_visit_event_v21:';
+            const pendingInMemory=new Map();let browserId='',visitorSyncBusy=false,visitorRetry=1000;
+            function randomVisitorId(){
+                try{return crypto.randomUUID();}catch(e){try{return Array.from(crypto.getRandomValues(new Uint8Array(16)),x=>x.toString(16).padStart(2,'0')).join('');}catch(e){return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2);}}
             }
-
-            function normalizeGroupedVisitorLogs(rawLogs) {
-                if (!Array.isArray(rawLogs)) return [];
-                const grouped = new Map();
-                rawLogs.forEach(entry => {
-                    if (!entry || (!entry.deviceId && !entry.device_id && !entry.sid)) return;
-                    const deviceId = String(entry.deviceId || entry.device_id || entry.sid);
-                    const incomingActions = Array.isArray(entry.actions)
-                        ? entry.actions
-                        : (entry.action ? [{ label: entry.action, time: entry.time || entry.lastSeen || '' }] : []);
-                    let record = grouped.get(deviceId);
-                    if (!record) {
-                        record = {
-                            id: entry.id || ('device-' + deviceId),
-                            sid: deviceId,
-                            deviceId,
-                            device: entry.device || 'جهاز غير معروف',
-                            isMobile: Boolean(entry.isMobile),
-                            firstSeen: entry.firstSeen || entry.time || entry.lastSeen || '',
-                            lastSeen: entry.lastSeen || entry.time || entry.firstSeen || '',
-                            totalClicks: Number(entry.totalClicks || incomingActions.length || 1),
-                            actions: []
-                        };
-                        grouped.set(deviceId, record);
-                    } else {
-                        record.totalClicks += Number(entry.totalClicks || incomingActions.length || 1);
-                        const incomingLast = entry.lastSeen || entry.time || '';
-                        if (incomingLast) record.lastSeen = incomingLast;
-                        if (!record.device || record.device === 'جهاز غير معروف') record.device = entry.device || record.device;
-                        record.isMobile = Boolean(record.isMobile || entry.isMobile);
-                    }
-                    incomingActions.forEach(action => {
-                        const label = String(action?.label || '').trim();
-                        if (!label) return;
-                        const prior = record.actions.find(item => item.label === label);
-                        if (prior) {
-                            if (action.time) prior.time = action.time;
-                        } else {
-                            record.actions.push({ label, time: action.time || entry.time || '' });
-                        }
-                    });
+            function getUniqueDeviceId(){
+                if(browserId)return browserId;
+                for(const name of ['localStorage','sessionStorage'])try{const storage=window[name];let id=storage.getItem(wy21BrowserKey);if(!/^BR-[a-z0-9-]{20,100}$/i.test(id||'')){id='BR-'+randomVisitorId();storage.setItem(wy21BrowserKey,id);id=storage.getItem(wy21BrowserKey)||id;}browserId=id;return id;}catch(e){}
+                browserId='BR-'+randomVisitorId();return browserId;
+            }
+            function detectBrowserLabel(){
+                const ua=navigator.userAgent||'';
+                if(/EdgiOS|EdgA|Edg\//i.test(ua))return 'Microsoft Edge';
+                if(/CriOS|Chrome\//i.test(ua)&&!/SamsungBrowser|OPR\//i.test(ua))return 'Google Chrome';
+                if(/FxiOS|Firefox\//i.test(ua))return 'Firefox';
+                if(/OPiOS|OPR\//i.test(ua))return 'Opera';
+                if(/SamsungBrowser/i.test(ua))return 'Samsung Internet';
+                if(/DuckDuckGo/i.test(ua))return 'DuckDuckGo';
+                if(/Version\/.*Safari/i.test(ua))return 'Safari';
+                if(/iPhone|iPad|iPod/i.test(ua))return 'متصفح iOS / داخل تطبيق';
+                return 'متصفح غير محدد';
+            }
+            function visitorMobile(){return /iPhone|iPod|Android|Mobile/i.test(navigator.userAgent||'')&&!/iPad/i.test(navigator.userAgent||'');}
+            function visitorTimeLabel(t){const ms=Date.parse(t);return Number.isFinite(ms)?new Date(ms).toLocaleString('ar-EG',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'}):String(t||'—');}
+            function normalizeGroupedVisitorLogs(rawLogs){
+                if(!Array.isArray(rawLogs))return [];
+                const grouped=new Map();
+                rawLogs.forEach((entry,idx)=>{
+                    if(!entry||typeof entry!=='object')return;
+                    const id=String(entry.deviceId||entry.device_id||entry.sid||'');if(!id)return;
+                    const source=Array.isArray(entry.actions)?entry.actions:entry.action?[{label:entry.action,time:entry.time||entry.lastSeen||''}]:[];
+                    const actions=source.map((a,i)=>({id:String(a?.id||'legacy:'+String(entry.id||id)+':'+i+':'+String(a?.label||'')+':'+String(a?.time||'')),label:String(a?.label||'').trim(),time:String(a?.time||entry.time||'')})).filter(a=>a.label);
+                    let rec=grouped.get(id);
+                    const legacyClicks=Number.isFinite(entry.legacyClicks)?Math.max(0,entry.legacyClicks):Math.max(0,Number(entry.totalClicks||actions.length)-actions.length)||0;
+                    if(!rec){rec={id:'device-'+id,sid:id,deviceId:id,device:String(entry.device||'جهاز غير معروف'),browser:String(entry.browser||'متصفح غير محدد (سجل سابق)'),isMobile:Boolean(entry.isMobile),firstSeen:String(entry.firstSeen||entry.time||entry.lastSeen||''),lastSeen:String(entry.lastSeen||entry.time||entry.firstSeen||''),legacyClicks,actions:[]};grouped.set(id,rec);}
+                    else{rec.legacyClicks=Math.max(rec.legacyClicks,legacyClicks);if(entry.browser)rec.browser=String(entry.browser);if(Date.parse(entry.lastSeen)>Date.parse(rec.lastSeen))rec.lastSeen=String(entry.lastSeen);}
+                    const known=new Set(rec.actions.map(a=>a.id));for(const a of actions)if(!known.has(a.id)){rec.actions.push(a);known.add(a.id);}
                 });
-                return Array.from(grouped.values());
+                return [...grouped.values()].map(rec=>{rec.actions.sort((a,b)=>(Date.parse(a.time)||0)-(Date.parse(b.time)||0));rec.totalClicks=rec.legacyClicks+rec.actions.length;rec.entryCount=rec.actions.filter(a=>a.label.startsWith('دخول جديد للمنصة')).length;return rec;});
             }
-
-            function mergeVisitorLogSnapshots(cloudRows, localRows) {
-                const merged = new Map();
-                const addRows = (rows) => {
-                    normalizeGroupedVisitorLogs(rows).forEach(incoming => {
-                        const key = String(incoming.deviceId || incoming.sid || '');
-                        if (!key) return;
-                        const existing = merged.get(key);
-                        if (!existing) {
-                            merged.set(key, { ...incoming, actions: (incoming.actions || []).map(action => ({ ...action })) });
-                            return;
-                        }
-                        const oldClicks = Number(existing.totalClicks || 0);
-                        const newClicks = Number(incoming.totalClicks || 0);
-                        if (newClicks >= oldClicks) {
-                            if (incoming.lastSeen) existing.lastSeen = incoming.lastSeen;
-                            if (incoming.device) existing.device = incoming.device;
-                        }
-                        existing.totalClicks = Math.max(oldClicks, newClicks);
-                        existing.isMobile = Boolean(existing.isMobile || incoming.isMobile);
-                        existing.firstSeen = existing.firstSeen || incoming.firstSeen || '';
-                        (incoming.actions || []).forEach(action => {
-                            const prior = existing.actions.find(item => item.label === action.label);
-                            if (prior) {
-                                if (newClicks >= oldClicks && action.time) prior.time = action.time;
-                            } else {
-                                existing.actions.push({ label: action.label, time: action.time || '' });
-                            }
-                        });
-                    });
-                };
-                // Cloud first, then local: local unsent activity is preserved and merged into the cloud snapshot.
-                addRows(cloudRows);
-                addRows(localRows);
-                return Array.from(merged.values());
-            }
-
-            async function syncVisitorLogsToCloud() {
-                if (!supabaseClient) return false;
-                const localSnapshot = normalizeGroupedVisitorLogs(getLocal(KEY_VISITOR_LOGS, []));
-                try {
-                    const { data, error } = await supabaseClient
-                        .from(SUPABASE_TABLE_NAME)
-                        .select('payload')
-                        .eq('store_key', KEY_VISITOR_LOGS)
-                        .maybeSingle();
-                    if (error) throw error;
-                    const cloudPayload = parseSupabasePayload(data?.payload);
-                    const merged = mergeVisitorLogSnapshots(cloudPayload, localSnapshot);
-                    localStorage.setItem(KEY_VISITOR_LOGS, JSON.stringify(merged));
-                    window.renderAdminVisitorAnalytics();
-                    return await pushToSupabase(KEY_VISITOR_LOGS, merged);
-                } catch (error) {
-                    console.warn('Visitor cloud merge failed; trying the current local snapshot:', error);
-                    return await pushToSupabase(KEY_VISITOR_LOGS, localSnapshot);
+            function mergeVisitorEvents(cloudRows,events){
+                const records=normalizeGroupedVisitorLogs(cloudRows), grouped=new Map(records.map(r=>[r.deviceId,r]));
+                for(const e of events){let rec=grouped.get(e.browserId);if(!rec){rec={id:'device-'+e.browserId,sid:e.browserId,deviceId:e.browserId,device:e.device,browser:e.browser,isMobile:e.isMobile,firstSeen:e.time,lastSeen:e.time,legacyClicks:0,actions:[]};grouped.set(e.browserId,rec);}
+                    if(rec.actions.some(a=>a.id===e.id))continue;
+                    rec.actions.push({id:e.id,label:e.label,time:e.time});rec.device=e.device;rec.browser=e.browser;rec.isMobile=e.isMobile;
+                    if(!rec.firstSeen||e.time<rec.firstSeen)rec.firstSeen=e.time;if(!rec.lastSeen||e.time>rec.lastSeen)rec.lastSeen=e.time;
                 }
+                return normalizeGroupedVisitorLogs([...grouped.values()]);
             }
-
-            window.recordVisitorAction = function (actionLabel) {
-                try {
-                    const label = String(actionLabel || 'دخول الصفحة الرئيسية').trim();
-                    const deviceId = getUniqueDeviceId();
-                    const now = new Date().toLocaleString('ar-EG', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                    const logs = normalizeGroupedVisitorLogs(getLocal(KEY_VISITOR_LOGS, []));
-                    let record = logs.find(item => item.deviceId === deviceId);
-                    let legacySessionId = '';
-                    try { legacySessionId = typeof getOrCreateVisitorSessionId === 'function' ? getOrCreateVisitorSessionId() : ''; } catch (e) {}
-                    const legacyRecord = legacySessionId ? logs.find(item => item.deviceId === legacySessionId || item.sid === legacySessionId) : null;
-
-                    if (!record && legacyRecord) {
-                        // Migrate this browser session's old row into its new persistent device row.
-                        record = legacyRecord;
-                        record.id = 'device-' + deviceId;
-                        record.sid = deviceId;
-                        record.deviceId = deviceId;
-                    } else if (record && legacyRecord && legacyRecord !== record) {
-                        // If a persistent row already exists, fold the current legacy-session row into it.
-                        record.totalClicks = Number(record.totalClicks || 0) + Number(legacyRecord.totalClicks || 0);
-                        (legacyRecord.actions || []).forEach(action => {
-                            const prior = record.actions.find(item => item.label === action.label);
-                            if (prior) prior.time = action.time || prior.time;
-                            else record.actions.push({ label: action.label, time: action.time || '' });
-                        });
-                        if (!record.firstSeen) record.firstSeen = legacyRecord.firstSeen || '';
-                        logs.splice(logs.indexOf(legacyRecord), 1);
+            function pendingVisitorEvents(){
+                const events=new Map(pendingInMemory);
+                try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k?.startsWith(wy21OutboxPrefix))continue;try{const e=JSON.parse(localStorage.getItem(k));if(e?.id&&k===wy21OutboxPrefix+e.id&&e.browserId&&e.label&&e.time)events.set(e.id,e);}catch(err){}}}catch(e){}
+                return [...events.values()].sort((a,b)=>a.time.localeCompare(b.time));
+            }
+            function scheduleVisitorSync(delay=150){clearTimeout(visitorSyncDebounce);visitorSyncDebounce=setTimeout(()=>{void syncVisitorLogsToCloud();},delay);}
+            async function syncVisitorLogsToCloud(){
+                if(visitorSyncBusy||!supabaseClient||navigator.onLine===false)return false;
+                const batch=pendingVisitorEvents().slice(0,100);if(!batch.length)return true;
+                visitorSyncBusy=true;let ok=false;
+                try{
+                    // Optimistic concurrency: re-read and retry instead of replacing a different browser's write.
+                    for(let attempt=0;attempt<5;attempt++){
+                        const {data:row,error}=await supabaseClient.from(SUPABASE_TABLE_NAME).select('store_key,payload,updated_at').eq('store_key',KEY_VISITOR_LOGS).maybeSingle();if(error)throw error;
+                        const old=row?parseSupabasePayload(row.payload):[];if(!Array.isArray(old))throw new Error('Unexpected visitor log payload; refusing overwrite');
+                        const merged=mergeVisitorEvents(old,batch), oldIds=new Set(old.flatMap(r=>Array.isArray(r?.actions)?r.actions.map(a=>a.id):[]));
+                        if(!batch.every(e=>oldIds.has(e.id))){
+                            const revision=new Date(Math.max(Date.now(),(Date.parse(row?.updated_at)||0)+1)).toISOString(), next={store_key:KEY_VISITOR_LOGS,payload:JSON.stringify(merged),updated_at:revision};
+                            const table=supabaseClient.from(SUPABASE_TABLE_NAME);let request;
+                            if(row){request=table.update({payload:next.payload,updated_at:revision}).eq('store_key',KEY_VISITOR_LOGS);request=row.updated_at==null?request.is('updated_at',null):request.eq('updated_at',row.updated_at);}
+                            else request=table.insert(next);
+                            const {data:saved,error:writeError}=await request.select('store_key,payload,updated_at').maybeSingle();
+                            if(writeError&&writeError.code!=='23505')throw writeError;
+                            if(!saved){await new Promise(r=>setTimeout(r,100+Math.random()*180));continue;}
+                            const confirmed=parseSupabasePayload(saved.payload);if(!Array.isArray(confirmed))throw new Error('No visitor confirmation');const ids=new Set(confirmed.flatMap(r=>Array.isArray(r?.actions)?r.actions.map(a=>a.id):[]));if(!batch.every(e=>ids.has(e.id)))throw new Error('Incomplete visitor confirmation');
+                            if(window.currentUserRole){wy15Mirror(KEY_VISITOR_LOGS,JSON.stringify(confirmed));window.renderAdminVisitorAnalytics();updateKPICounters();}
+                        }else if(window.currentUserRole){wy15Mirror(KEY_VISITOR_LOGS,JSON.stringify(old));window.renderAdminVisitorAnalytics();updateKPICounters();}
+                        // Only remove acknowledged events; events arriving during the write remain queued.
+                        for(const e of batch){pendingInMemory.delete(e.id);try{localStorage.removeItem(wy21OutboxPrefix+e.id);}catch(err){}}
+                        ok=true;visitorRetry=1000;break;
                     }
-
-                    if (!record) {
-                        record = {
-                            id: 'device-' + deviceId,
-                            sid: deviceId,
-                            deviceId,
-                            device: detectDeviceLabel(),
-                            isMobile: /iPhone|Android|Mobile/i.test(navigator.userAgent || ''),
-                            firstSeen: now,
-                            lastSeen: now,
-                            totalClicks: 0,
-                            actions: []
-                        };
-                        logs.unshift(record);
-                    }
-                    record.device = detectDeviceLabel();
-                    record.isMobile = /iPhone|Android|Mobile/i.test(navigator.userAgent || '');
-                    record.lastSeen = now;
-                    record.totalClicks = Number(record.totalClicks || 0) + 1;
-                    const existingAction = record.actions.find(action => action.label === label);
-                    if (existingAction) existingAction.time = now;
-                    else record.actions.push({ label, time: now });
-
-                    const normalized = normalizeGroupedVisitorLogs(logs);
-                    localStorage.setItem(KEY_VISITOR_LOGS, JSON.stringify(normalized));
-                    window.renderAdminVisitorAnalytics();
-                    clearTimeout(visitorSyncDebounce);
-                    visitorSyncDebounce = setTimeout(() => {
-                        syncVisitorLogsToCloud();
-                    }, 1200);
-                } catch (error) {
-                    console.warn('Visitor activity aggregation failed:', error);
-                }
+                }catch(error){console.warn('Visitor events queued for retry:',error);}
+                finally{visitorSyncBusy=false;if(pendingVisitorEvents().length){scheduleVisitorSync(ok?150:visitorRetry);if(!ok)visitorRetry=Math.min(30000,visitorRetry*2);}}
+                return ok;
+            }
+            window.wy21SyncVisitorEvents=()=>scheduleVisitorSync(0);
+            window.addEventListener('online',()=>scheduleVisitorSync(0));
+            window.addEventListener('pageshow',()=>scheduleVisitorSync(0));
+            document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleVisitorSync(0);});
+            window.recordVisitorAction=function(actionLabel){
+                try{const label=String(actionLabel||'').trim();if(!label)return;const e={id:'EV-'+randomVisitorId(),browserId:getUniqueDeviceId(),device:detectDeviceLabel(),browser:detectBrowserLabel(),isMobile:visitorMobile(),label,time:new Date().toISOString()};pendingInMemory.set(e.id,e);try{localStorage.setItem(wy21OutboxPrefix+e.id,JSON.stringify(e));}catch(err){}scheduleVisitorSync();}catch(error){console.warn('Visitor event unavailable:',error);}
             };
-
-            window.renderAdminVisitorAnalytics = function () {
-                const logs = normalizeGroupedVisitorLogs(getLocal(KEY_VISITOR_LOGS, []));
-                const totalEl = document.getElementById('visStatTotalViews');
-                const mobileEl = document.getElementById('visStatMobileCount');
-                const desktopEl = document.getElementById('visStatDesktopCount');
-                const tbody = document.getElementById('adminVisitorLogsTableBody');
-                const mobileCount = logs.filter(record => record.isMobile).length;
-                if (totalEl) totalEl.innerText = String(logs.length);
-                if (mobileEl) mobileEl.innerText = String(mobileCount);
-                if (desktopEl) desktopEl.innerText = String(logs.length - mobileCount);
-                if (!tbody) return;
-                if (!logs.length) {
-                    tbody.innerHTML = '<tr><td colspan="4" class="p-6 text-center text-brandGray-400 font-cairo">لا توجد أجهزة مرصودة حتى الآن.</td></tr>';
-                    return;
-                }
-                tbody.innerHTML = logs.map((record, index) => `
-                    <tr class="hover:bg-brandGray-50 align-top">
-                        <td class="p-3 font-num text-[11px] text-brandGray-500 whitespace-nowrap">
-                            <div>آخر نشاط: ${escapeHtml(record.lastSeen)}</div>
-                            <div class="text-[10px] text-slate-400 mt-0.5">عدد التفاعلات: ${Number(record.totalClicks || 0)}</div>
-                        </td>
-                        <td class="p-3 font-bold text-slate-800 font-cairo whitespace-nowrap">
-                            <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 font-num text-[10px] text-slate-500 ml-1">#${index + 1}</span>
-                            ${escapeHtml(record.device)}
-                        </td>
-                        <td class="p-3">
-                            <div class="flex flex-wrap">${(record.actions || []).map(action => `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-crimson/10 text-crimson font-bold font-cairo text-[10px] mb-1 ml-1">${escapeHtml(action.label)}${action.time ? `<small class="opacity-70">· ${escapeHtml(action.time)}</small>` : ''}</span>`).join('')}</div>
-                        </td>
-                        <td class="p-3 font-mono text-[11px] text-brandGray-500 whitespace-nowrap">${escapeHtml(record.deviceId || record.sid)}</td>
-                    </tr>`).join('');
+            window.renderAdminVisitorAnalytics=function(){
+                if(!window.currentUserRole)return;
+                const logs=normalizeGroupedVisitorLogs(getLocal(KEY_VISITOR_LOGS,[])).sort((a,b)=>(Date.parse(b.lastSeen)||0)-(Date.parse(a.lastSeen)||0));
+                const mobile=logs.filter(r=>r.isMobile).length;
+                for(const [id,value] of [['visStatTotalViews',logs.length],['visStatMobileCount',mobile],['visStatDesktopCount',logs.length-mobile],['visStatEntryCount',logs.reduce((n,r)=>n+r.entryCount,0)]]){const el=document.getElementById(id);if(el)el.textContent=String(value);}
+                const tbody=document.getElementById('adminVisitorLogsTableBody');if(!tbody)return;
+                if(!logs.length){tbody.innerHTML='<tr><td colspan="4" class="p-6 text-center text-brandGray-400 font-cairo">لا توجد متصفحات مرصودة حتى الآن.</td></tr>';return;}
+                tbody.innerHTML=logs.map(rec=>`<tr class="hover:bg-brandGray-50 align-top">
+                    <td class="p-3 font-num text-[11px] text-brandGray-500 whitespace-nowrap"><div>آخر نشاط: ${escapeHtml(visitorTimeLabel(rec.lastSeen))}</div><div class="mt-1">أول نشاط: ${escapeHtml(visitorTimeLabel(rec.firstSeen))}</div><div class="mt-1">الدخول: ${rec.entryCount} · التفاعلات: ${rec.totalClicks}</div></td>
+                    <td class="p-3 font-bold text-slate-800 font-cairo whitespace-nowrap"><div>${escapeHtml(rec.device)}</div><div class="text-crimson text-xs mt-1">${escapeHtml(rec.browser)}</div><span class="inline-block text-[10px] text-slate-500 mt-1">${rec.deviceId.startsWith('BR-')?'متصفح مستقل':'سجل سابق'}</span></td>
+                    <td class="p-3"><details ${rec.actions.length<=8?'open':''}><summary class="cursor-pointer font-bold text-slate-600 mb-2">${rec.actions.length} عملية مسجلة</summary><ol class="space-y-1 max-h-80 overflow-y-auto">${[...rec.actions].reverse().map(a=>`<li class="block rounded-lg bg-brandGray-50 px-2 py-1.5"><div class="font-bold text-crimson">${escapeHtml(a.label)}</div><small class="text-slate-500">${escapeHtml(visitorTimeLabel(a.time))}</small></li>`).join('')}</ol></details></td>
+                    <td class="p-3 font-mono text-[10px] text-brandGray-500 break-all" dir="ltr" title="${escapeHtml(rec.deviceId)}">${escapeHtml(rec.deviceId)}</td></tr>`).join('');
             };
-
-            // Keep the original clear-history action but repaint the aggregate view after confirmation.
-            const originalClearVisitorLogsHistory = window.clearVisitorLogsHistory;
-            window.clearVisitorLogsHistory = async function () {
-                if (typeof originalClearVisitorLogsHistory === 'function') await originalClearVisitorLogsHistory();
-                window.renderAdminVisitorAnalytics();
-            };
+            window.wy21VisitorCount=()=>normalizeGroupedVisitorLogs(getLocal(KEY_VISITOR_LOGS,[])).length;
+            window.wy21RefreshVisitorPanel=async()=>{await wy17RefreshAnalytics();window.renderAdminVisitorAnalytics();};
+            const originalClearVisitorLogsHistory=window.clearVisitorLogsHistory;
+            window.clearVisitorLogsHistory=async()=>{await originalClearVisitorLogsHistory();window.renderAdminVisitorAnalytics();};
+            try{localStorage.removeItem(KEY_VISITOR_LOGS);}catch(e){}
 
             // 11) Initial application and realtime reapplication.
             function bootUpgrades() {
@@ -8095,54 +8020,50 @@
         })();
 
         // ==================== 28. SYSTEM BOOT ENGINE (DOM CONTENT LOADED) ====================
-        wy20StartInitialRead();
-        window.addEventListener('DOMContentLoaded', async () => {
-            // Initialize existing components offscreen. Only the confirmed snapshot may make them visible.
-            restoreCustomImages();
-            applyFaviconAndLogo(getLocal(KEY_FAVICON_LOGO, ''));
-            applyStatsUI();
-            applyShortTermUI();
-            applySectionsVisibility();
-            applySubElementsVisibility();
-            applyFooterAndWhatsappUI();
-            wy16ReapplyTextOverlays();
-            loadAwarenessVideos();
-            window.renderClientStatsGrid();
-            window.updateFinancialCalc();
-            window.renderAnatomyHotspots();
-            window.renderToxinsCards();
-            window.renderResearchCards();
-            window.renderClientNewsCards();
-            window.renderDedicatedVolunteersCards();
-            renderPublicFaq();
-            renderScenario(0);
-            window.renderTimelineHealingBar();
-            window.renderClashArenaCurrentRound();
-            switchMythBusterTab('vape');
-            if (defaultOrgans.length > 0) window.selectAnatomyOrgan(defaultOrgans[0].id);
-
-            // Read public content immediately; authentication restores independently.
+        // Render only the home screen eagerly. Other panels are prepared in small idle tasks or on navigation.
+        const wy21BootTasks=new Map([
+            ['screen-team-field',()=>{window.renderClientNewsCards();window.renderDedicatedVolunteersCards();}],
+            ['screen-anatomy',()=>{window.renderAnatomyHotspots();window.renderTimelineHealingBar();const organs=getLocal(KEY_ORGANS,defaultOrgans);if(organs.length)window.selectAnatomyOrgan(organs[0].id);}],
+            ['screen-lab',()=>{window.renderToxinsCards();}],
+            ['screen-research',()=>{window.renderResearchCards();}],
+            ['screen-calc',()=>{window.updateFinancialCalc();}],
+            ['screen-sayno',()=>{renderScenario(0);window.renderClashArenaCurrentRound();}]
+        ]);
+        function wy21RunBootScreen(screen){const task=wy21BootTasks.get(screen);if(!task)return false;wy21BootTasks.delete(screen);try{task();}catch(e){console.warn('Panel preparation:',screen,e);}return true;}
+        function wy21IdleBoot(){if(!wy21BootTasks.size)return;wy21Idle(()=>{const screen=wy21BootTasks.keys().next().value;if(screen)wy21RunBootScreen(screen);if(wy21BootTasks.size)wy21IdleBoot();else wy21ApplyOverlays();});}
+        let wy21Booted=false,wy21Connected=false,wy21SdkRetryTimer=0;
+        function wy21Connect(){
+            if(!wy21Booted||wy21Connected||!wy21InitClient())return;
+            wy21Connected=true;clearTimeout(wy21SdkRetryTimer);
             setupSupabaseRealtimeSubscription();
-            await new Promise(resolve=>setTimeout(resolve,0));
-            const firstRead=fetchAllFromSupabase();
-            void initializeSupabaseAuth().catch(e=>console.warn('Auth restore unavailable:',e)).finally(()=>{
-                if(wy15VerifiedRole!==window.currentUserRole)wy15ScheduleRefresh(0);
-            });
-            const wy15InitialOk=await firstRead;
-            // The confirmed snapshot already reapplies visibility and every canonical text overlay.
-
-            // No automatic public roster overwrite on launch; normal volunteer saves publish their confirmed roster.
-            // Legacy images remain readable; only an explicit owner edit changes cloud content.
-
-            // 3. تحديث المؤشرات وسجل الجلسات
+            const authRestore=initializeSupabaseAuth().catch(e=>console.warn('Auth restore unavailable:',e));
+            // Restore a saved session first on administrator browsers. Anonymous browsers can read immediately.
+            let savedAuth=false;try{savedAuth=Boolean(localStorage.getItem('sb-yuvwzbiqnuxweivnahob-auth-token'));}catch(e){}
+            if(savedAuth)void authRestore.finally(()=>fetchAllFromSupabase());
+            else{void fetchAllFromSupabase();void authRestore.finally(()=>{if(wy15VerifiedRole!==window.currentUserRole)wy15ScheduleRefresh(0);});}
+            window.wy21SyncVisitorEvents?.();
+            void window.waeiCommunity?.fetchLikeCounts?.().catch(e=>console.warn('Community reactions unavailable:',e));
+        }
+        function wy21RetrySDK(){
+            if(wy21InitClient()){wy21Connect();return;}
+            if(navigator.onLine===false)return;
+            clearTimeout(wy21SdkRetryTimer);wy21SdkRetryTimer=0;
+            const script=document.createElement('script');script.async=true;script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';script.onload=wy21Connect;script.onerror=()=>{wy17Freshness('failed');wy21SdkRetryTimer=setTimeout(wy21RetrySDK,15000);};document.head.appendChild(script);
+        }
+        const wy21SDK=document.getElementById('wy21-supabase-sdk');
+        wy21SDK?.addEventListener('load',wy21Connect);
+        wy21SDK?.addEventListener('error',()=>{wy17Freshness('failed');wy21SdkRetryTimer=setTimeout(wy21RetrySDK,15000);});
+        window.addEventListener('online',()=>{if(!wy21Connected)wy21RetrySDK();});
+        wy21HydrateCache();
+        window.addEventListener('DOMContentLoaded',()=>{
+            // Native HTML is already visible even if the SDK or network is unavailable.
+            wy21Booted=true;
+            for(const fn of [restoreCustomImages,()=>applyFaviconAndLogo(getLocal(KEY_FAVICON_LOGO,'')),applyStatsUI,applyShortTermUI,applySectionsVisibility,applySubElementsVisibility,applyFooterAndWhatsappUI,wy16ReapplyTextOverlays,loadAwarenessVideos,renderPublicFaq,()=>switchMythBusterTab('vape')])try{fn();}catch(e){console.warn('Home initialization:',e);}
             updateKPICounters();
-            if (wy15InitialOk && !sessionStorage.getItem('wa3y_initial_visit_logged')) {
-                sessionStorage.setItem('wa3y_initial_visit_logged', 'true');
-                setTimeout(() => {
-                    window.recordVisitorAction('دخول جديد للمنصة 🌐');
-                }, 1500);
-            }
-        });
+            // Count each document opening independently of cloud availability, and never gate on a successful read.
+            window.recordVisitorAction('دخول جديد للمنصة 🌐');
+            setTimeout(()=>{wy21Connect();wy21IdleBoot();if(!supabaseClient){if(navigator.onLine===false)wy17Freshness('failed');else if(!wy21SdkRetryTimer)wy21SdkRetryTimer=setTimeout(()=>{if(!wy21Connected){wy17Freshness('failed');wy21RetrySDK();}},12000);}},0);
+        },{once:true});
     </script>
     <!-- WAEI: all editable content and moderation logic lives in THIS index file -->
     <script>
@@ -8312,7 +8233,7 @@ function applyEventIntegration(){const base=window.switchAdminTab;if(typeof base
  const baseRender=window.dispatchSyncEvent;if(typeof baseRender==='function')window.dispatchSyncEvent=function(key,...args){const v=baseRender.call(this,key,...args);if(key===WY.settings&&!wy20Batching)setupSettingInputs();return v;};}
 function boot(){renderAll();renderStars();window.addEventListener('keydown',evt=>{if(evt.key==='Escape'){['wy-certificate-overlay','wy-submission-overlay','wy-editor-overlay'].forEach(id=>closeOverlay(id));}if(q('wy-certificate-overlay')&&!q('wy-certificate-overlay').hidden&&['ArrowLeft','ArrowRight'].includes(evt.key)){stepCertificate(evt.key==='ArrowLeft'?1:-1);}});
  void fetchLikeCounts();}
-window.waeiCommunity={render:renderAll,setupSettingInputs,saveSettings,category,openCertificate,closeCertificate:()=>closeOverlay('wy-certificate-overlay'),stepCertificate,feature,surprise,expandMemory,rate:chooseRating,openSubmission,closeOverlay,submitGuest,refreshInbox,approve,reject,edit,format,previewEditor,saveEditor,visibility,remove,like,adminOpened};
+window.waeiCommunity={render:renderAll,fetchLikeCounts,setupSettingInputs,saveSettings,category,openCertificate,closeCertificate:()=>closeOverlay('wy-certificate-overlay'),stepCertificate,feature,surprise,expandMemory,rate:chooseRating,openSubmission,closeOverlay,submitGuest,refreshInbox,approve,reject,edit,format,previewEditor,saveEditor,visibility,remove,like,adminOpened};
 applyEventIntegration();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
     </script>
@@ -8491,7 +8412,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=20.0"></script>
+    <script src="./waei-live-effects.js?v=21.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
 
 <script>
