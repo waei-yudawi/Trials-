@@ -618,3 +618,61 @@ main [id^=screen-] .text-xs{font-size:calc(.75rem * var(--wy11-font-scale))}main
 .wy-news-admin-item{box-shadow:0 5px 18px rgba(23,41,68,.035)}
 @media(max-width:760px){.wy-news-featured{grid-template-columns:minmax(0,1fr)}.wy-news-featured .wy-news-media{min-height:220px;aspect-ratio:16/10}.wy-news-content{padding:1rem}.wy-news-title{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.wy-news-card,.wy-news-school-link{transition:none}.wy-news-card:hover{transform:none}}
+
+
+/* PDF-aligned learning additions: same Waei palette, no new page layout. */
+.wy-pdf-section{background:linear-gradient(145deg,#fff 0%,#fff9f8 100%);border:1px solid #eadbdd;border-radius:22px;padding:clamp(14px,2.5vw,24px);box-shadow:0 10px 30px rgba(75,35,45,.055);margin:16px 0;}
+.wy-pdf-section-head{margin-bottom:14px;}
+.wy-pdf-kicker{display:inline-flex;align-items:center;gap:6px;color:#982b2b;background:#fff0f1;border:1px solid #f1d4d7;border-radius:999px;padding:4px 10px;font:800 .7rem Cairo,sans-serif;margin-bottom:7px;}
+.wy-pdf-section-head h3{font:900 clamp(1.05rem,2.3vw,1.45rem) Cairo,sans-serif;color:#1f2937;margin:2px 0 7px;}
+.wy-pdf-section-head p,.wy-pdf-section-head small{display:block;color:#5b6472;font:500 .82rem/1.9 Cairo,sans-serif;margin:3px 0;}
+.wy-pdf-question{font-weight:900!important;color:#7f2630!important;margin-top:10px!important;}
+.wy-pdf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;}
+.wy-pdf-card{background:#fff;border:1px solid #e8dfe0;border-radius:15px;padding:12px 13px;min-width:0;box-shadow:0 4px 14px rgba(44,35,38,.035);}
+.wy-pdf-card summary{display:flex;align-items:center;gap:9px;cursor:pointer;list-style:none;color:#263244;font:800 .82rem/1.7 Cairo,sans-serif;}
+.wy-pdf-card summary::-webkit-details-marker{display:none;}
+.wy-pdf-card summary:after{content:'+';margin-right:auto;color:#982b2b;font:900 1.05rem Arial,sans-serif;}
+.wy-pdf-card[open] summary:after{content:'−';}
+.wy-pdf-card p{color:#596475;font:500 .78rem/1.95 Cairo,sans-serif;margin:10px 0 0;}
+.wy-pdf-number{display:inline-flex;flex:0 0 28px;width:28px;height:28px;align-items:center;justify-content:center;border-radius:9px;background:#fff0f1;color:#982b2b;font:900 .7rem Arial,sans-serif;}
+.wy-pdf-closing{margin-top:14px;padding:12px 14px;border-radius:14px;background:#fff2f2;border:1px solid #f1d8da;color:#7d2730;font:700 .8rem/1.9 Cairo,sans-serif;}
+.wy-pdf-closing p{margin:5px 0 0;color:#596475;font-weight:500;}
+.wy-pdf-choice-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:9px;}
+.wy-pdf-choice{border:1px solid #e8cfd2;background:#fff;border-radius:13px;padding:12px;color:#71313a;font:800 .82rem/1.8 Cairo,sans-serif;text-align:right;transition:transform .18s,border-color .18s,background .18s;}
+.wy-pdf-choice:hover,.wy-pdf-choice:focus-visible{border-color:#982b2b;background:#fff5f5;transform:translateY(-1px);outline:none;}
+.wy-pdf-feedback{margin-top:13px;padding:13px;border-radius:15px;background:#fff8ed;border:1px solid #f1dfbd;}
+.wy-pdf-feedback>p{font:800 .82rem/1.9 Cairo,sans-serif;color:#76501d;margin:0 0 12px;}
+.wy-pdf-facts-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:6px 0 10px;color:#273449;font-family:Cairo,sans-serif;}
+.wy-pdf-facts-head small{color:#6b7280;font-size:.72rem;}
+.wy-pdf-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 14px;}
+.wy-pdf-tab{border:1px solid #eadbdd;background:#fff;border-radius:999px;padding:7px 12px;color:#596475;font:800 .73rem Cairo,sans-serif;}
+.wy-pdf-tab.is-active{background:#982b2b;color:#fff;border-color:#982b2b;box-shadow:0 4px 12px rgba(152,43,43,.16);}
+.wy-pdf-admin,.wy-pdf-edit-card{border:1px solid #e6d7d9;background:#fff;border-radius:9px;padding:6px 9px;color:#7f2630;font:800 .7rem Cairo,sans-serif;}
+#mythBusterContentBox>#mythCardsGrid{display:contents;}
+.wy-pdf-myth-card{background:#fff;border:1px solid #eadbdd;border-radius:16px;padding:14px;box-shadow:0 4px 15px rgba(50,30,35,.04);}
+.wy-pdf-myth-label{display:flex;align-items:center;gap:7px;color:#9b343b;font:900 .72rem Cairo,sans-serif;margin-bottom:9px;}
+.wy-pdf-myth-card.is-true .wy-pdf-myth-label{color:#26734d;}
+.wy-pdf-myth-card h4{color:#202b3b;font:900 .88rem/1.8 Cairo,sans-serif;margin:0 0 10px;}
+.wy-pdf-myth-note{color:#647084;font:500 .75rem/1.8 Cairo,sans-serif;margin:0 0 8px;}
+.wy-pdf-myth-reveal{border-top:1px solid #eee5e6;padding-top:9px;margin-top:9px;}
+.wy-pdf-myth-reveal summary{cursor:pointer;color:#982b2b;font:800 .75rem Cairo,sans-serif;}
+.wy-pdf-myth-reveal>div{margin-top:9px;padding:10px;border-radius:11px;background:#f8f6f6;color:#334155;font:500 .76rem/1.9 Cairo,sans-serif;}
+.wy-pdf-myth-reveal>div p{margin:5px 0 0;}
+.wy-pdf-edit-card{margin-top:10px;}
+.wy-pdf-breath-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px;}
+.wy-pdf-breath-steps>div{background:#fff5f5;border:1px solid #f0dadd;border-radius:12px;padding:9px;}
+.wy-pdf-breath-steps b{display:inline-flex;background:#982b2b;color:#fff;border-radius:8px;padding:3px 7px;font:800 .65rem Arial,sans-serif;}
+.wy-pdf-breath-steps p{margin:6px 0 0;font-size:.72rem;}
+.wy-pdf-breath small{display:block;margin-top:8px;color:#667085;font:600 .72rem/1.8 Cairo,sans-serif;}
+.wy-pdf-atlas-heading{margin:18px 0 10px;padding:0 2px;}
+.wy-pdf-atlas-heading h3{font:900 1.15rem Cairo,sans-serif;color:#1f2937;}
+.wy-pdf-atlas-heading p{font:500 .78rem/1.8 Cairo,sans-serif;color:#647084;margin-top:4px;}
+@media(max-width:520px){.wy-pdf-section{border-radius:17px;padding:13px}.wy-pdf-breath-steps{grid-template-columns:1fr}.wy-pdf-tab{font-size:.68rem;padding:6px 9px}}
+
+
+/* Keep the original Waei theme while embedding withdrawal symptoms in the addiction Journey. */
+.wy-v7-withdrawal{margin-top:14px;padding:14px;border:1px solid #eadbdd;border-radius:16px;background:linear-gradient(145deg,#fff,#fff8f8)}
+.wy-v7-withdrawal .wy-v7-panel-top{margin-bottom:10px}
+.wy-pdf-source-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:9px}
+.wy-pdf-source-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px;border:1px solid #eadbdd;border-radius:13px;background:#fff;color:#7d2938;font:800 .78rem/1.7 Cairo,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(75,35,45,.04)}
+.wy-pdf-source-link:hover,.wy-pdf-source-link:focus-visible{border-color:#982b2b;background:#fff7f7;outline:2px solid #982b2b22;outline-offset:2px}

@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">  
     <meta http-equiv="Pragma" content="no-cache">  
     <meta http-equiv="Expires" content="0">
-    <meta name="waei-release" content="22.0">
+    <meta name="waei-release" content="23.0">
     <!-- V22: stable shell; cloud-confirmed content only on first visit. No blocking loading screen. -->
     <style id="wy17-first-paint">
       .hidden{display:none!important}
@@ -548,7 +548,7 @@
         @media(max-width:680px){.wy-team-journey{grid-template-columns:1fr;padding:.9rem;gap:.75rem}.wy-team-arrow{transform:rotate(-90deg)}.wy-team-feature-head{padding:1rem}.wy-team-before,.wy-team-after{padding:1.15rem}.wy-team-impact{margin:0 .9rem .9rem}.wy-team-member-picker{width:100%}}
         @media(prefers-reduced-motion:reduce){.wy-team-feature{animation:none}#wy-team-progress-fill,.wy-team-member-tab{transition:none}}
     </style>  
-    <link rel="stylesheet" href="./waei-live-effects.css?v=22.0">
+    <link rel="stylesheet" href="./waei-live-effects.css?v=23.0">
 </head>  
 <body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">  
   
@@ -629,30 +629,16 @@
                 </div>  
                 <button type="button" onclick="toggleMobileDrawer()" class="p-1.5 rounded-lg text-brandGray-400 hover:text-slate-800 hover:bg-brandGray-100 text-lg transition">✕</button>  
             </div>  
-            <div class="space-y-1.5 font-cairo text-sm" id="drawerNavLinks">  
-                <button type="button" onclick="switchMainScreen('screen-home')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-house text-crimson w-5 text-center"></i> الرئيسية  
-                </button>  
-                <button type="button" onclick="switchMainScreen('screen-team-field')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-users-gear text-crimson w-5 text-center"></i> فريقنا والميدان  
-                </button>  
-                <button type="button" onclick="switchMainScreen('screen-community')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-award text-crimson w-5 text-center"></i><span class="wy-nav-label">شكر وتقدير وآراء التجربة</span></button>
-                <button type="button" onclick="switchMainScreen('screen-anatomy')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-lungs text-crimson w-5 text-center"></i> تأثير التدخين على جسمك  
-                </button>  
-                <button type="button" onclick="switchMainScreen('screen-lab')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-flask-vial text-crimson w-5 text-center"></i> مختبر التدخين  
-                </button>  
-                <button type="button" onclick="switchMainScreen('screen-research')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-book-medical text-crimson w-5 text-center"></i> الدراسات والأبحاث  
-                </button>  
+            <div class="space-y-1.5 font-cairo text-sm" id="drawerNavLinks">
+                <button type="button" onclick="switchMainScreen('screen-home')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-house text-crimson w-5 text-center"></i> الرئيسية</button>
+                <button type="button" onclick="switchMainScreen('screen-team-field')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-users-gear text-crimson w-5 text-center"></i> فريقنا والميدان – توثيق الميدان</button>
+                <button type="button" onclick="switchMainScreen('screen-lab')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-flask-vial text-crimson w-5 text-center"></i> مختبر التدخين</button>
+                <button type="button" onclick="switchMainScreen('screen-anatomy')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-lungs text-crimson w-5 text-center"></i> تأثير التدخين على جسمك</button>
+                <button type="button" onclick="switchMainScreen('screen-calc')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-calculator text-crimson w-5 text-center"></i> احسب تكلفة التدخين</button>
+                <button type="button" onclick="switchMainScreen('screen-research')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-book-medical text-crimson w-5 text-center"></i> الدراسات والأبحاث</button>
+                <button type="button" onclick="switchMainScreen('screen-sayno')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-hand text-crimson w-5 text-center"></i> كيف تقول «لا»؟</button>
                 <button type="button" onclick="switchMainScreen('screen-literature')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-book-open-reader text-crimson w-5 text-center"></i> أدبيات</button>
-                <button type="button" onclick="switchMainScreen('screen-calc')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-calculator text-crimson w-5 text-center"></i> احسب تكلفة التدخين  
-                </button>  
-                <button type="button" onclick="switchMainScreen('screen-sayno')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition">  
-                    <i class="fa-solid fa-hand text-crimson w-5 text-center"></i> كيف تقول «لا»؟  
-                </button>  
+                <button type="button" onclick="switchMainScreen('screen-community')" class="w-full text-right p-2.5 rounded-xl text-slate-800 hover:bg-brandGray-100 flex items-center gap-2.5 font-bold transition"><i class="fa-solid fa-award text-crimson w-5 text-center"></i><span class="wy-nav-label">شكر وتقدير وآراء التجربة</span></button>
             </div>  
         </div>  
         <div class="pt-4 border-t border-brandGray-200 text-center text-xs text-brandGray-500 font-cairo">  
@@ -729,6 +715,12 @@
             </div>  
   
             <!-- BENTO STATS -->  
+            <section id="wy14-knowledge" class="wy14-section" aria-labelledby="wy14-knowledge-title">
+              <div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-book-open" aria-hidden="true"></i> المعرفة</span><h2 id="wy14-knowledge-title">كل شيء يبدأ بالوعي.</h2><p id="wy14-knowledge-intro">تعرّف على التدخين، واكتشف ما وراء الدخان.</p></div><button class="owner-only-btn hidden wy14-admin-btn" type="button" onclick="waeiV14.editGroup('knowledge')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
+              <div id="wy14-knowledge-grid" class="wy14-knowledge-grid"></div>
+              <div id="wy14-knowledge-detail" class="wy14-knowledge-detail" aria-live="polite" hidden></div>
+              <div id="wy14-knowledge-links" class="wy14-knowledge-links"></div>
+            </section>
             <div id="subSection-bentoStats" class="bento-card p-5 sm:p-7 space-y-4 relative group">  
                 <div class="flex items-center justify-between pb-3 border-b border-brandGray-200">  
                     <div>  
@@ -748,64 +740,7 @@
             </div>  
   
             <!-- ميزة تفاعلية: مفتاح المقارنة السريعة وكسر الأوهام بالأرقام -->  
-            <section id="wy14-knowledge" class="wy14-section" aria-labelledby="wy14-knowledge-title">
-              <div class="wy14-k-head"><div><span class="wy14-eyebrow"><i class="fa-solid fa-book-open" aria-hidden="true"></i> المعرفة</span><h2 id="wy14-knowledge-title">كل شيء يبدأ بالوعي.</h2><p id="wy14-knowledge-intro">تعرّف على التدخين، واكتشف ما وراء الدخان.</p></div><button class="owner-only-btn hidden wy14-admin-btn" type="button" onclick="waeiV14.editGroup('knowledge')"><i class="fa-solid fa-pen"></i> تعديل</button></div>
-              <div id="wy14-knowledge-grid" class="wy14-knowledge-grid"></div>
-              <div id="wy14-knowledge-detail" class="wy14-knowledge-detail" aria-live="polite" hidden></div>
-              <div id="wy14-knowledge-links" class="wy14-knowledge-links"></div>
-            </section>
-            <div id="subSection-mythBusterSection" class="bento-card p-6 sm:p-8 space-y-5 border-rose-200 bg-gradient-to-br from-white via-rose-50/20 to-slate-50 relative group">  
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">  
-                    <div>  
-                        <span class="text-xs font-bold text-crimson bg-crimson-soft px-3 py-0.5 rounded-full border border-red-200 font-cairo inline-block">  
-                            حقيقة أم خرافة؟ 🔍  
-                        </span>  
-                        <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-1 font-cairo" id="mythSectionHeadline">معتقدات خاطئة عن التدخين</h3>  
-                        <p class="text-xs text-slate-600 font-plex mt-0.5">هل كل ما نسمعه عن التدخين صحيح؟</p>  
-                    </div>  
-                    <div class="flex items-center gap-1.5">  
-                        <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl font-cairo text-xs">  
-                            <button type="button" onclick="switchMythBusterTab('vape')" id="tabBtn-myth-vape" class="px-3 py-1.5 rounded-lg bg-crimson text-white font-bold transition shadow-xs">السجائر الإلكترونية (الفيب)</button>  
-                            <button type="button" onclick="switchMythBusterTab('shisha')" id="tabBtn-myth-shisha" class="px-3 py-1.5 rounded-lg text-slate-600 font-bold hover:bg-white transition">الأرجيلة (الشيشة)</button>  
-                            <button type="button" onclick="switchMythBusterTab('cigs')" id="tabBtn-myth-cigs" class="px-3 py-1.5 rounded-lg text-slate-600 font-bold hover:bg-white transition">السجائر التقليدية</button>  
-                        </div>  
-                        <button type="button" onclick="openMythEditModal()" class="owner-only-btn hidden px-2.5 py-1.5 bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 rounded-xl text-xs font-cairo font-bold border border-slate-300">  
-                            <i class="fa-solid fa-pen text-crimson"></i> تعديل المقارنة  
-                        </button>  
-                    </div>  
-                </div>  
-  
-                <div id="mythBusterContentBox" class="pt-2" data-revealed="false">  
-                    <div id="wy12-myth-card" class="p-5 rounded-2xl bg-white border border-rose-200 space-y-3 shadow-xs">  
-                        <div class="flex items-center gap-2 text-rose-600 font-bold font-cairo text-sm">  
-                            <i class="fa-solid fa-circle-xmark text-lg text-crimson"></i>  
-                            <span>المعتقد الخاطئ</span>  
-                        </div>  
-                        <h4 id="mythTitle" class="text-base sm:text-lg font-black text-slate-900 font-cairo leading-snug">  
-                            «السجائر الإلكترونية آمنة؛ فهي مجرد بخار ماء بنكهات الفواكه!»  
-                        </h4>  
-                        <p id="mythDesc" class="text-xs text-slate-600 font-plex leading-relaxed">  
-                            قد تجعلك النكهات تظن أن الفيب آمن، لكن هذا غير صحيح.  
-                        </p>
-                        <button type="button" id="wy12-reveal-fact" class="wy12-reveal" aria-controls="wy12-fact-card" aria-expanded="false"><i class="fa-solid fa-eye" aria-hidden="true"></i> اكشف الحقيقة</button>
-                    </div>
-
-                    <div id="wy12-fact-card" class="p-5 rounded-2xl bg-white border border-emerald-200 space-y-3 shadow-xs" tabindex="-1" aria-labelledby="factTitle" hidden>  
-                        <div class="flex items-center gap-2 text-emerald-700 font-bold font-cairo text-sm">  
-                            <i class="fa-solid fa-circle-check text-lg text-emerald-600"></i>  
-                            <span>الحقيقة</span>  
-                        </div>  
-                        <h4 id="factTitle" class="text-base sm:text-lg font-black text-slate-900 font-cairo leading-snug">  
-                            رذاذ الفيب ليس مجرد بخار ماء.  
-                        </h4>  
-                        <p id="factDesc" class="text-xs text-slate-600 font-plex leading-relaxed">  
-                            قد يحتوي الرذاذ على النيكوتين ومعادن ومواد ضارة. النكهة الحلوة لا تعني أنه آمن.  
-                        </p>
-                        <button type="button" id="wy12-reset-fact" class="wy12-reveal" aria-controls="wy12-myth-card"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> العودة</button>  
-                    </div>  
-                </div>  
-            </div>  
-  
+            
             <!-- SECTION: AWARENESS VIDEOS -->  
             <div id="subSection-awarenessVideos" class="bento-card p-5 sm:p-7 space-y-4 relative group">  
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-brandGray-200">  
@@ -1059,7 +994,8 @@
                 </div>  
   
                 <div id="wy11-impact-content" class="wy11-impact-pane flex flex-col lg:flex-row items-center gap-8 py-4">  
-                    <div class="relative w-full max-w-sm mx-auto aspect-[3/5] bg-brandGray-50 rounded-2xl border border-brandGray-200 flex items-center justify-center overflow-hidden" id="anatomyStageWrapper">  
+                    <div class="wy-pdf-atlas-heading"><h3>التأثير على المدى البعيد</h3><p>بطريقة تفاعلية رسم أعضاء الجسم ويظهر العرض عند الضغط على العضو</p></div>
+            <div class="relative w-full max-w-sm mx-auto aspect-[3/5] bg-brandGray-50 rounded-2xl border border-brandGray-200 flex items-center justify-center overflow-hidden" id="anatomyStageWrapper">  
                         <img id="anatomyMainBodyImage" decoding="async" loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20270%20450%22%20role%3D%22img%22%20aria-label%3D%22%D8%B1%D8%B3%D9%85%20%D9%85%D8%A8%D8%B3%D8%B7%20%D9%84%D9%85%D9%88%D8%A7%D8%B6%D8%B9%20%D8%A3%D8%B9%D8%B6%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AC%D8%B3%D9%85%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22body%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23b9c4cf%22%20stop-opacity%3D%22.75%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23f6f7f9%22%20stop-opacity%3D%22.85%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23b9c4cf%22%20stop-opacity%3D%22.75%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22lung%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23e6b4b6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23bd797e%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22liver%22%20x2%3D%22.7%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23b97b79%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238d444c%22%2F%3E%3C%2FlinearGradient%3E%3CradialGradient%20id%3D%22heart%22%3E%3Cstop%20stop-color%3D%22%23d37b80%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23a3424d%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%22135%22%20cy%3D%22227%22%20rx%3D%22114%22%20ry%3D%22191%22%20fill%3D%22%23ecdfe0%22%20opacity%3D%22.45%22%2F%3E%3Cellipse%20cx%3D%22135%22%20cy%3D%22430%22%20rx%3D%2254%22%20ry%3D%228%22%20fill%3D%22%23566275%22%20opacity%3D%22.12%22%2F%3E%3Cg%20stroke%3D%22%239daab9%22%20stroke-width%3D%221.3%22%3E%3Cpath%20d%3D%22M116%2089V106L94%20114Q74%20118%2064%20144L33%20256Q29%20270%2040%20274Q51%20277%2057%20264L82%20197L89%20284L81%20396Q78%20422%2091%20425L110%20425Q118%20422%20120%20409L135%20300L150%20409Q152%20422%20160%20425H179Q192%20422%20189%20396L181%20284L188%20197L213%20264Q219%20277%20230%20274Q241%20270%20237%20256L206%20144Q196%20118%20176%20114L154%20106V89%22%20fill%3D%22url%28%23body%29%22%2F%3E%3Cellipse%20cx%3D%22135%22%20cy%3D%2255%22%20rx%3D%2232%22%20ry%3D%2239%22%20fill%3D%22%23e5c9b9%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M110%2052Q106%2031%20120%2025Q129%2019%20135%2027Q147%2019%20160%2031Q168%2040%20160%2055Q166%2069%20149%2077Q140%2082%20135%2073Q128%2081%20116%2074Q104%2066%20110%2052Z%22%20fill%3D%22%23d4a0aa%22%20stroke%3D%22%23b77886%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M135%2027V73M114%2040Q129%2035%20127%2046T119%2062M156%2040Q141%2035%20143%2046T151%2062%22%20stroke%3D%22%23f2dbdc%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M135%2093V139M135%20139L117%20153M135%20139L153%20153%22%20stroke%3D%22%2397a7b6%22%20stroke-width%3D%228%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M128%20131Q114%20114%20103%20128Q86%20146%2087%20174Q91%20194%20128%20190Z%20M142%20131Q156%20114%20167%20128Q184%20146%20183%20174Q179%20194%20142%20190Z%22%20fill%3D%22url%28%23lung%29%22%20stroke%3D%22%23af737a%22%20stroke-width%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M128%20139L107%20155L99%20175M142%20139L163%20155L171%20175M111%20153L117%20175M159%20153L153%20175%22%20stroke%3D%22%23f8e6e6%22%20stroke-width%3D%222.3%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M143%20190C121%20170%20123%20155%20135%20155Q144%20155%20147%20164Q156%20151%20164%20160Q174%20176%20143%20190Z%22%20fill%3D%22url%28%23heart%29%22%20stroke%3D%22%23a54c54%22%20stroke-width%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M97%20205Q121%20195%20148%20204L145%20219Q128%20234%2099%20230Q91%20226%2097%20205Z%22%20fill%3D%22url%28%23liver%29%22%20stroke%3D%22%238e444b%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M151%20218Q160%20205%20163%20219Q161%20230%20173%20233Q188%20243%20176%20257Q165%20267%20146%20257Q134%20248%20141%20236Q150%20230%20151%20218Z%22%20fill%3D%22%23d5a5a2%22%20stroke%3D%22%23b27c7b%22%20stroke-width%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M116%20259Q102%20251%2096%20265Q91%20284%20103%20292Q113%20299%20119%20287Q126%20277%20116%20274Q112%20270%20116%20259Z%20M154%20259Q168%20251%20174%20265Q179%20284%20167%20292Q157%20299%20151%20287Q144%20277%20154%20274Q158%20270%20154%20259Z%22%20fill%3D%22%23b8747e%22%20stroke%3D%22%239f5562%22%20stroke-width%3D%221.3%22%2F%3E%3C%2Fsvg%3E%0A" alt="جسد اليافع التشريحي" class="h-full w-auto object-contain select-none">  
                         <div id="anatomyHotspotsContainer" class="absolute inset-0"></div>  
                     </div>  
@@ -1106,7 +1042,7 @@
                   <p id="wy-v7-recovery-fact" class="wy-v7-fact" hidden>يتعافى الجسم تدريجياً، ويختلف وقت التحسّن ومقداره من شخص لآخر.</p>
                 </div>
               </div>
-              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-recovery-prev" onclick="waeiV7.recoveryMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span class="wy-v7-muted" id="wy-v7-recovery-count" dir="ltr">1 / 4</span><button type="button" class="wy-v7-button" id="wy-v7-recovery-next" onclick="waeiV7.recoveryMove(1)">المرحلة التالية <i class="fa-solid fa-arrow-left"></i></button></div>
+              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-recovery-prev" onclick="waeiV7.recoveryMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span class="wy-v7-muted" id="wy-v7-recovery-count" dir="ltr">1 / 7</span><button type="button" class="wy-v7-button" id="wy-v7-recovery-next" onclick="waeiV7.recoveryMove(1)">المرحلة التالية <i class="fa-solid fa-arrow-left"></i></button></div>
               <p class="wy-v7-disclaimer">هذه مراحل تقريبية بعد الإقلاع عن السجائر والتوقف عن النيكوتين. لا تنطبق جميعها على السجائر الإلكترونية، ويختلف التعافي من شخص لآخر. <a href="https://www.cdc.gov/tobacco/about/benefits-of-quitting.html" target="_blank" rel="noopener noreferrer">CDC</a> · <a href="https://www.nhs.uk/better-health/quit-smoking/ready-to-quit-smoking/what-could-happen-when-you-quit-smoking/" target="_blank" rel="noopener noreferrer">NHS</a> · <a href="https://teen.smokefree.gov/quit-vaping/vaping-addiction-nicotine-withdrawal" target="_blank" rel="noopener noreferrer">Smokefree Teen</a></p>
             </section>
 
@@ -1150,7 +1086,7 @@
                         </div>  
                     </div>  
                 </div>
-<div class="wy14-lab-tabs" role="group" aria-label="نوع المختبر"><button type="button" data-wy14-lab="classic" aria-controls="wy14-classic" aria-pressed="false"><i class="fa-solid fa-smoking" aria-hidden="true"></i><span>السيجارة التقليدية</span></button><button type="button" data-wy14-lab="vape" aria-controls="wy8-lab" aria-pressed="true"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span>السيجارة الإلكترونية (الفيب)</span></button></div></div>
+<div class="wy14-lab-tabs" role="group" aria-label="نوع المختبر"><button type="button" data-wy14-lab="classic" aria-controls="wy14-classic" aria-pressed="true"><i class="fa-solid fa-smoking" aria-hidden="true"></i><span>السيجارة التقليدية</span></button><button type="button" data-wy14-lab="vape" aria-controls="wy8-lab" aria-pressed="false"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i><span>السيجارة الإلكترونية (الفيب)</span></button></div></div>
 <section id="wy14-classic" class="wy14-section wy14-classic" aria-labelledby="wy14-classic-title" hidden></section>
 <section id="wy8-lab" class="wy-v7-shell" aria-labelledby="wy8-lab-title"><div class="wy-v7-heading"><div><h2 id="wy8-lab-title">مختبر السيجارة الإلكترونية</h2><p id="wy8-lab-intro">اكتشف مكوّنات السيجارة الإلكترونية ومخاطرها.</p></div><span class="wy-v7-heading-badge"><i class="fa-solid fa-flask-vial"></i></span></div><div id="wy8-lab-tabs" class="wy-v7-tabs" role="tablist"></div><div id="wy8-lab-stage"></div><div id="wy8-lab-controls"></div><p id="wy8-lab-note" class="wy-v7-disclaimer">محاكاة تعليمية للتوضيح، وليست تجربة أو قياساً مخبرياً.</p></section>
             <!-- بطاقات مواد الفيب فقط -->  
@@ -1203,6 +1139,12 @@
                     </p>  
                 </div>  
             </div>  
+
+<section id="wy-teen-reasons" class="wy-pdf-section" aria-labelledby="wy-teen-reasons-title">
+  <div class="wy-pdf-section-head"><span class="wy-pdf-kicker">أسباب وعوامل مؤثرة</span><h3 id="wy-teen-reasons-title">لماذا يبدأ المراهقون بالتدخين؟</h3><p>هل فكرت يوماً لماذا يجرب بعض المراهقين التدخين لأول مرة؟ هل هو الفضول؟ تأثير الأصدقاء؟ أم الرغبة في إثبات أنهم أصبحوا أكبر؟</p><small>اضغط على كل سبب واكتشف كيف يمكن أن يؤثر في قرار المراهق.</small></div>
+  <div class="wy-pdf-grid"><details class="wy-pdf-card"><summary><span class="wy-pdf-number">01</span><span>تقليد الأصدقاء</span></summary><p>الرغبة في الانتماء إلى مجموعة الأصدقاء ومجاراتهم</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">02</span><span>وجود مدخنين في المنزل</span></summary><p>رؤية الأهل يدخنون تجعل التدخين يبدو أمراً طبيعياً.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">03</span><span>إثبات الكبر</span></summary><p>الاعتقاد الخاطئ بأن السيجارة تعطي مظهراً يوحي بالقوة والنضج.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">04</span><span>التمرد وكسر القواعد</span></summary><p>محاولة إثبات الاستقلال ورفض السلطة أو القواعد</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">05</span><span>الهروب من الضغوط</span></summary><p>الاعتقاد أن التدخين يساعد على تخفيف التوتر والقلق.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">06</span><span>الفضول</span></summary><p>الرغبة في تجربة السيجارة لمعرفة طعمها أو تأثيرها.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">07</span><span>تأثير المشاهير والإعلام</span></summary><p>تقليد شخصيات مشهورة تظهر وهي تدخن في الأفلام والمسلسلات.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">08</span><span>تأثير المحيط الاجتماعي</span></summary><p>التأثر بالسلوكيات المنتشرة في البيئة المحيطة.</p></details></div>
+  <div class="wy-pdf-closing"><strong>قرارك إلك!</strong><p>قد تتعدد الأسباب التي تدفع المراهق لتجربة التدخين، لكن تذكر: مش لازم تدخن حتى تكون مقبولاً، أو تبدو أكبر، أو تثبت شخصيتك. القوة الحقيقية إنك تعرف تختار وتحافظ على نفسك، حتى لو اختار الآخرون غير ذلك.</p></div>
+</section>
         </div>  
   
         <!-- ==================== SCREEN 6: FINANCIAL CALCULATOR ==================== -->  
@@ -1267,10 +1209,9 @@
               <span class="wy-v7-heading-badge" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></span>
             </div>
             <div class="wy-v7-tabs" role="tablist" aria-label="تجارب الرفض">
-              <button type="button" id="wy-v7-tab-0" class="wy-v7-tab is-active" role="tab" aria-selected="true" aria-controls="wy-v7-panel-0" onclick="waeiV7.tab(0)"><i class="fa-solid fa-book-open"></i><span>رحلة الإدمان</span><small>كيف يبدأ الإدمان؟</small></button>
-              <button type="button" id="wy-v7-tab-1" class="wy-v7-tab" role="tab" aria-selected="false" aria-controls="wy-v7-panel-1" onclick="waeiV7.tab(1)"><i class="fa-solid fa-face-meh"></i><span>أعراض الانسحاب</span><small>كيف تتعامل معها؟</small></button>
-              <button type="button" id="wy-v7-tab-2" class="wy-v7-tab" role="tab" aria-selected="false" aria-controls="wy-v7-panel-2" onclick="waeiV7.tab(2)"><i class="fa-solid fa-comments"></i><span>قرارك بيدك</span><small>مواقف واقعية</small></button>
-              <button type="button" id="wy-v7-tab-3" class="wy-v7-tab" role="tab" aria-selected="false" aria-controls="wy-v7-panel-3" onclick="waeiV7.tab(3)"><i class="fa-solid fa-user-doctor"></i><span>اسأل فريق وعي يداوي</span><small>اسأل دون حرج</small></button>
+              <button type="button" id="wy-v7-tab-0" class="wy-v7-tab is-active" role="tab" aria-selected="true" aria-controls="wy-v7-panel-0" onclick="waeiV7.tab(0)"><i class="fa-solid fa-book-open"></i><span>رحلة الإدمان</span><small>من التجربة إلى الانسحاب</small></button>
+              <button type="button" id="wy-v7-tab-1" class="wy-v7-tab" role="tab" aria-selected="false" aria-controls="wy-v7-panel-1" onclick="waeiV7.tab(1)"><i class="fa-solid fa-comments"></i><span>قرارك بيدك</span><small>مواقف واقعية</small></button>
+              <button type="button" id="wy-v7-tab-2" class="wy-v7-tab" role="tab" aria-selected="false" aria-controls="wy-v7-panel-2" onclick="waeiV7.tab(2)"><i class="fa-solid fa-user-doctor"></i><span>اسأل فريق وعي يداوي</span><small>اسأل دون حرج</small></button>
             </div>
             <section id="wy-v7-panel-0" role="tabpanel" aria-labelledby="wy-v7-tab-0" class="wy-v7-panel">
               <div class="wy-v7-panel-top"><div><h3>رحلة الإدمان</h3><p>من التجربة الأولى إلى دورة الإدمان.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.edit('story')"><i class="fa-solid fa-pen"></i> تعديل المشهد</button></div>
@@ -1283,13 +1224,41 @@
                   <blockquote id="wy-v7-story-speech" class="wy-v7-dialogue">«قلت أجرب مرة…»</blockquote>
                   <p id="wy-v7-story-text"></p>
                   <div id="wy-v7-story-extra" class="wy-v7-extra"></div>
+                  <div id="wy8-mirror-wrap" class="wy-v7-withdrawal" hidden>
+                    <div class="wy-v7-panel-top"><div><h4 id="wy8-mirror-title">أعراض الانسحاب</h4><p id="wy8-mirror-subtitle">اضغط على كل عرض لتعرف كيف قد يشعر آدم عند محاولة التوقف.</p></div></div>
+                    <div id="wy8-mirror"></div>
+                  </div>
                 </div>
               </div>
-              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-story-prev" onclick="waeiV7.storyMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span id="wy-v7-story-count" class="wy-v7-muted">1 / 4</span><button type="button" class="wy-v7-button" id="wy-v7-story-next" onclick="waeiV7.storyMove(1)">المشهد التالي <i class="fa-solid fa-arrow-left"></i></button></div>
-            </section>
-            <section id="wy-v7-panel-1" role="tabpanel" aria-labelledby="wy-v7-tab-1" class="wy-v7-panel" hidden>
-<div class="wy-v7-panel-top"><div><h3 id="wy8-mirror-title">أعراض الانسحاب</h3><p id="wy8-mirror-subtitle">قد تظهر أعراض مؤقتة بعد التوقف عن النيكوتين. اختر عرضاً لتعرف ما يشعر به آدم وكيف يتعامل معه.</p></div></div><div id="wy8-mirror"></div></section>
-<section id="wy-v7-panel-2" role="tabpanel" aria-labelledby="wy-v7-tab-2" class="wy-v7-panel" hidden>
+              <div class="wy-v7-bottom"><button type="button" class="wy-v7-button ghost" id="wy-v7-story-prev" onclick="waeiV7.storyMove(-1)"><i class="fa-solid fa-arrow-right"></i> السابق</button><span id="wy-v7-story-count" class="wy-v7-muted">1 / 7</span><button type="button" class="wy-v7-button" id="wy-v7-story-next" onclick="waeiV7.storyMove(1)">المشهد التالي <i class="fa-solid fa-arrow-left"></i></button></div>
+            
+<section id="subSection-mythBusterSection" class="wy-pdf-section" aria-labelledby="wy-myth-title">
+  <div class="wy-pdf-section-head"><span class="wy-pdf-kicker">معتقدات خاطئة عن التدخين: بين الوهم والحقيقة</span><h3 id="wy-myth-title">معتقدات خاطئة عن التدخين: بين الوهم والحقيقة</h3><p>مش كل ما نسمعه عن التدخين صحيح!</p></div>
+  <div class="flex items-center justify-between gap-2 mb-3"><span class="text-xs font-bold text-slate-600">اكشف الحقيقة بشأن منتجات التدخين</span><button type="button" onclick="openMythEditModal('products',0)" class="owner-only-btn hidden wy-pdf-admin"><i class="fa-solid fa-pen"></i> تعديل المعتقدات</button></div>
+  <div id="mythBusterContentBox" class="wy-pdf-grid" aria-live="polite"><div id="mythCardsGrid"></div></div>
+</section>
+<section id="wy-plant-safety" class="wy-pdf-section" aria-labelledby="wy-plant-title">
+  <div class="wy-pdf-section-head"><span class="wy-pdf-kicker">سؤال تفاعلي</span><h3 id="wy-plant-title">هل تدخين أوراق النباتات آمن؟</h3><p>أوراق نباتات طبيعية... يعني تدخينها آمن؟</p><p>قد تسمع أن تدخين أوراق النباتات المجففة أقل ضرراً لأنها طبيعية وخالية من النيكوتين.</p><p class="wy-pdf-question">لكن هل هذا صحيح؟</p></div>
+  <div class="wy-pdf-choice-row" role="group" aria-label="اختر إجابتك:">
+    <button type="button" class="wy-pdf-choice" onclick="choosePlantAnswer('yes')">نعم، لأنها أوراق طبيعية.</button>
+    <button type="button" class="wy-pdf-choice" onclick="choosePlantAnswer('no')">لا، حرق النباتات واستنشاق دخانها قد يكون ضاراً.</button>
+  </div>
+  <div id="wy-plant-feedback" class="wy-pdf-feedback" hidden><p id="wy-plant-feedback-text"></p><div class="wy-pdf-facts-head"><strong>اكتشف 3 حقائق</strong><small>اضغط على كل بطاقة لتكتشف المعلومة!</small></div><div class="wy-pdf-grid"><details class="wy-pdf-card"><summary><span class="wy-pdf-number">01</span><span>من نبات طبيعي إلى مواد ضارة</span></summary><p>النبات بحد ذاته شيء طبيعي، لكن عندما نجففه ونحرقه، تتغير مكوناته بفعل الحرارة والاحتراق، وتنتج مواد كيميائية جديدة، بعضها سام وضار بالصحة. يعني المشكلة مش في كون النبات طبيعياً، بل فيما ينتج عن حرقه واستنشاق دخانه! في فرق كبير! شرب الشاي يعني دخول مكوناته إلى المعدة، أما حرق الأعشاب واستنشاق دخانها فيدخل مواد ضارة مباشرة إلى الرئتين.</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">02</span><span>ماذا يحدث عند الخلط والاحتراق؟</span></summary><p>عندما يخلط البعض أوراق النباتات بالتبغ أو النيكوتين أو مواد كيميائية أخرى، تصبح الخلطة مزيجاً من مواد مختلفة. وعند حرق هذا المزيج، تتعرض مكوناته للحرارة وتتفاعل وتتحلل، وقد تنتج مواد جديدة لا تعرف طبيعتها أو تأثيرها على جسمك. بمعنى أبسط: أنت لا تستنشق النبات فقط، بل تستنشق خليطاً من مواد موجودة أصلاً ومواد ناتجة عن احتراقها!</p></details><details class="wy-pdf-card"><summary><span class="wy-pdf-number">03</span><span>ماذا يدخل إلى جسمك؟</span></summary><p>قد يحتوي دخان الاحتراق على أول أكسيد الكربون والقطران والجسيمات الدقيقة ومواد كيميائية ضارة. وإذا أُضيف النيكوتين إلى الخلطة، فقد تتعرض لكمية غير معروفة منه، مما يزيد خطر الإدمان. كل هذا يدخل إلى جسمك مع كل نفس، وقد يضر رئتيك وصحتك.</p></details></div><p class="wy-pdf-closing">النبات طبيعي... لكن الخلط والحرق يغيّران كل شيء! عندما تجفف الأوراق وتخلطها بمواد أخرى ثم تحرقها، لا يمكنك معرفة كل المواد التي تنتج أو تدخل إلى جسمك. لا تخلي كلمة «طبيعي» تخدعك! اختار صحتك... اختار الهواء النقي!</p></div>
+</section>
+<section id="wy-smoking-alternatives" class="wy-pdf-section" aria-labelledby="wy-alternatives-title">
+  <div class="wy-pdf-section-head"><span class="wy-pdf-kicker">جرب معنا:</span><h3 id="wy-alternatives-title">شو ممكن أعمل بدل السيجارة لما أكون مضغوط أو زهقان أو نفسي أغير جوي؟</h3><p>مش لازم تكون السيجارة هي الحل! في أشياء بسيطة ممكن تغير مزاجك وتخليك تحس بشعور حلو.</p></div>
+  <div class="wy-pdf-grid">
+    <details class="wy-pdf-card"><summary><span class="wy-pdf-number">01</span><span>الرياضة والحركة</span></summary><p>جرب تلعب كرة، تركض، تمشي أو تعمل أي نشاط بتحبه. حتى لو كنت متضايق، ممكن تتفاجأ قديش بتتحسن نفسيتك بعد اللعب والحركة!</p></details>
+    <details class="wy-pdf-card"><summary><span class="wy-pdf-number">02</span><span>العلكة</span></summary><p>قاعد، زهقان، ومش عارف شو تعمل؟ جرب تمضغ علكة! اشغل تمك بشي احسن ما تشغل تمك بالسيجارة</p></details>
+    <details class="wy-pdf-card"><summary><span class="wy-pdf-number">03</span><span>اشرب مي</span></summary><p>جيب كاسة مي، واشربها ببطء، رشفة ورا رشفة. خذ وقتك وحاول تركز على الشرب</p></details>
+    <details class="wy-pdf-card wy-pdf-breath"><summary><span class="wy-pdf-number">04</span><span>التنفس العميق</span></summary><p>حاسس حالك معصب أو مضغوط؟ تعال جرب معي.</p><div class="wy-pdf-breath-steps"><div><b>01</b><p>خذ نفسا ببطء من أنفك لمدة 4 ثوان.</p></div><div><b>02</b><p>احبس النفس لمدة ثانيتين.</p></div><div><b>03</b><p>أخرج النفس بهدوء من فمك لمدة 6 ثوان.</p></div></div><p>كررها 5 مرات.</p><small>رح تلاحظ إنك بدأت تهدأ وتسترخي.</small></details>
+  </div>
+</section>
+<section id="wy-pdf-closing-message" class="wy-pdf-section" aria-label="رسالة ختامية">
+  <div class="wy-pdf-closing"><strong>لا تحتاج أن تثبت نفسك بالتدخين</strong><p>أنت أقوى من السيجارة.</p></div>
+</section>
+</section>
+<section id="wy-v7-panel-1" role="tabpanel" aria-labelledby="wy-v7-tab-1" class="wy-v7-panel" hidden>
               <div class="wy-v7-panel-top"><div><h3>قرارك بيدك</h3><p>اختر ردّك وشاهد كيف يتغيّر الموقف.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.edit('chat')"><i class="fa-solid fa-pen"></i> تعديل الموقف</button></div>
               <div id="wy-v7-chat-scenes" class="wy-v7-milestones"></div>
               <div class="wy-v7-chat-grid">
@@ -1302,7 +1271,7 @@
               </div>
               <div class="wy-v7-bottom"><p class="wy-v7-muted" id="wy-v7-chat-tip">جرّب أكثر من رد؛ هذه تجربة للتعلّم وليست اختباراً.</p><button type="button" class="wy-v7-button ghost" onclick="waeiV7.chatReset()"><i class="fa-solid fa-arrows-rotate"></i> جرّب ردّاً آخر</button></div>
             </section>
-            <section id="wy-v7-panel-3" role="tabpanel" aria-labelledby="wy-v7-tab-3" class="wy-v7-panel" hidden>
+            <section id="wy-v7-panel-2" role="tabpanel" aria-labelledby="wy-v7-tab-2" class="wy-v7-panel" hidden>
               <div class="wy-v7-panel-top"><div><h3>اسأل فريق وعي يداوي</h3><p>إجابات توعوية وأسئلة للحملة.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.doctorAdd()"><i class="fa-solid fa-plus"></i> إضافة سؤال</button></div>
               <div class="wy-v7-doctor-grid">
                 <div class="wy-v7-doctor-booth" id="wy-v7-doctor-visual"></div>
@@ -1315,12 +1284,15 @@
               </div>
             </section>
           </section>
+
+
         </div>
 
         <!-- New independent literature section, managed through the existing owner CMS. -->
         <div id="screen-literature" class="hidden space-y-4">
           <div class="flex items-center justify-between gap-2 pb-2 border-b border-brandGray-200"><button type="button" onclick="switchMainScreen('screen-home')" class="px-3 py-1.5 rounded-xl bg-brandGray-100 hover:bg-brandGray-200 text-slate-800 font-bold text-xs font-cairo"><i class="fa-solid fa-arrow-right ml-1"></i> الرئيسية</button><span class="text-xs text-brandGray-500">المنصة / أدبيات</span></div>
 <section class="wy-lit-shell" id="wy-literature-section"><div class="wy-lit-head"><div><span class="wy-v7-kicker">وعي يداوي / من أعمال الفريق والأساتذة</span><h2 id="wy-lit-title">أدبيات</h2><p id="wy-lit-description">كتابات وأعمال ومساهمات نعتزّ بها.</p></div><button type="button" class="wy-v7-owner owner-only-btn hidden" onclick="waeiV7.litEdit()"><i class="fa-solid fa-plus"></i> إضافة عمل</button></div><div id="wy-lit-items" class="wy-lit-grid"></div></section>
+<section id="wy-slide-sources" class="wy-pdf-section" aria-labelledby="wy-slide-sources-title"><div class="wy-pdf-section-head"><span class="wy-pdf-kicker">مراجع موثوقة</span><h3 id="wy-slide-sources-title">مصادر التوعية المرئية</h3><p>روابط توعوية ومصادر مرئية وردت في السلايدات</p></div><div class="wy-pdf-source-grid"><a class="wy-pdf-source-link" href="https://www.youtube.com/user/KnowTheRealCost" target="_blank" rel="noopener noreferrer"><span>Know The Real Cost – YouTube</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="wy-pdf-source-link" href="https://therealcost.gov/" target="_blank" rel="noopener noreferrer"><span>TheRealCost.gov</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="wy-pdf-source-link" href="https://www.who.int/ar/news-room/fact-sheets/detail/tobacco" target="_blank" rel="noopener noreferrer"><span>World Health Organization – Tobacco</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="wy-pdf-source-link" href="https://youtu.be/Y18Vz51Nkos?si=2K3pl_E1slgXQISn" target="_blank" rel="noopener noreferrer"><span>YouTube video</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></section>
         </div>
 
         <!-- WAEI COMMUNITY: native screen, certificates above reviews -->
@@ -1747,27 +1719,25 @@
             </div>  
             <div class="space-y-3 text-xs">  
                 <div>  
-                    <label class="block font-bold text-navy mb-1 font-cairo">اختر التبويب المراد تعديله:</label>  
-                    <select id="editMythTabSelect" onchange="loadMythDataIntoModal(this.value)" class="w-full p-2 border border-slate-200 rounded-xl bg-white font-cairo">  
-                        <option value="vape">السجائر الإلكترونية (الفيب)</option>  
-                        <option value="shisha">الأرجيلة (الشيشة)</option>  
-                        <option value="cigs">السجائر التقليدية</option>  
-                    </select>  
+                    <label class="block font-bold text-navy mb-1 font-cairo">اختر مجموعة المعتقدات:</label>
+                    <select id="editMythTabSelect" onchange="loadMythDataIntoModal(this.value)" class="w-full p-2 border border-slate-200 rounded-xl bg-white font-cairo"><option value="products">منتجات التدخين</option></select>
+                    <label class="block font-bold text-navy mb-1 mt-3 font-cairo">اختر العبارة:</label>
+                    <select id="editMythCardSelect" onchange="loadMythDataIntoModal()" class="w-full p-2 border border-slate-200 rounded-xl bg-white font-cairo"></select>  
                 </div>  
                 <div>  
-                    <label class="block font-bold text-rose-700 mb-1 font-cairo">عنوان المعتقد الخاطئ (Myth Title):</label>  
+                    <label class="block font-bold text-rose-700 mb-1 font-cairo">نص المعتقد أو العبارة:</label>  
                     <input type="text" id="editMythTitleInput" class="w-full p-2 border border-rose-200 rounded-xl">  
                 </div>  
                 <div>  
-                    <label class="block font-bold text-slate-700 mb-1 font-cairo">شرح المعتقد الخاطئ:</label>  
+                    <label class="block font-bold text-slate-700 mb-1 font-cairo">ملاحظة مختصرة (اختياري):</label>  
                     <textarea id="editMythDescInput" rows="2" class="w-full p-2 border border-slate-200 rounded-xl"></textarea>  
                 </div>  
                 <div>  
-                    <label class="block font-bold text-emerald-700 mb-1 font-cairo">عنوان الحقيقة (Fact Title):</label>  
+                    <label class="block font-bold text-emerald-700 mb-1 font-cairo">عنوان الحقيقة أو التفسير:</label>  
                     <input type="text" id="editFactTitleInput" class="w-full p-2 border border-emerald-200 rounded-xl">  
                 </div>  
                 <div>  
-                    <label class="block font-bold text-slate-700 mb-1 font-cairo">شرح الحقيقة العلمية:</label>  
+                    <label class="block font-bold text-slate-700 mb-1 font-cairo">شرح الحقيقة:</label>  
                     <textarea id="editFactDescInput" rows="3" class="w-full p-2 border border-slate-200 rounded-xl"></textarea>  
                 </div>  
             </div>  
@@ -2778,14 +2748,31 @@
             { id: 'vol-3', code: 'MED-2026-003', name: 'سارة إبراهيم المصري', role: 'ميدان', desc: 'كلية الطب البشري - سنة خامسة', active: true, group: 'فريق الميدان 2', avatar: '', cardImg: '', publicRole: 'مسؤولة التثقيف المدرسي', publicCategory: 'التثقيف والتواصل', showName: true, order: 3 }
         ];
 
-        const defaultOrgans = [
-            { id: 'org-1', num: 1, name: 'الدماغ', cat: 'الجهاز العصبي المركزي', title: 'الدماغ: تأثير النيكوتين', desc: 'قد يؤثر النيكوتين في نمو الدماغ خلال المراهقة. كما يزيد التدخين خطر السكتة الدماغية.', stat: 'التعلّم والانتباه والذاكرة', top: 12, left: 50 },
-            { id: 'org-2', num: 2, name: 'الرئتان', cat: 'الجهاز التنفسي', title: 'الرئتان: التنفس', desc: 'يضر دخان السجائر أنسجة الرئتين، ويزيد خطر الانسداد الرئوي المزمن، وهو مرض يجعل التنفس صعباً.', stat: 'يزيد خطر أمراض الرئة المزمنة', top: 32, left: 45 },
-            { id: 'org-3', num: 3, name: 'القلب', cat: 'جهاز الدوران', title: 'القلب والشرايين', desc: 'يزيد التدخين خطر النوبات القلبية والجلطات وأمراض الشرايين.', stat: 'قد يزيد النيكوتين نبض القلب', top: 38, left: 54 },
-            { id: 'org-4', num: 4, name: 'الكبد', cat: 'الجهاز الهضمي', title: 'الكبد', desc: 'التدخين قد يؤثر على صحة الكبد.', stat: 'الابتعاد عن التدخين يحمي صحتك', top: 48, left: 43 },
-            { id: 'org-5', num: 5, name: 'المعدة', cat: 'الجهاز الهضمي', title: 'المعدة', desc: 'التدخين يزيد خطر القرحة وقد يبطئ التئامها.', stat: 'صحة الجهاز الهضمي', top: 54, left: 52 },
-            { id: 'org-6', num: 6, name: 'الكليتان', cat: 'الجهاز البولي', title: 'الكليتان', desc: 'التدخين يضر الأوعية الدموية وقد يزيد خطر أمراض الكلى.', stat: 'صحة الكلى والأوعية', top: 62, left: 46 }
-        ];
+        const defaultOrgans = [{"id":"org-3","num":1,"name":"القلب","cat":"القلب","title":"القلب","desc":"زيادة خطر النوبات القلبية والجلطات.","stat":"زيادة خطر النوبات القلبية والجلطات","top":38,"left":54},{"id":"org-7","num":2,"name":"الأوعية الدموية","cat":"الأوعية الدموية","title":"الأوعية الدموية","desc":"تصلب الشرايين وتضيقها.","stat":"تصلب الشرايين وتضيقها","top":48,"left":62},{"id":"org-2","num":3,"name":"الرئتان","cat":"الرئتان","title":"الرئتان","desc":"تلف أنسجة الرئة والانسداد الرئوي المزمن.","stat":"تلف أنسجة الرئة والانسداد الرئوي المزمن","top":32,"left":45},{"id":"org-8","num":4,"name":"الفم والحنجرة","cat":"الفم والحنجرة","title":"الفم والحنجرة","desc":"زيادة خطر السرطان.","stat":"زيادة خطر السرطان","top":21,"left":50},{"id":"org-1","num":5,"name":"الدماغ","cat":"الدماغ","title":"الدماغ","desc":"زيادة خطر السكتة الدماغية.","stat":"زيادة خطر السكتة الدماغية","top":12,"left":50},{"id":"org-9","num":6,"name":"الجلد","cat":"الجلد","title":"الجلد","desc":"شيخوخة مبكرة وتأخر التئام الجروح.","stat":"شيخوخة مبكرة وتأخر التئام الجروح","top":49,"left":23},{"id":"org-10","num":7,"name":"الجهاز المناعي","cat":"الجهاز المناعي","title":"الجهاز المناعي","desc":"ضعف مقاومة العدوى والأمراض.","stat":"ضعف مقاومة العدوى والأمراض","top":57,"left":58}];
+
+        function normalizePdfOrgans(raw) {
+            if (!Array.isArray(raw)) return structuredClone(defaultOrgans);
+            const legacyIds = new Set(['org-1','org-2','org-3','org-4','org-5','org-6']);
+            const activeIds = new Set(defaultOrgans.map(item => item.id));
+            const archivedLegacy = raw.filter(row => row && legacyIds.has(row.id) && !activeIds.has(row.id)).map(row => ({ ...row, archived: true, archivedLabel: 'محتوى سابق محفوظ' }));
+            const complete = defaultOrgans.every(item => raw.some(old => old && old.id === item.id));
+            if (complete) {
+                return raw.map(row => row && legacyIds.has(row.id) && !activeIds.has(row.id) ? { ...row, archived: true, archivedLabel: 'محتوى سابق محفوظ' } : row);
+            }
+            const next = defaultOrgans.map(item => {
+                const old = raw.find(row => row && row.id === item.id);
+                if (!old) return { ...item };
+                return { ...old, ...item,
+                    top: Number.isFinite(Number(old.top)) ? old.top : item.top,
+                    left: Number.isFinite(Number(old.left)) ? old.left : item.left,
+                    color: old.color || item.color,
+                    media: old.media || item.media,
+                    image: old.image || item.image
+                };
+            });
+            const extras = raw.filter(row => row && !legacyIds.has(row.id) && !activeIds.has(row.id));
+            return [...next, ...extras, ...archivedLegacy].map((row, i) => ({ ...row, num: i + 1 }));
+        }
 
         const defaultToxins = [
             { id: 'tox-1', name: 'أملاح النيكوتين (Nicotine Salts)', source: 'سوائل إلكترونية قد تحتوي على النيكوتين', desc: 'مادة تسبّب الإدمان وقد تؤثر في نبض القلب ونمو دماغ المراهق.' },
@@ -2853,26 +2840,19 @@
 
         const defaultStatsItems = []; // V22: actual campaign figures come only from Supabase.
 
-        const defaultMythData = {
-            vape: {
-                mythTitle: '«السجائر الإلكترونية آمنة؛ فهي مجرد بخار ماء بنكهات الفواكه!»',
-                mythDesc: 'قد تجعلك النكهات تظن أن الفيب آمن، لكن هذا غير صحيح.',
-                factTitle: 'رذاذ الفيب ليس مجرد بخار ماء.',
-                factDesc: 'قد يحتوي الرذاذ على النيكوتين ومعادن ومواد ضارة. النكهة الحلوة لا تعني أنه آمن.'
-            },
-            shisha: {
-                mythTitle: '«الأرجيلة أقل ضرراً من السجائر؛ لأن الماء ينقّي الدخان!»',
-                mythDesc: 'يعتقد بعض الناس أن الماء يزيل المواد الضارة من دخان الأرجيلة.',
-                factTitle: 'مرور الدخان بالماء لا يجعله آمناً.',
-                factDesc: 'قد يحتوي دخان الأرجيلة على النيكوتين وأول أكسيد الكربون ومواد ضارة أخرى، حتى بعد مروره بالماء.'
-            },
-            cigs: {
-                mythTitle: '«سيجارة واحدة في اليوم لا تضر، وتخفّف التوتر!»',
-                mythDesc: 'يعتقد بعض الناس أن التدخين القليل لا يسبّب الإدمان.',
-                factTitle: 'حتى التدخين القليل يضر بالصحة.',
-                factDesc: 'قد يسبّب النيكوتين الإدمان. الشعور المؤقت بالراحة لا يعالج سبب التوتر.'
+        const defaultMythData = {"version":3,"products":{"label":"منتجات التدخين","items":[{"mythTitle":"الشيشة أخف ضرراً من السجائر.","mythDesc":"","factTitle":"الحقيقة","factDesc":"الشيشة مش أخف ضرراً؛ فدخانها يحتوي على مواد ضارة كثيرة تدخل إلى الجسم وتؤثر في الصحة."},{"mythTitle":"الفيب آمن لأنه مجرد بخار.","mythDesc":"","factTitle":"الحقيقة","factDesc":"الفيب مش مجرد بخار ماء؛ بل ينتج رذاذاً يحتوي على مواد كيميائية قد تضر الرئتين، وقد يحتوي على النيكوتين."},{"mythTitle":"إذا لم تحتوي السيجارة على النيكوتين، فهي لا تضر الرئتين.","mythDesc":"","factTitle":"الحقيقة","factDesc":"الضرر مش بس من النيكوتين؛ فاحتراق المواد ينتج دخانا وغازات ضارة تؤذي الرئتين حتى لو لم تحتوي على النيكوتين."}]}};
+
+        function normalizePdfMythData(raw) {
+            if (!raw || typeof raw !== 'object' || Array.isArray(raw) || !raw.products || !Array.isArray(raw.products.items)) {
+                return { ...structuredClone(defaultMythData), legacy: raw && typeof raw === 'object' ? raw : null };
             }
-        };
+            const next = structuredClone(defaultMythData);
+            const incoming = raw.products.items.slice(0, 20);
+            next.products.items = incoming.map((item, i) => ({ ...(next.products.items[i] || {}), ...(item || {}) }));
+            if (next.products.items.length < defaultMythData.products.items.length) next.products.items.push(...defaultMythData.products.items.slice(next.products.items.length));
+            if (raw.legacy) next.legacy = raw.legacy;
+            return next;
+        }
 
         // ==================== 5. AUDIT LOG & CONFIRMED CLOUD SYNC ====================
         function logAdminAction(actionType, itemName, success = true) {
@@ -3064,9 +3044,17 @@
             if(k===KEY_VISITOR_LOGS)return window.currentUserRole?wy21VisitorAdminRows:def;
             try {
                 const item = wy15ContentKeys.has(k) ? (wy15CloudContent.get(k) ?? null) : localStorage.getItem(k);
-                if(item!==null)return wy18NormalizeCopy(k,JSON.parse(item));
+                if(item!==null){
+                    const parsed = wy18NormalizeCopy(k,JSON.parse(item));
+                    if(k===KEY_ORGANS)return normalizePdfOrgans(parsed);
+                    if(k===KEY_MYTH_DATA)return normalizePdfMythData(parsed);
+                    return parsed;
+                }
                 if(k===KEY_PUBLIC_FAQ||wy17RemovedListKeys.has(k)&&Array.isArray(def))return [];
-                return wy15ContentKeys.has(k)?structuredClone(def):def;
+                const fallback = wy15ContentKeys.has(k)?structuredClone(def):def;
+                if(k===KEY_ORGANS)return normalizePdfOrgans(fallback);
+                if(k===KEY_MYTH_DATA)return normalizePdfMythData(fallback);
+                return fallback;
             } catch(e) { return def; }
         }
 
@@ -3410,7 +3398,7 @@
             if (key === KEY_PUBLIC_FAQ) { renderPublicFaq(); renderAdminFaqPublishedList(); }
             if (key === KEY_FAQ_SETTINGS) { applyFaqCustomVisualStyles(); renderPublicFaq(); loadFaqSettingsIntoAdmin(); }
             if (key === KEY_VISITOR_LOGS) { renderAdminVisitorAnalytics(); }
-            if (key === KEY_MYTH_DATA) { switchMythBusterTab('vape'); }
+            if (key === KEY_MYTH_DATA) { switchMythBusterTab('products'); }
             if (key === KEY_SCENARIOS) { renderScenario(currentScenarioIdx); window.renderClashArenaCurrentRound(); }
             if (key === KEY_TIMELINE_HEALING) { /* Legacy timeline retired in V7. */ }
             if (key === KEY_WY_V7_CONTENT || key === KEY_WY_LITERATURE) { window.waeiV7?.render(); window.waeiV7?.admin(); }
@@ -3430,7 +3418,6 @@
                     { id: 'heroCard', title: 'لافتة البداية والرسالة الرئيسية', type: 'بطاقة رئيسية' },
                     { id: 'subSection-bentoStats', title: 'أرقام وإنجازات الحملة', type: 'إحصائيات' },
                     { id: 'wy14-knowledge', title: 'المعرفة', type: 'استكشاف معرفي' },
-                    { id: 'subSection-mythBusterSection', title: 'تصحيح المعتقدات الخاطئة السريرية بالأرقام', type: 'مقارنة تفاعلية' },
                     { id: 'subSection-awarenessVideos', title: 'مكتبة الفيديوهات التوعوية', type: 'مرئيات' },
                     { id: 'publicFaqSection', title: 'اسألنا | بطاقات الـ 3D التفاعلية', type: 'أسئلة معتمدة' },
                     { id: 'confidentialAskFormSection', title: 'صندوق الاستفسار الطبي السري', type: 'نموذج تفاعلي' }
@@ -3459,9 +3446,9 @@
                 pageTitle: 'خريطة أعضاء الجسم (تأثير التدخين على جسمك)',
                 sections: [
                     { id: 'strawBreathingSection', title: 'محاكي تضيّق مجرى الهواء (10 ثوانٍ)', type: 'محاكي تفاعلي' },
-                    { id: 'timelineHealingWidget', title: 'رحلة التعافي بعد الإقلاع', type: 'تفاعل مراحل وأعضاء' },
-                    { id: 'anatomyStageWrapper', title: 'أطلس فحص الأعضاء والجسد', type: 'فحص سريري' },
-                    { id: 'subSection-shortTermCard', title: 'أثر التدخين الفوري على المدى القصير', type: 'بطاقة أعراض' }
+                    { id: 'subSection-shortTermCard', title: 'التأثير على المدى القصير', type: 'بطاقة أعراض' },
+                    { id: 'anatomyStageWrapper', title: 'التأثير على المدى البعيد: أعضاء الجسم', type: 'تفاعل عند الضغط على العضو' },
+                    { id: 'timelineHealingWidget', title: 'رحلة التعافي بعد الإقلاع', type: 'تفاعل مراحل وأعضاء' }
                 ]
             },
             {
@@ -3479,7 +3466,8 @@
                 pageTitle: 'الدراسات والأبحاث الموثقة',
                 sections: [
                     { id: 'researchCardsGridContainer', title: 'أوراق PubMed وWHO البحثية', type: 'دراسات سريرية' },
-                    { id: 'subSection-epigeneticsCard', title: 'تأثير التدخين على عمل الجينات', type: 'علم الوراثة' }
+                    { id: 'subSection-epigeneticsCard', title: 'تأثير التدخين على عمل الجينات', type: 'علم الوراثة' },
+                    { id: 'wy-teen-reasons', title: 'لماذا يبدأ المراهقون بالتدخين؟', type: 'بطاقات تفاعلية' }
                 ]
             },
             {
@@ -3498,7 +3486,10 @@
                 pageId: 'screen-sayno',
                 pageTitle: 'كيف ترفض ومواقف واقعية',
                 sections: [
-                    { id: 'wy-refusal-v7', title: 'الرفض: رحلة آدم • مواقف آدم • مرشد وعي', type: '3 أقسام تفاعلية' }
+                    { id: 'wy-refusal-v7', title: 'رحلة الإدمان وأعراض الانسحاب ومواقف الرفض', type: 'تجارب تفاعلية' },
+                    { id: 'wy-plant-safety', title: 'هل تدخين أوراق النباتات آمن؟', type: 'سؤال وثلاث حقائق' },
+                    { id: 'subSection-mythBusterSection', title: 'معتقدات خاطئة وصحيحة عن التدخين', type: 'بطاقات تفاعلية' },
+                    { id: 'wy-smoking-alternatives', title: 'بدائل السيجارة', type: 'بطاقات توعوية' }
                 ]
             }
         ];
@@ -3977,9 +3968,9 @@
             }
             if (screenId === 'screen-home') {
                 renderPublicFaq();
-                switchMythBusterTab('vape');
             }
             if (screenId === 'screen-sayno') {
+                switchMythBusterTab('products');
                 window.waeiV7?.tab(0);
             }
             const screenNamesMap = {
@@ -4833,29 +4824,40 @@
         };
 
         // ==================== 16. MYTH BUSTER & CLEAR POD VAPE SIMULATOR ====================
-        window.switchMythBusterTab = function(type) {
-            ['vape', 'shisha', 'cigs'].forEach(t => {
+        let currentMythType = 'products';
+        const mythEsc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        window.switchMythBusterTab = function(type='products') {
+            const types = ['products'];
+            if (!types.includes(type)) type = 'products';
+            currentMythType = type;
+            types.forEach(t => {
                 const b = document.getElementById('tabBtn-myth-' + t);
-                if (b) b.className = 'px-3 py-1.5 rounded-lg text-slate-600 font-bold hover:bg-white transition';
+                if (b) b.classList.toggle('is-active', t === type);
             });
-            const activeBtn = document.getElementById('tabBtn-myth-' + type);
-            if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-bold transition shadow-xs';
-            
             const store = getLocal(KEY_MYTH_DATA, defaultMythData);
-            const data = store[type] || defaultMythData[type];
-            if (!data) return;
-            document.getElementById('mythTitle').innerText = data.mythTitle;
-            document.getElementById('mythDesc').innerText = data.mythDesc;
-            document.getElementById('factTitle').innerText = data.factTitle;
-            document.getElementById('factDesc').innerText = data.factDesc;
-            for(const field of ['mythTitle','mythDesc','factTitle','factDesc']) document.getElementById(field).dataset.wyCore='myth:'+type+':'+field;
+            const group = store[type] || defaultMythData[type];
+            const grid = document.getElementById('mythCardsGrid');
+            if (!grid || !group) return;
+            const isTrue = type === 'true';
+            grid.innerHTML = (group.items || []).map((item, i) => `
+                <article class="wy-pdf-myth-card ${isTrue ? 'is-true' : ''}">
+                    <div class="wy-pdf-myth-label"><i class="fa-solid ${isTrue ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>${isTrue ? 'معتقد صحيح' : 'معتقد خاطئ'}</div>
+                    <h4>${mythEsc(item.mythTitle)}</h4>
+                    ${item.mythDesc ? `<p class="wy-pdf-myth-note">${mythEsc(item.mythDesc)}</p>` : ''}
+                    <details class="wy-pdf-myth-reveal"><summary>${isTrue ? 'اقرأ التفسير' : 'اكشف الحقيقة'}</summary><div><strong>${mythEsc(item.factTitle || (isTrue ? 'التفسير' : 'الحقيقة'))}</strong><p>${mythEsc(item.factDesc)}</p></div></details>
+                    <button type="button" class="owner-only-btn hidden wy-pdf-edit-card" onclick="openMythEditModal('${type}',${i})"><i class="fa-solid fa-pen"></i> تعديل العبارة</button>
+                </article>`).join('');
         };
 
-        window.openMythEditModal = function() {
+        window.openMythEditModal = function(type=currentMythType || 'products', index=0) {
             const modal = document.getElementById('mythEditModal');
             if (modal) {
-                const currentType = document.getElementById('editMythTabSelect')?.value || 'vape';
-                loadMythDataIntoModal(currentType);
+                const groupSelect = document.getElementById('editMythTabSelect');
+                if (groupSelect) groupSelect.value = type;
+                loadMythDataIntoModal(type);
+                const cardSelect = document.getElementById('editMythCardSelect');
+                if (cardSelect) cardSelect.value = String(index);
+                loadMythDataIntoModal();
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             }
@@ -4867,8 +4869,17 @@
         };
 
         window.loadMythDataIntoModal = function(type) {
+            const groupSelect = document.getElementById('editMythTabSelect');
+            const cardSelect = document.getElementById('editMythCardSelect');
+            if (type && groupSelect) groupSelect.value = type;
+            const groupKey = groupSelect?.value || currentMythType || 'products';
             const store = getLocal(KEY_MYTH_DATA, defaultMythData);
-            const item = store[type] || defaultMythData[type];
+            const group = store[groupKey] || defaultMythData[groupKey];
+            if (!group || !cardSelect) return;
+            const previous = type ? '0' : cardSelect.value;
+            cardSelect.innerHTML = (group.items || []).map((item, i) => `<option value="${i}">${i+1}. ${mythEsc(item.mythTitle || '')}</option>`).join('');
+            cardSelect.value = (group.items || []).some((_,i)=>String(i)===previous) ? previous : '0';
+            const item = group.items?.[Number(cardSelect.value)] || group.items?.[0];
             if (!item) return;
             document.getElementById('editMythTitleInput').value = item.mythTitle || '';
             document.getElementById('editMythDescInput').value = item.mythDesc || '';
@@ -4878,19 +4889,30 @@
 
         window.saveMythDataFromModal = async function() {
             const type = document.getElementById('editMythTabSelect').value;
+            const index = Number(document.getElementById('editMythCardSelect').value) || 0;
             const store = getLocal(KEY_MYTH_DATA, defaultMythData);
-            store[type] = {
-                mythTitle: document.getElementById('editMythTitleInput').value.trim(),
-                mythDesc: document.getElementById('editMythDescInput').value.trim(),
-                factTitle: document.getElementById('editFactTitleInput').value.trim(),
-                factDesc: document.getElementById('editFactDescInput').value.trim()
-            };
+            const item = store[type]?.items?.[index];
+            if (!item) return;
+            item.mythTitle = document.getElementById('editMythTitleInput').value.trim();
+            item.mythDesc = document.getElementById('editMythDescInput').value.trim();
+            item.factTitle = document.getElementById('editFactTitleInput').value.trim();
+            item.factDesc = document.getElementById('editFactDescInput').value.trim();
+            if (!item.mythTitle || !item.factDesc) { showToast('اكتب العبارة وشرح الحقيقة قبل الحفظ.','error'); return; }
             const ok = await saveLocalConfirmed(KEY_MYTH_DATA, store);
             if (ok) {
                 switchMythBusterTab(type);
                 closeMythEditModal();
-                showToast('تم حفظ وتحديث بيانات تصحيح المعتقدات الخاطئة سحابياً ✓');
+                showToast('تم حفظ وتحديث المعتقدات سحابياً ✓');
             }
+        };
+
+        window.choosePlantAnswer = function(answer) {
+            const feedback = document.getElementById('wy-plant-feedback');
+            const text = document.getElementById('wy-plant-feedback-text');
+            if (!feedback || !text) return;
+            text.textContent = answer === 'yes' ? "🚨 مش كل شيء طبيعي يعني آمن! تابع واكتشف ماذا يحدث للنبات عندما نحرقه." : "🎯 إجابة صحيحة! لكن ماذا يحدث عندما نجفف النبات ونخلطه ونحرقه؟";
+            feedback.hidden = false;
+            feedback.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'nearest'});
         };
 
         // ==================== 17. FINANCIAL CALCULATOR & ANATOMY HOTSPOTS ====================
@@ -4921,7 +4943,7 @@
             const pillsContainer = document.getElementById('anatomyOrgansPillButtons');
             if (!container || !pillsContainer) return;
 
-            const organs = getLocal(KEY_ORGANS, defaultOrgans);
+            const organs = getLocal(KEY_ORGANS, defaultOrgans).filter(org => !org.archived && org.visible !== false);
             container.innerHTML = organs.map(org => `
                 <div onclick="selectAnatomyOrgan(this.dataset.wyOrganId)" style="top: ${Math.max(4,Math.min(96,Number(org.top)||25))}%; left: ${Math.max(4,Math.min(96,Number(org.left)||50))}%; --wy12-point-color: ${/^#[0-9a-f]{6}$/i.test(org.color||'')?org.color:'var(--wy11-accent)'};" data-wy-organ-id="${escapeHtml(String(org.id))}" class="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-10 wy-anatomy-hotspot" role="button" tabindex="0" aria-label="${escapeHtml('\u0641\u062d\u0635 ' + org.name)}">
                     <span class="wy-organ-marker" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
@@ -4938,7 +4960,7 @@
         };
 
         window.selectAnatomyOrgan = function(orgId) {
-            const organs = getLocal(KEY_ORGANS, defaultOrgans);
+            const organs = getLocal(KEY_ORGANS, defaultOrgans).filter(o => !o.archived && o.visible !== false);
             const org = organs.find(o => o.id === orgId) || organs[0];
             if (!org) return;
             window.currentSelectedAnatomyOrganId = String(org.id);
@@ -5037,7 +5059,7 @@
         }  
   
         window.editOrganModalPrefill = function(id) {  
-            const org = getLocal(KEY_ORGANS, defaultOrgans).find(o => o.id === id);  
+            const org = getLocal(KEY_ORGANS, defaultOrgans).find(o => o.id === id && !o.archived);  
             if (!org) return;  
             window.openAddOrganModal();  
             document.getElementById('editOrganId').value = org.id;  
@@ -5277,14 +5299,14 @@
         function renderAdminSectionsMasterList() {  
             const container = document.getElementById('adminSectionsMasterList');  
             if (!container) return;  
-            const sections = [  
-                { id: 'screen-team-field', label: 'فريقنا والميدان (متطوعين وأخبار)' },  
-                { id: 'screen-anatomy', label: 'خريطة أعضاء الجسم وتضيّق مجرى الهواء' },  
-                { id: 'screen-lab', label: 'مختبر التدخين' },  
-                { id: 'screen-research', label: 'بطاقات الأبحاث والدراسات الموثقة' },  
-                { id: 'screen-calc', label: 'حاسبة التوفير المالية' },  
-                { id: 'screen-sayno', label: 'كيف ترفض؟ ومحاكي المواقف الواقعية' }  
-            ];  
+            const sections = [
+                { id: 'screen-team-field', label: 'فريقنا والميدان (توثيق الميدان)' },
+                { id: 'screen-lab', label: 'مختبر التدخين والمواد الكيميائية' },
+                { id: 'screen-anatomy', label: 'التأثير على الجسم: قصير وبعيد المدى' },
+                { id: 'screen-calc', label: 'العبء المالي وحاسبة التكلفة' },
+                { id: 'screen-research', label: 'الدراسات والأبحاث وأسباب البداية' },
+                { id: 'screen-sayno', label: 'رحلة الإدمان والبدائل وكيف تقول لا' }
+            ];
             const visMap = getLocal(KEY_SECTIONS_VIS, {});  
             container.innerHTML = sections.map(s => `  
                 <div class="p-3 bg-brandGray-50 rounded-xl border border-brandGray-200 flex items-center justify-between">  
@@ -5318,16 +5340,19 @@
             const container = document.getElementById('adminSubElementsMasterList');
             if (!container) return;
             const subs = [
+                { id: 'wy14-knowledge', label: 'تعريف التدخين وأنواعه' },
+                { id: 'wy14-classic', label: 'محاكاة السيجارة التقليدية والمواد الكيميائية' },
+                { id: 'subSection-shortTermCard', label: 'التأثير على المدى القصير' },
+                { id: 'wy11-impact-atlas', label: 'التأثير على المدى البعيد: أعضاء الجسم' },
                 { id: 'timelineHealingWidget', label: 'رحلة التعافي بعد الإقلاع' },
-                { id: 'wy14-knowledge', label: 'قسم المعرفة' },
-                { id: 'wy14-classic', label: 'محاكاة السيجارة التقليدية' },
-                { id: 'subSection-mythBusterSection', label: 'قسم تصحيح المعتقدات الخاطئة السريرية بالأرقام' },
-                { id: 'subSection-shortTermCard', label: 'بطاقة أعراض المدى القصير' },
-                { id: 'subSection-lungsComparison', label: 'بطاقة مقارنة الرئتين' },
-                { id: 'wy15-vape-extras', label: 'مواد الفيب ومصادرها' },
-                { id: 'subSection-epigeneticsCard', label: 'بطاقة تأثير التدخين على عمل الجينات' },
-                { id: 'subSection-bentoStats', label: 'بطاقة إحصائيات الحملة' },
-                { id: 'subSection-awarenessVideos', label: 'قسم الفيديوهات التوعوية الموثقة' }
+                { id: 'subSection-lungsComparison', label: 'مقارنة الرئتين' },
+                { id: 'subSection-epigeneticsCard', label: 'الأبحاث والتأثيرات فوق الجينية' },
+                { id: 'wy-teen-reasons', label: 'لماذا يبدأ المراهقون بالتدخين؟' },
+                { id: 'subSection-mythBusterSection', label: 'معتقدات خاطئة عن منتجات التدخين' },
+                { id: 'wy-plant-safety', label: 'هل تدخين أوراق النباتات آمن؟' },
+                { id: 'wy-smoking-alternatives', label: 'بدائل السيجارة والتنفس العميق' },
+                { id: 'subSection-bentoStats', label: 'إحصائيات الحملة' },
+                { id: 'subSection-awarenessVideos', label: 'الفيديوهات التوعوية' }
             ];
             const visMap = getLocal(KEY_SUB_ELEMENTS_VIS, {});
             container.innerHTML = subs.map(s => `
@@ -8445,7 +8470,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
     </script>
     <!-- Stable non-content effects assets; keep these unchanged during future content edits. -->
-    <script src="./waei-live-effects.js?v=22.0"></script>
+    <script src="./waei-live-effects.js?v=23.0"></script>
 <dialog id="wy14-editor" class="wy14-editor" aria-labelledby="wy14-editor-title"><div id="wy14-editor-content"></div></dialog>
 
 <script>
